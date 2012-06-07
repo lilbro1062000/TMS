@@ -1,0 +1,165 @@
+.PostedComment
+{
+	border-style: solid;	
+	border-color: gray;
+	border-bottom-width: 15px;
+	background-color: orange;
+}
+#user_menu{
+ 
+    background-color: gray;
+    list-style: none;
+    display:inline;
+    text-align: right;
+}
+#recom{
+	position: relative;
+	top:40px;
+}
+#user_menu li
+{
+	position:relative;
+    display: inline;
+    text-align: right;
+    
+    border-style: solid;
+    border-left-width:15px;
+    border-left-color: gray; 
+    
+}
+#UpdateVideoForm {
+list-style:none;
+text-align:left;
+}
+#VideoThumb {
+	border-style:solid;
+	position:relative;
+	border-bottom-width:20px;
+	border-color:gray;
+
+	height:130px;
+	width: 675px;
+}
+
+#VideoThumb img
+{
+	position: absolute;
+	left:0px;
+	top: 0px;
+}
+#VideoThumb label
+{
+	position:absolute;
+	right:20px;
+	top:10px;
+
+}
+#VideoThumb p
+{
+	position:absolute;
+	left:200px;
+	text-align: Left;
+	width:360px;
+}
+
+body {
+text-align:center;
+position:relative;
+top:40px;
+}
+#userinfo
+{
+	text-align: left;
+
+}
+
+#progress
+{
+	background-color: orange;
+	position:relative;
+	top:80px;
+	height:100px;
+}
+
+#mainPage {
+background-color:orange;
+width:700px;
+height:auto;
+}
+
+h1 {
+}
+
+#Categories {
+background:#666;
+text-align:left;
+height:inherit;
+}
+
+#Categories a {
+color:#fff;
+cursor:pointer;
+display:block;
+height:25px;
+line-height:25px;
+text-indent:10px;
+text-decoration:none;
+}
+
+#Categories a:hover {
+text-decoration:underline;
+background-color:orange;
+}
+
+#Categories li {
+height:35px;
+list-style:none;
+}
+
+.headMenu {
+}
+
+#NavMenu {
+display:inline;
+list-style:none;
+padding:0;
+margin:0;
+}
+
+#IconImage {
+float:right;
+}
+
+#head {
+background-color:black;
+}
+
+#placeholder {
+background-color:green;
+}
+
+#Footer {
+background-color:gray;
+height:100px;
+}
+
+#AdBar {
+height:120px;
+background-color:gainsboro;
+}
+
+#VideoContainer
+{
+	width: 700px;
+	text-align: center;
+	background-color:#008080;
+}
+
+#VideoContainer #BottemVideoPanel
+{
+	
+	text-align: center;
+	position: relative;
+	padding: 20px;
+}
+
