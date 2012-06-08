@@ -25,7 +25,7 @@ $(function() {
 		runtimes : 'html5',
 		url : 'plupload.php',
 		max_file_size : '100mb',
-		chunk_size : '500kb',
+		chunk_size : '100kb',
 		unique_names : true,
 
 
@@ -82,7 +82,7 @@ enctype="multipart/form-data">
     <input id="uploadedfile" type="file" name="uploadedfile" onchange=" fileSelected();" />
 -->
 <div id="html5_uploader" class="grid_9" >
-	You browser doesn't support native upload. Try Firefox 3 or Safari 4.
+	You browser doesn't support native upload. Google Chrome
 	</div>
     <br />
     <input type="submit" name="submit" value="Upload" />
