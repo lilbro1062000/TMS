@@ -1,9 +1,38 @@
+body {background-color:rgb(242,232,220);}
+
 .PostedComment
 {
 	border-style: solid;	
 	border-color: gray;
 	border-bottom-width: 15px;
-	background-color: orange;
+	background-color: rgb(89,76,71);
+	overflow: auto;
+	padding: 5px;
+}
+.PostedComment tr
+{
+	height:40px;
+}
+.PostedComment tr td
+{
+	
+	border-left-style: groove;
+	border-left-color: gray;
+	border-left-width: 10px;
+}
+#CommentBlock
+{
+	padding-left: 20px;
+}
+#AgComments
+{
+	height: 430px;
+	overflow: auto;
+	padding: 5px;
+	border-bottom-style:solid;
+	border-bottom-color:rgb(242,232,220);
+	border-bottom-width: 20px;
+	
 }
 #user_menu{
  
@@ -50,7 +79,7 @@ text-align:left;
 #VideoThumb label
 {
 	position:absolute;
-	right:20px;
+	left:200px;
 	top:10px;
 
 }
@@ -82,16 +111,16 @@ top:40px;
 }
 
 #mainPage {
-background-color:orange;
+background-color:rgb(166,149,134);
 width:700px;
 height:auto;
 }
 
 h1 {
 }
-
 #Categories {
-background:#666;
+
+background:rgb(2,89,73);
 text-align:left;
 height:inherit;
 }
@@ -135,24 +164,27 @@ background-color:black;
 }
 
 #placeholder {
-background-color:green;
+background-color:transparent;
 }
 
 #Footer {
-background-color:gray;
+background-color:rgb(131,167,122);
 height:100px;
 }
 
 #AdBar {
 height:120px;
-background-color:gainsboro;
+background-color:rgb(131,167,122);
+border-bottom-style: solid;
+border-bottom-color: rgb(242,232,220);
+border-bottom-width: 20px;
 }
 
 #VideoContainer
 {
 	width: 700px;
 	text-align: center;
-	background-color:#008080;
+	background-color:rgb(166,149,134);
 }
 
 #VideoContainer #BottemVideoPanel

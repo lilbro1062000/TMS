@@ -1,8 +1,15 @@
 <?php
 $filename =urldecode($_GET['fname']);
-
-$toWidth=160;
-$toHeight=160;
+if(isset($_GET['vid']))
+{
+	//640x360
+	$toWidth=640;
+	$toHeight=360;	
+}
+else {
+	$toWidth=160;
+	$toHeight=160;
+}
 
  list($width, $height) = getimagesize($filename);
     $xscale=$width/$toWidth;

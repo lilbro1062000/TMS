@@ -55,17 +55,9 @@ elseif (isset($_GET['Category']))
 	else {
 					
 				
-			  	$count=1;
+			  	$count=1; 
 			   	$results= ex_query("Select ID from video;");
-			    while($row = mysql_fetch_array($results))
-			    {
-			    	if($count<7)
-					{
-					 GEnerateImageThumb($row[0]);	
-					}
-					$count++;
-				    
-			    }
+				$count=GenMultipleThumb($results);
 				Pages("Select ID from video", "browse.php");
 	}
   

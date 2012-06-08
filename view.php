@@ -22,7 +22,7 @@ $row = ex_query1Row("select * from video where hash =\"".$hash."\"");
 echo("<div class=\"grid_5\"  id=\"VideoContainer\">\n");
 echo("<h2> ".$row['VideoName']."</h2> \n");
 echo("<video id=\"Video\" ");
-echo("poster=\"".$row['videoImage']."\" ");
+echo("poster=\"includes/image.php?vid=1&fname=".$row['videoImage']."\" ");
 echo(" controls=\"controls\">\n");
 echo("  <source src=\"".$row['mp4Path']."\" type='video/mp4; codecs=\"avc1.42E01E, mp4a.40.2\"' />\n");
 echo(" <source src=\"".$row['webMPath']."\" type='video/webm; codecs=\"vp8, vorbis\"' />\n")
@@ -143,7 +143,7 @@ if(checklogin())
 </div>
 
 <div id="CommentArea">
-	
+
 	<?php 
 	if(checklogin())
 	{
@@ -170,7 +170,7 @@ if(checklogin())
 	}
 	 ?>
 	
-	
+	<div id= "AgComments">
 	<?php
 	$query="Select VideoID,UserID,Comment,DateSubmited from comments where videoID='".GetVideoID($hash)."' order by ID desc";
 	$results = ex_query($query);
@@ -178,9 +178,15 @@ if(checklogin())
 	{
 		
 	echo "<div class=\"PostedComment\">\n";
+	echo "<table>\n";
+	echo "<tr>\n";
+	echo "<td>\n";
+	
 	echo "<a> "; 
 	echo getUsername($row['UserID']); 
 	echo " </a> \n";
+	
+	
 	if(checklogin())
 		{
 			echo "<a href=\"#\" > Report </a>\n";
@@ -191,13 +197,18 @@ if(checklogin())
 			}
 			
 		}
-		echo "<div id=\"CommentBlock\">
-		 {$row['Comment']} </div> \n";
-		echo "</div>\n";	
-	}
+	echo "</td>\n";
+	echo "<td>\n";
+	echo "<div id=\"CommentBlock\">{$row['Comment']}</div> \n";
 	
-	?>
+	echo "</td>\n";
+	echo "</tr>\n";
+	echo "</table>\n";	
+	echo "</div>\n";
+	}
 
+	?>
+</div>
 </div>
 <?php
 

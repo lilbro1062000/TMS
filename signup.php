@@ -10,6 +10,11 @@ if(isset($_POST['Firstname']))
 		$Lastname = mysql_real_escape_string($_POST['Lastname']);
 		$Username = mysql_real_escape_string($_POST['Username']);
 		$Password = mysql_real_escape_string($_POST['Password']);
+		$secondPassword =mysql_real_escape_string($_POST['Password2']);
+		if($Password!=$secondPassword)
+		{
+			$message ="Passwords are Not Identical";
+		}
 		$email=$_POST['email'];
 		if(!validEmail($email))
 		{
