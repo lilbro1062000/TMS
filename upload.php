@@ -25,7 +25,7 @@ $(function() {
 		runtimes : 'html5',
 		url : 'plupload.php',
 		max_file_size : '100mb',
-		chunk_size : '100kb',
+		chunk_size : '250kb',
 		unique_names : true,
 
 

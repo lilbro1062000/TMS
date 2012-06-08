@@ -1,5 +1,5 @@
 <?php
-require_once ('../AWSSDK-1.5.4/sdk.class.php');
+require_once ('AWSSDK-1.5.4/sdk.class.php');
 //header("Content-type: text/plain; charset=utf-8");
 $s3 = new AmazonS3();
 $bucket = "tmsbucketdev";

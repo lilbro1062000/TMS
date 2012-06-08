@@ -4,7 +4,7 @@
 	require_once("aws.php");
 //so this is a cron job so i have to upload and change the status 
 // first thing is should do it run the cron job before i use this script  
-define("UPLOAD_DIR", "../amazonaws/Bucket/");
+define("UPLOAD_DIR", "amazonaws/Bucket/");
 
 //var_dump($GLOBALS);
 //exit;
@@ -25,6 +25,7 @@ if(isset($row['ID']))
 		$query.= "Percentage = {$percent} where ";
 		$query.="ID=".$rowID;
             ex_query($query);
+			echo $note." ". $percent;
     }  
     //Change to Started status and change percentage to 1 
         updatePercent("Started",1,$row['ID']);    
@@ -34,13 +35,15 @@ if(isset($row['ID']))
         //dont overwrite an existing file
         $i = 0;
         $parts = pathinfo($name);
-        while (!isInBucket($name.".mp4"))
+        while (isInBucket($name.".mp4"))
         {
+        	$i++;
+			$name = $parts["filename"] . "-" . $i . "." . $parts["extension"];
         	if(file_exists(UPLOAD_DIR . $name))
 			{
             $i++;
-            $name = $parts["filename"] . "-" . $i . "." . $parts["extension"];
-			}
+            }
+			$name = $parts["filename"] . "-" . $i . "." . $parts["extension"];
         }
         updatePercent("Changing Name",10,$row['ID']);
         //preserve file from temporary directory
@@ -97,5 +100,9 @@ if(isset($row['ID']))
 			ex_query("insert into views(video_ID, Numwatched) Values({$vidID},0)");      
         updatePercent("Done",100,$row['ID']);
 		updatePercent($uniqeHash, 100,$row['ID']);
+}
+else
+{
+	echo "No FIles to change";
 }
 ?>
