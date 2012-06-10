@@ -50,6 +50,8 @@ if (isset($row['ID'])) {
 		echo "<p> Unable to save File.</p>";
 		exit ;
 	}
+	//removes tmp file from folder
+	unlink('/tmp/uploads/' . $tmpname);
 	updatePercent("removing weird things in the video", 15, $row['ID']);
 
 	chmod(UPLOAD_DIR . $name, 0644);

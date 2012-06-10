@@ -281,19 +281,19 @@ function check_input($fname)
     }
     return $fname;
 }
-function ex_query($fname)
+function ex_query($query)
 {
-    $results = mysql_query($fname);
+    $results = mysql_query($query);
     if (!$results)
     {
         die($fname."<br/>Database has failed :" . mysql_error());
     }
     return $results;
 }
-function ex_query1Row($fname)
+function ex_query1Row($query)
 {
     
-    $results = mysql_query($fname);
+    $results = mysql_query($query);
     if (!$results)
     {
         die($fname."<br/>Database has failed :" . mysql_error());
@@ -301,10 +301,10 @@ function ex_query1Row($fname)
     $row = mysql_fetch_array($results);
     return $row;
 }
-function ex_query1RowAns($fname)
+function ex_query1RowAns($query)
 {
     
-    $results = mysql_query($fname);
+    $results = mysql_query($query);
     if (!$results)
     {
         die($fname."<br/>Database has failed :" . mysql_error());

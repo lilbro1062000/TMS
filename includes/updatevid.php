@@ -23,7 +23,17 @@ Logged_in();
                     $query ="Insert into videocatinfo(hash,Category) Values('".$_GET['id']."','".$row[0]."')";
                     ex_query($query);	
 					}
-                }  
+                } 
+				else{
+					//check to see if the category exists already
+                	$checkQuery = "Select 1 from videocatinfo where hash ='{$_GET['id']}' and Category ='{$row[0]}'";
+					
+					if(ex_query1RowAns($checkQuery)==1)
+					{
+                	// inset the category into the Database 
+                    $query ="delete from videocatinfo where hash ='{$_GET['id']}' and Category ='{$row[0]}'";
+                    ex_query($query);
+				} 
             }
         }
 //Insert Description 
