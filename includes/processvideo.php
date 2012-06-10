@@ -57,7 +57,8 @@ if(isset($row['ID']))
         }
          updatePercent("removing weird things in the video",15,$row['ID']);
         
-        
+        @set_time_limit(5 * 60);
+		
 		chmod(UPLOAD_DIR . $name, 0644);
 		//Mp4 Generation 
 		$mp4_filepath =ConvertToMP4($path);
