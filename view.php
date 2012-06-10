@@ -156,7 +156,7 @@ if(checklogin())
 					echo getUsername($_SESSION[SESSIONUSERID]);
 				}
 		echo"</h3>";
-		echo "<textarea rows=\"8\" cols=\"80\" id=\"Comment\" name=\"PComment\" placeholder=\"Please Comment\"></textarea>";
+		echo "<textarea rows=\"8\" cols=\"80\" id=\"Comment\" name=\"PComment\" placeholder=\"Please Comment\" required=\"true\" ></textarea>";
 		echo "</tr>";
 		echo "<tr>";
 		echo "<input type=\"submit\" name=\"Submit\"  value=\"Add Comment\"/>";

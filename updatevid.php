@@ -41,10 +41,9 @@ while ($row = mysql_fetch_array($results))
 ?>
  
  <label>Video Description</label>
- <textarea form="UpdateVideoForm" cols="29" rows="4" name="Desc">
- Please Enter Your Description	
+ <textarea form="UpdateVideoForm" cols="29" rows="4" name="Desc" placeholder="PLease Enter Information" required="true">
  </textarea>
- <br />
+ <br /> 
  <label>Keywords Comma seperated </label>
  <input type="text" name="Keywords" placeholder="Enter Keywords"/>
  
