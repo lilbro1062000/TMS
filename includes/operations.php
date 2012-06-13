@@ -12,12 +12,11 @@ if(isset($_GET['fav']))
         addToFavorites($_SESSION['User_ID'],$_GET['videoID']);
         redirect_to("../view.php?videoID={$_GET['videoID']}");
     }
-    elseif($_GET['fav']==0){
-        removeFromFavorites($_SESSION['User_ID'],$_GET['videoID']);
+    elseif($_GET['fav']==0){removeFromFavorites($_SESSION['User_ID'],$_GET['videoID']);
         redirect_to("../view.php?videoID={$_GET['videoID']}");
     }
 }
-if(isset($_GET['liked']))
+elseif(isset($_GET['liked']))
 {
     if($_GET['liked']==1)
     {
@@ -30,7 +29,7 @@ if(isset($_GET['liked']))
         redirect_to("../view.php?videoID={$_GET['videoID']}");
     }
 }
-if(isset($_GET['reported']))
+elseif(isset($_GET['reported']))
 {
     if($_GET['reported']==1)
     {
@@ -42,6 +41,9 @@ if(isset($_GET['reported']))
         unReportVideo($_SESSION['User_ID'],GetVideoID($_GET['videoID']));
         redirect_to("../view.php?videoID={$_GET['videoID']}");
     }
+}
+elseif (isset($_GET['delete'])) {
+	echo" Oh man is this sooo deleted";
 }
 
 ?>

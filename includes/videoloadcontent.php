@@ -19,7 +19,10 @@ while ($row =mysql_fetch_array($result))
 	echo "<progress max=\"100\" value=\"$currentProgress\" id=\"progressbar\"> Please oh Please Download <a href=\"https://www.google.com/intl/en/chrome/browser/\">Google Chrome</a></progress>\n";
 	if($currentProgress ==100)
 	{
-		echo "<a href=\"updatevid.php?videoID={$Progress}\">Edit Video INFO</a>";
+		echo "<br/>";
+		echo "<a href=\"updatevid.php?videoID={$Progress}\">Edit Info</a>";
+		echo "<br/>";
+		echo "<a href=\"profile.php?delete={$Progress}\">Delete Video</a>";
 	}
 	echo "</div>\n";	
 }

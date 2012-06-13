@@ -45,6 +45,17 @@ Function Insert_into_bucket($path,$name,$type='video/mp4')
 	
 	
 }
+function Delete_from_bucket($filename)
+{
+	 global $s3, $bucket;
+	 $response = $s3 ->delete_object($bucket, $filename);
+	 if($response->status!=200)
+	{
+		echo "Failed Deleteing file\n";
+		echo $response;
+		echo $filename;
+	}
+}
 
 //echo isInBucket("orangeSoda.php");
 ?>
