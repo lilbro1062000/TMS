@@ -14,8 +14,8 @@ include_once ("includes/categories.php");
 		//todo add validation that this persson's session is the one able to delete videos
 		
 		$video = $_POST['delete'];
-		if(belongs_to_person($_SESSION[SESSIONUSERID], $video))
-		{
+		//if(belongs_to_person($_SESSION[SESSIONUSERID], $video))
+		//{
 			echo "<div class=\"grid_8\" id=\"Deletebox\">\n";
 			echo "Are you sure you want to delete this video ?\n";
 			echo "<form action=\"includes/operations.php?delete=$video\" method=\"post\">\n";
@@ -23,7 +23,7 @@ include_once ("includes/categories.php");
 			echo "</form>\n";
 			echo "<button type=\"button\" onclick=\"window.location.href=window.location.href\"> No Dont </button>\n";
 			echo "</div>";	
-		}
+		//}
 	}
 ?>
 <div id="userinfo" class="grid_6">

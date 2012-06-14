@@ -297,7 +297,7 @@ function ex_query($query)
     $results = mysql_query($query);
     if (!$results)
     {
-        die($fname."<br/>Database has failed :" . mysql_error());
+        die($query."<br/>Database has failed :" . mysql_error());
     }
     return $results;
 }
@@ -307,7 +307,7 @@ function ex_query1Row($query)
     $results = mysql_query($query);
     if (!$results)
     {
-        die($fname."<br/>Database has failed :" . mysql_error());
+        die($query."<br/>Database has failed :" . mysql_error());
     }
     $row = mysql_fetch_array($results);
     return $row;
@@ -318,7 +318,7 @@ function ex_query1RowAns($query)
     $results = mysql_query($query);
     if (!$results)
     {
-        die($fname."<br/>Database has failed :" . mysql_error());
+        die($query."<br/>Database has failed :" . mysql_error());
     }
     $row = mysql_fetch_array($results);
     return $row[0];

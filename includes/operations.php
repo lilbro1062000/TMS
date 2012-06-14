@@ -43,64 +43,66 @@ elseif(isset($_GET['reported']))
     }
 }
 elseif (isset($_GET['delete'])) {
-	require_once ('aws.php');
-	//THere are alot of stuff to delete from first 
-	//from comments 
-	$hash = $_GET['delete'];
-	$videoID = GetVideoID($hash);
+require_once ('aws.php');
+	 //THere are alot of stuff to delete from first 
+	 //from comments 
+	 $hash = $_GET['delete'];
+	 $videoID = GetVideoID($hash);
+		
+	 $query ="delete from comments where VideoID=".$videoID;
+	 ex_query($query);
+	 echo "deleting from comments \n";
+	 //delete from favorites 
+	 $query= "delete from favorites where VideoID='{$hash}'";
+	 ex_query($query);
+	 echo "deleting from history\n";
+	 //delete from  history
+	 $query ="delete from  history where VideoID='{$hash}'"; 
+	 ex_query($query);
+	 echo "deleting from keywords\n";
+	 //delete from keywords
+	 $query ="delete from keywords where VideoID=".$videoID;
+	 ex_query($query);
+	 echo "deleting from like\n";
+	 //delete from liked table 
+	 $query="delete from liked where videoid=".$videoID;
+	 ex_query($query);
+	 echo "deleting from reportedvideo\n";
+	 //delete from reportedvideo
+	 $query ="delete from reportedvideo where VideoID=".$videoID;
+	 ex_query($query);
+	 echo "deleting from videoCatinfo\n";
+	 //delete from videocatinfo
+	 $query = "delete from  videocatinfo where Hash='{$hash}'";
+	 ex_query($query);
+	 echo "deleting from videodesc\n";
+	 //delete from videodesc
+	 $query ="delete from videodesc where VidID=".$videoID;
+	 ex_query($query);
+	 echo "deleting from views\n";
+	 //delete from views
+	 $query ="delete from views where Video_ID=".$videoID;
+	 ex_query($query);
+	 echo "deleting from jobs\n";
+	 //delete from jobs 
+	 $query = "delete from jobs where Progress ='{$hash}'";
+	 ex_query($query);
+	 echo "deleting from aws\n";
+	 $query= "select mp4Path,webMPath,videoImage from video where Hash='{$hash}' and ID=".$videoID;
+	 $row = ex_query1Row($query);
+	 
+	 echo "deleting mp4path\n ";
+	 Delete_from_bucket($row[0]);
+	 echo "deleting from webMpath\n";
+	 Delete_from_bucket($row[1]);
+	 echo "deleting from VideoImage\n";
+	 Delete_from_bucket($row[2]);
 	
-	// $query ="delete from comments where VideoID=".$videoID;
-	// ex_query($query);
-	// echo "deleting from comments \n";
-	// //delete from favorites 
-	// $query= "delete from favorites where VideoID='{$hash}'";
-	// ex_query($query);
-	// echo "deleting from history\n";
-	// //delete from  history
-	// $query ="delete from  history where VideoID='{$hash}'"; 
-	// ex_query($query);
-	// echo "deleting from keywords\n";
-	// //delete from keywords
-	// $query ="delete from keywords where VideoID=".$videoID;
-	// ex_query($query);
-	// echo "deleting from like\n";
-	// //delete from liked table 
-	// $query="delete from liked where videoid=".$videoID;
-	// ex_query($query);
-	// echo "deleting from reportedvideo\n";
-	// //delete from reportedvideo
-	// $query ="delete from reportedvideo where VideoID=".$videoID;
-	// ex_query($query);
-	// echo "deleting from videoCatinfo\n";
-	// //delete from videocatinfo
-	// $query = "delete from  videocatinfo where Hash='{$hash}'";
-	// ex_query($query);
-	// echo "deleting from videodesc\n";
-	// //delete from videodesc
-	// $query ="delete from videodesc where VidID=".$videoID;
-	// ex_query($query);
-	// echo "deleting from views\n";
-	// //delete from views
-	// $query ="delete from views where Video_ID=".$videoID;
-	// ex_query($query);
-	// echo "deleting from jobs\n";
-	// //delete from jobs 
-	// $query = "delete from jobs where Progress ='{$hash}'";
-	// ex_query($query);
-	// echo "deleting from aws\n";
-	// $query= "select mp4Path,webMPath,videoImage from video where Hash='{$hash}' and ID=".$videoID;
-	// $row = ex_query1Row($query);
-	// echo "deleting mp4path\n ";
-	Delete_from_bucket($row[0]);
-	echo "deleting from webMpath\n";
-	Delete_from_bucket($row[1]);
-	echo "deleting from VideoImage\n";
-	Delete_from_bucket($row[2]);
-	
-	echo "deleting from video\n";
-	$query= "delete from video where Hash='{$hash}' and ID=".$videoID;
-	ex_query($query);
-	redirect_to("../profile.php");
+	 echo "deleting from video\n";
+	 $query= "delete from video where Hash='{$hash}' and ID=".$videoID;
+	 ex_query($query);
+	 
+	 redirect_to("../profile.php");
 }
 
 ?>

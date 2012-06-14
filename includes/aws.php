@@ -48,25 +48,19 @@ Function Insert_into_bucket($path,$name,$type='video/mp4')
 function Delete_from_bucket($filename)
 {
 	header('Content-Type: text/plain; charset=utf-8');
-	$s3 = new AmazonS3();
-	$bucket = "tmsbucketdev";
-
-	//$search="http://$bucket.s3.amazonaws.com/";
-	$array = $s3 -> get_object_list($bucket);
-	// $filename =str_replace($search,"", $filename);
-	// echo $filename;
-	echo "nothing";
-	echo($array);
-	 // var_dump($response);
-	// exit;
-	 // $response = $s3 ->delete_object($bucket, $filename);
-	 // echo($response);
-	 // if($response->status!=200)
-	// {
-		// echo "Failed Deleteing file\n";
-		// echo $response;
-		// echo $filename;
-	// }
+	global $s3, $bucket;
+	$search="http://$bucket.s3.amazonaws.com/";
+	$filename =str_replace($search,"", $filename);
+	
+	
+	  $response = $s3 ->delete_object($bucket, $filename);
+	  echo($response);
+	  if($response->status!=200)
+	 {
+		 echo "Failed Deleteing file\n";
+		 echo $response;
+		 echo $filename;
+	 }
 }
 // i fixed It
 // you love Me

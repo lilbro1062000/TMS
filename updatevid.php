@@ -54,8 +54,8 @@ if (isset($_POST['Keywords'])) {
 			ex_query($query);
 
 		}
-		//redirect_to("view.php?videoID=" . $_GET['id']);
-		redirect_to("updatevid.php?videoID=" . $_GET['id']);
+		redirect_to("view.php?videoID=" . $_GET['id']);
+		//redirect_to("updatevid.php?videoID=" . $_GET['id']);
 	}
 } elseif (isset($_GET['videoID'])) {
 	require_once ("includes/connection.php");
