@@ -22,7 +22,10 @@ while ($row =mysql_fetch_array($result))
 		echo "<br/>";
 		echo "<a href=\"updatevid.php?videoID={$Progress}\">Edit Info</a>";
 		echo "<br/>";
-		echo "<a href=\"profile.php?delete={$Progress}\">Delete Video</a>";
+		echo "<form action=\"profile.php\" method=\"post\">\n";
+		echo "<input type=\"text\" value =\"$Progress\" name=\"delete\" hidden=\"true\" />\n";
+		echo "<input type=\"submit\" value=\"Delete Video\" />";
+		echo "</form>";
 	}
 	echo "</div>\n";	
 }

@@ -10,14 +10,20 @@ include_once ("includes/categories.php");
 ?>
 
 <?php
-	if (isset($_GET['delete'])) {
-		$video = $_GET['delete'];
-		echo "<div class=\"grid_8\" id=\"Deletebox\">";
-		echo "Are you sure you want to delete this video ?";
-
-		echo "<button type=\"button\" onclick=\"includes/operations.php?delete=$video\"> YES Delete!!! </button>";
-		echo "<button type=\"button\" onclick=\"profile.php\"> No Dont </button>";
-		echo "</div>";
+	if (isset($_POST['delete'])) {
+		//todo add validation that this persson's session is the one able to delete videos
+		
+		$video = $_POST['delete'];
+		if(belongs_to_person($_SESSION[SESSIONUSERID], $video))
+		{
+			echo "<div class=\"grid_8\" id=\"Deletebox\">\n";
+			echo "Are you sure you want to delete this video ?\n";
+			echo "<form action=\"includes/operations.php?delete=$video\" method=\"post\">\n";
+			echo "<input type=\"submit\" value=\"YES Delete!!!\"/>\n";
+			echo "</form>\n";
+			echo "<button type=\"button\" onclick=\"window.location.href=window.location.href\"> No Dont </button>\n";
+			echo "</div>";	
+		}
 	}
 ?>
 <div id="userinfo" class="grid_6">

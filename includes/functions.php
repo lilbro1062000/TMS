@@ -1,5 +1,16 @@
 <?php
 date_default_timezone_set('America/New_York');
+function belongs_to_person($userID,$videoID)
+{
+	$query ="Select 1 from video where hash='{$videoID}' and UserID=".$userID;
+	if(ex_query1RowAns($query)==1)
+	{
+		return true;
+	}
+	else {
+		return false;
+	}
+}
 function Cat_Pages($query,$phpFile,$Category)
 {
 				 $arrayName = array();
