@@ -75,9 +75,9 @@ function createFBUser() {
 		$query .= 'Values( ';
 		$query .= $user_profile["id"];
 		$query .= ' , \'';
-		$query .= $user_profile["First_name"];
+		$query .= $user_profile["first_name"];
 		$query .= '\', \'';
-		$query .= $user_profile["Last_name"];
+		$query .= $user_profile["last_name"];
 		$query .= '\', \'';
 		$query .= $user_profile["email"];
 		$query .= '\') ';
@@ -89,13 +89,13 @@ function createFBUser() {
 		$query.='Values( \'';
 		$query .= $user_profile["id"];
 		$query .= ' , \'';
-		$query .= $user_profile["First_name"]. " ".$user_profile["Last_name"];
+		$query .= $user_profile["first_name"]. " ".$user_profile["fast_name"];
 		$query.=' \', \'';
 		$query.="fbLoggedinNow";
 		$query.='\' ) ';
 		ex_query($query);
 
-	login($user_profile["id"], $user_profile["First_name"]. " ".$user_profile["Last_name"]);
+	login($user_profile["id"], $user_profile["first_name"]. " ".$user_profile["last_name"]);
 	}
 	
 	
