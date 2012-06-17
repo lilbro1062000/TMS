@@ -25,6 +25,10 @@ require_once ("FB.php");
 		{
 			createFBUser();
 		}
+		else {
+			//start session with that user 
+		 login(GetFBUserID(), GetFBUserName());
+		}
 		
 		//if non exists then create one 
 		

@@ -46,6 +46,18 @@ function GetName() {
 	return $user['name'];
 
 }
+function GetFBUserID() {
+	global $facebook, $user;
+	$user_profile = $facebook -> api('/me');
+	return $user_profile['id'];
+
+}
+function GetFBUserName() {
+	global $facebook, $user;
+	$user_profile = $facebook -> api('/me');
+	return $user_profile["name"];
+
+}
 
 function fbUserExists() {
 	global $facebook, $user;
@@ -87,7 +99,7 @@ function createFBUser() {
 		$query.='Values( \'';
 		$query .= $user_profile["id"];
 		$query .= '\' , \'';
-		$query .= $user_profile["first_name"]. " ".$user_profile["last_name"];
+		$query .= $user_profile["name"];
 		$query.=' \', \'';
 		$query.="fbLoggedinNow";
 		$query.='\' ) ';

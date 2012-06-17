@@ -41,7 +41,7 @@ include_once ("includes/categories.php");
            d.getElementsByTagName('head')[0].appendChild(js);
          }(document));
       </script>
-<META HTTP-EQUIV="refresh" CONTENT="2;URL=login.php">
+<META HTTP-EQUIV="refresh" CONTENT="5;URL=login.php">
 <form id="Login" class="grid_4">
 	<table>
 		<tr>
