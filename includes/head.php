@@ -89,7 +89,7 @@ require_once ("FB.php");
 			<?php
 			$results = ex_query("Select * from header_menu order by ID asc;");
 			while ($row = mysql_fetch_array($results)) {
-				if ($row[1] == "Login") {
+				if ($row[1] == "Login" && isFBLoggedin()) {
 					echo("<li id=\"NavMenu\"><a href=\"".GetFBlogoutURL() ."\">logout</a></li>\n");
 				} else if ($row[1] == "SignUp" && isFBLoggedin()) {
 					} else {

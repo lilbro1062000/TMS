@@ -11,12 +11,10 @@ function isFBLoggedin() {
 	if ($user) {
 		try {
 			$user_profile = $facebook -> api('/me');
-			echo "$user_profile";
 			return true;
 		} catch (FacebookApiException $e) {
 			error_log($e);
 			$user = null;
-			echo "not authenticated ";
 			return false;
 		}
 
