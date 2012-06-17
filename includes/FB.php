@@ -50,22 +50,22 @@ function GetName() {
 }
 
 function GetFBUserID() {
-	global $facebook, $user, $token;
-	$user_profile = $facebook -> api('/me' . $token);
+	global $facebook, $user;
+	$user_profile = $facebook -> api('/' . $user);
 	return $user_profile['id'];
 
 }
 
 function GetFBUserName() {
-	global $facebook, $user, $token;
-	$user_profile = $facebook -> api('/me' . $token);
+	global $facebook, $user;
+	$user_profile = $facebook -> api('/' . $user);
 	return $user_profile["name"];
 
 }
 
 function fbUserExists() {
-	global $facebook, $user, $token;
-	$user_profile = $facebook -> api('/me' . $token);
+	global $facebook, $user;
+	$user_profile = $facebook -> api('/' . $user);
 
 	$query = "Select 1 from users where ID = " . $user_profile["id"];
 
