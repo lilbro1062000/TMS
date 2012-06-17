@@ -21,6 +21,7 @@ if (isset($_GET['msg'])) {
 }
 include_once ("includes/head.php");
 include_once ("includes/categories.php");
+require_once ("includes/FB.php");
 ?>
 <?php   redirectIfloggedIN();?>
  <div id="fb-root"></div>

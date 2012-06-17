@@ -4,39 +4,39 @@ require_once ("functions.php");
 require_once ("FB.php");
 ?>
 <?php
-	// this is to check the video
-	if (isset($_COOKIE['VideoCount'])) {
-		$vidID = $_COOKIE['VideoCount'];
+// this is to check the video
+if (isset($_COOKIE['VideoCount'])) {
+	$vidID = $_COOKIE['VideoCount'];
 
-		// Updated Video view count
-		if (videoExists($vidID)) {
-				
-			$query = "Update views set Numwatched = Numwatched+1 where video_id=".GetVideoID($vidID);
-			ex_query($query);
-		}
-		
-		//remove cookie
-		setcookie("VideoCount", "", time() - 3600);
-		unset($_COOKIE['VideoCount']);
+	// Updated Video view count
+	if (videoExists($vidID)) {
+
+		$query = "Update views set Numwatched = Numwatched+1 where video_id=" . GetVideoID($vidID);
+		ex_query($query);
 	}
-	if (isFBLoggedin()) {
-		// if logged in then check db for user info 
-		if(!fbUserExists())
-		{
-			createFBUser();
-		}
-		else {
-			//start session with that user 
-		 login(GetFBUserID(), GetFBUserName());
-		}
-		
-		//if non exists then create one 
-		
-		//That id will be use for video Uploads as well for video count
-		
-		// dont forget for user creation 
-		
+
+	//remove cookie
+	setcookie("VideoCount", "", time() - 3600);
+	unset($_COOKIE['VideoCount']);
+}
+
+if (isFBLoggedin()) {
+	// if logged in then check db for user info
+	if (!fbUserExists()) {
+		createFBUser();
 	}
+
+	//start session with that user
+	login(GetFBUserID(), GetFBUserName());
+
+	//if non exists then create one
+
+	//That id will be use for video Uploads as well for video count
+
+	// dont forget for user creation
+
+}
+
 ?>
 <!DOCTYPE HTML>
 <html lang="en" >
@@ -61,29 +61,29 @@ require_once ("FB.php");
 	<body class="container_12">
 		<!--Facebook Stuff-->
 		<div id="fb-root"></div>
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '453077271378502', // App ID
-      channelUrl : '//<?php echo($_SERVER["HTTP_HOST"])?>/infomatica.html', // Channel File
-      status     : true, // check login status
-      cookie     : true, // enable cookies to allow the server to access the session
-      xfbml      : true  // parse XFBML
-    });
+		<script>
+			window.fbAsyncInit = function() {
+FB.init({
+appId      : '453077271378502', // App ID
+channelUrl : '//<?php echo($_SERVER["HTTP_HOST"])?>/infomatica.html', // Channel File
+status     : true, // check login status
+cookie     : true, // enable cookies to allow the server to access the session
+xfbml      : true  // parse XFBML
+});
 
-    // Additional initialization code here
-  };
+// Additional initialization code here
+};
 
-  // Load the SDK Asynchronously
-  (function(d){
-     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement('script'); js.id = id; js.async = true;
-     js.src = "//connect.facebook.net/en_US/all.js";
-     ref.parentNode.insertBefore(js, ref);
-   }(document));
-</script>
-<!--End Facebook Stuff-->
+// Load the SDK Asynchronously
+(function(d){
+var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+if (d.getElementById(id)) {return;}
+js = d.createElement('script'); js.id = id; js.async = true;
+js.src = "//connect.facebook.net/en_US/all.js";
+ref.parentNode.insertBefore(js, ref);
+}(document));
+		</script>
+		<!--End Facebook Stuff-->
 		<a href="index.php" > <img src="images/website_Layout.png"  alt="Teach ME Something" class="grid_3"/> </a>
 		<form class="grid_6" action="search.php" method="get" enctype="multipart/form-data">
 			<input type="text" placeholder="Cool" class="grid_4" name="Search"/>
@@ -94,11 +94,11 @@ require_once ("FB.php");
 			$results = ex_query("Select * from header_menu order by ID asc;");
 			while ($row = mysql_fetch_array($results)) {
 				if ($row[1] == "Login" && isFBLoggedin()) {
-					echo("<li id=\"NavMenu\"><a href=\"".GetFBlogoutURL() ."\">logout</a></li>\n");
+					echo("<li id=\"NavMenu\"><a href=\"" . GetFBlogoutURL() . "\">logout</a></li>\n");
 				} else if ($row[1] == "SignUp" && isFBLoggedin()) {
-					} else {
-						echo("<li id=\"NavMenu\"><a href=\"" . $row[2] . "\">" . $row[1] . "</a></li>\n");
-					}
+				} else {
+					echo("<li id=\"NavMenu\"><a href=\"" . $row[2] . "\">" . $row[1] . "</a></li>\n");
+				}
 
 			}
 			?>

@@ -5,7 +5,7 @@ function login($User_ID,$Username)
 {
 	session_start();
 	$_SESSION[SESSIONUSERID]=$User_ID;
-    $_SESSION[SESSIONUSERNAME]=$username;
+    $_SESSION[SESSIONUSERNAME]=$Username;
 }
 function isSitelogin()
 {
