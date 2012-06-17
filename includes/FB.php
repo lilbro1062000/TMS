@@ -4,13 +4,13 @@ require_once ('constants.php');
 require_once ('functions.php');
 $facebook = new Facebook( array('appId' => FB_APP_ID, 'secret' => FB_APP_SECRETE_KET, ));
 $user = $facebook -> getUser();
-
+$token = $facebook->getAccessToken();
 function isFBLoggedin() {
-	global $facebook, $user;
+	global $facebook, $user,$token;
 
 	if ($user) {
 		try {
-			$user_profile = $facebook -> api('/me');
+			$user_profile = $facebook -> api('/me'.$token);
 			return true;
 		} catch (FacebookApiException $e) {
 			error_log($e);
@@ -22,26 +22,24 @@ function isFBLoggedin() {
 }
 
 function GetFBlogoutURL() {
+	global $facebook, $user;
+
+	if ($user) {
+		$logoutUrl = $facebook -> getLogoutUrl();
+		return $logoutUrl;
+	} else {
+		$loginUrl = $facebook -> getLoginUrl();
+		return $loginUrl;
+	}
+
+}
+
+function redirectIfloggedIN() {
+	
 	if(isFBLoggedin())
 	{
 		redirect_to("../index.php");
 	}
-}
-
-function redirectIfloggedIN() {
-	global $facebook,$user; 
-	
-	try{
-		$user_profile = $facebook -> api('/me');
-	if ($user_profile) {
-		redirect_to("../index.php");
-		}
-	}
-	catch(FacebookApiException $e){
-		error_log($e);
-	}	
-	
-	
 }
 
 function GetName() {
@@ -50,22 +48,22 @@ function GetName() {
 
 }
 function GetFBUserID() {
-	global $facebook, $user;
-	$user_profile = $facebook -> api('/me');
+	global $facebook, $user,$token;
+	$user_profile = $facebook -> api('/me'.$token);
 	return $user_profile['id'];
 
 }
 function GetFBUserName() {
-	global $facebook, $user;
-	$user_profile = $facebook -> api('/me');
+	global $facebook, $user,$token;
+	$user_profile = $facebook -> api('/me'.$token);
 	return $user_profile["name"];
 
 }
 
 function fbUserExists() {
-	global $facebook, $user;
-	$user_profile = $facebook -> api('/me');
-
+	global $facebook, $user,$token;
+	$user_profile = $facebook -> api('/me'.$token);
+	
 	$query = "Select 1 from users where ID = " . $user_profile["id"];
 
 	if (ex_query1RowAns($query) == 1) {
