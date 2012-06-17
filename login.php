@@ -51,20 +51,20 @@ include_once ("includes/categories.php");
 			}
 			echo("</p>");
 			?>
-			<td>Username:</td>
+			<!-- <td>Username:</td> -->
 			<td>
-			<input type="text" name="Username" />
+<!-- 			<input type="text" name="Username" /> -->
 			</td>
 		</tr>
 		<tr>
-			<td>Password:</td>
-			<td>
-			<input type="password" name="Password"/>
+		<!-- 	<td>Password:</td>
+		 -->	<td>
+			<!-- <input type="password" name="Password"/> -->
 			</td>
 		</tr>
 		<tr>
 			<td>
-			<input type="submit" name="submit" value="Submit"/>
+			<!-- <input type="submit" name="submit" value="Submit"/> -->
 			</td>
 		</tr>
 		<tr>

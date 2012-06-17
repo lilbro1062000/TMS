@@ -1,5 +1,4 @@
 <?php
-require_once ("session.php");
 require_once ("connection.php");
 require_once ("functions.php");
 require_once ("FB.php");
@@ -102,7 +101,7 @@ require_once ("FB.php");
 		</ul>
 
 		<?php
-		if (checklogin()) {
+		if (isFBLoggedin()) {
 			echo("<div id=\"user_menu\" class=\"grid_12\">\n");
 			echo("<ul>\n");
 			$results = ex_query("Select * from user_menu order by ID asc;");

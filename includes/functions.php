@@ -2,6 +2,7 @@
 date_default_timezone_set('America/New_York');
 function login($User_ID,$Username)
 {
+	session_start();
 	$_SESSION['User_ID']=$User_ID;
     $_SESSION['User_Name']=$username;
 }

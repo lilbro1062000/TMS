@@ -1,6 +1,7 @@
 <?php
 require_once ('FB/facebook.php');
 require_once ('constants.php');
+require_once 'functions.php';
 $facebook = new Facebook( array('appId' => FB_APP_ID, 'secret' => FB_APP_SECRETE_KET, ));
 $user = $facebook -> getUser();
 
@@ -55,6 +56,7 @@ function fbUserExists() {
 	$query = "Select 1 from UserInfo where ID = " . $user_profile["id"];
 
 	if (ex_query1RowAns($query) == 1) {
+		session_start();
 		return true;
 	} else {
 		return false;
