@@ -89,7 +89,7 @@ function createFBUser() {
 		$query.='Values( \'';
 		$query .= $user_profile["id"];
 		$query .= ' , \'';
-		$query .= $user_profile["first_name"]. " ".$user_profile["fast_name"];
+		$query .= $user_profile["first_name"]. " ".$user_profile["last_name"];
 		$query.=' \', \'';
 		$query.="fbLoggedinNow";
 		$query.='\' ) ';
