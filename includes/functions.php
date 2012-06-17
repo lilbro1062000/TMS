@@ -1,5 +1,10 @@
 <?php
 date_default_timezone_set('America/New_York');
+function login($User_ID,$Username)
+{
+	$_SESSION['User_ID']=$User_ID;
+    $_SESSION['User_Name']=$username;
+}
 function videoExists($vidHash)
 {
 	$query = "select 1 from video where hash='$vidHash'";

@@ -2,6 +2,7 @@
 require_once ("session.php");
 require_once ("connection.php");
 require_once ("functions.php");
+require_once ("FB.php");
 ?>
 <?php
 	// this is to check the video
@@ -18,6 +19,20 @@ require_once ("functions.php");
 		//remove cookie
 		setcookie("VideoCount", "", time() - 3600);
 		unset($_COOKIE['VideoCount']);
+	}
+	if (isFBLoggedin()) {
+		// if logged in then check db for user info 
+		if(!fbUserExists())
+		{
+			createFBUser();
+		}
+		
+		//if non exists then create one 
+		
+		//That id will be use for video Uploads as well for video count
+		
+		// dont forget for user creation 
+		
 	}
 ?>
 <!DOCTYPE HTML>
@@ -75,12 +90,12 @@ require_once ("functions.php");
 			<?php
 			$results = ex_query("Select * from header_menu order by ID asc;");
 			while ($row = mysql_fetch_array($results)) {
-				if ($row[1] == "Login" && checklogin()) {
-					echo("<li id=\"NavMenu\"><a href=\"" . $row[2] . "?logout=1\">logout</a></li>\n");
-				} else if ($row[1] == "SignUp" && checklogin()) {
-				} else {
-					echo("<li id=\"NavMenu\"><a href=\"" . $row[2] . "\">" . $row[1] . "</a></li>\n");
-				}
+				if ($row[1] == "Login") {
+					echo("<li id=\"NavMenu\"><a href=\"".GetFBlogoutURL() ."\">logout</a></li>\n");
+				} else if ($row[1] == "SignUp" && isFBLoggedin()) {
+					} else {
+						echo("<li id=\"NavMenu\"><a href=\"" . $row[2] . "\">" . $row[1] . "</a></li>\n");
+					}
 
 			}
 			?>
