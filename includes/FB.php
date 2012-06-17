@@ -53,7 +53,7 @@ function fbUserExists() {
 	global $facebook, $user;
 	$user_profile = $facebook -> api('/me');
 
-	$query = "Select 1 from UserInfo where ID = " . $user_profile["id"];
+	$query = "Select 1 from userinfo where ID = " . $user_profile["id"];
 
 	if (ex_query1RowAns($query) == 1) {
 		session_start();
