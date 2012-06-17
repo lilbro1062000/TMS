@@ -2,22 +2,24 @@
 require_once ('FB/facebook.php');
 require_once ('constants.php');
 require_once ('functions.php');
-$facebook = new Facebook( array('appId' => FB_APP_ID, 'secret' => FB_APP_SECRETE_KET, ));
+$facebook = new Facebook( array('appId' => FB_APP_ID, 'secret' => FB_APP_SECRETE_KET, 'cookie' => true, ));
 $user = $facebook -> getUser();
-$token = $facebook->getAccessToken();
+$token = $facebook -> getAccessToken();
 function isFBLoggedin() {
-	global $facebook, $user,$token;
+	global $facebook, $user, $token;
 
 	if ($user) {
 		try {
-			$user_profile = $facebook -> api('/me'.$token);
+			$user_profile = $facebook -> api('/'.$user, 'GET');
 			return true;
 		} catch (FacebookApiException $e) {
-			error_log($e);
+			error_log($e -> getType());
+			error_log($e -> getMessage());
 			$user = null;
+			$login_URL = $facebook -> getLoginURL();
+			echo "Please <a href=" . $login_URL . '"> login.</a>';
 			return false;
 		}
-
 	}
 }
 
@@ -35,9 +37,8 @@ function GetFBlogoutURL() {
 }
 
 function redirectIfloggedIN() {
-	
-	if(isFBLoggedin())
-	{
+
+	if (isFBLoggedin()) {
 		redirect_to("../index.php");
 	}
 }
@@ -47,23 +48,25 @@ function GetName() {
 	return $user['name'];
 
 }
+
 function GetFBUserID() {
-	global $facebook, $user,$token;
-	$user_profile = $facebook -> api('/me'.$token);
+	global $facebook, $user, $token;
+	$user_profile = $facebook -> api('/me' . $token);
 	return $user_profile['id'];
 
 }
+
 function GetFBUserName() {
-	global $facebook, $user,$token;
-	$user_profile = $facebook -> api('/me'.$token);
+	global $facebook, $user, $token;
+	$user_profile = $facebook -> api('/me' . $token);
 	return $user_profile["name"];
 
 }
 
 function fbUserExists() {
-	global $facebook, $user,$token;
-	$user_profile = $facebook -> api('/me'.$token);
-	
+	global $facebook, $user, $token;
+	$user_profile = $facebook -> api('/me' . $token);
+
 	$query = "Select 1 from users where ID = " . $user_profile["id"];
 
 	if (ex_query1RowAns($query) == 1) {
@@ -75,7 +78,7 @@ function fbUserExists() {
 
 function createFBUser() {
 	global $facebook, $user;
-	if (isFBLoggedin()) { 
+	if (isFBLoggedin()) {
 
 		$user_profile = $facebook -> api('/me');
 
@@ -93,20 +96,18 @@ function createFBUser() {
 		$query .= '\') ';
 
 		ex_query($query);
-		$query ='Insert into ';
-		$query.='users '; 
-		$query.='(ID,Username,Password) ';
-		$query.='Values( \'';
+		$query = 'Insert into ';
+		$query .= 'users ';
+		$query .= '(ID,Username,Password) ';
+		$query .= 'Values( \'';
 		$query .= $user_profile["id"];
 		$query .= '\' , \'';
 		$query .= $user_profile["name"];
-		$query.=' \', \'';
-		$query.="fbLoggedinNow";
-		$query.='\' ) ';
+		$query .= ' \', \'';
+		$query .= "fbLoggedinNow";
+		$query .= '\' ) ';
 		ex_query($query);
 	}
-	
-	
 
 }
 ?>
