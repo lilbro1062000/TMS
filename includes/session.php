@@ -1,5 +1,6 @@
 <?php
 require_once('functions.php');
+require 'FB.php';
 
 session_start();
 
@@ -20,5 +21,6 @@ function Logged_in()
 function checklogin()
 {
     return isset($_SESSION['User_ID']);
+	
 }
 ?>

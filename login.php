@@ -22,6 +22,7 @@ if (isset($_GET['msg'])) {
 include_once ("includes/head.php");
 include_once ("includes/categories.php");
 ?>
+<?php   redirectIfloggedIN();?>
  <div id="fb-root"></div>
       <script>
         window.fbAsyncInit = function() {
@@ -40,7 +41,7 @@ include_once ("includes/categories.php");
            d.getElementsByTagName('head')[0].appendChild(js);
          }(document));
       </script>
-
+<META HTTP-EQUIV="refresh" CONTENT="2;URL=login.php">
 <form id="Login" class="grid_4">
 	<table>
 		<tr>
