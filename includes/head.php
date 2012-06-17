@@ -109,7 +109,7 @@ require_once ("FB.php");
 			echo("<div id=\"user_menu\" class=\"grid_12\">\n");
 			echo("<ul>\n");
 			$results = ex_query("Select * from user_menu order by ID asc;");
-			echo("<li><a href=\"profile.php\">" . $_SESSION['User_Name'] . " </a></li>");
+			echo("<li><a href=\"profile.php\">" . $_SESSION[SESSIONUSERNAME] . " </a></li>");
 			while ($row = mysql_fetch_array($results)) {
 
 				echo("<li><a href=\"" . $row['Path'] . "\">" . $row['Name'] . "</a></li>\n");

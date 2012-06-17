@@ -18,6 +18,6 @@ function Logged_in()
 
 function checklogin()
 {
-    return isset($_SESSION['User_ID']);
+    return isset($_SESSION[SESSIONUSERID]);
 }
 ?>

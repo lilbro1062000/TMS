@@ -12,7 +12,7 @@ if(isset($_GET['Page']) && $_GET['Page']>0 && isset($_GET['VidNum']))
 	{
 		$query="Select id from video where hash in"; 
 		$query.= "(Select VideoID from favorites where UserID=";
-		$query.= $_SESSION['User_ID'];
+		$query.= $_SESSION[SESSIONUSERID];
 		$query.=" order by ID asc)";
 		
 		showPages($_GET['Page'], $_GET['VidNum'],$query);
@@ -26,7 +26,7 @@ else
 	//right now there are no videos 
 	$query="Select id from video where hash in"; 
 	$query.= "(Select VideoID from favorites where UserID=";
-	$query.= $_SESSION['User_ID'];
+	$query.= $_SESSION[SESSIONUSERID];
 	$query.=" order by ID asc)";
 	$results = ex_query($query);
 

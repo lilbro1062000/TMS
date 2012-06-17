@@ -11,7 +11,7 @@ if(isset($_GET['Page']) && $_GET['Page']>0 && isset($_GET['VidNum']))
 	{
 	$query="Select id from video where hash in"; 
 	$query.= "(Select VideoID from History where UserID=";
-	$query.= $_SESSION['User_ID'];
+	$query.= $_SESSION[SESSIONUSERID];
 	$query.=" order by Date desc)";
 		showPages($_GET['Page'], $_GET['VidNum'],$query);
 		Pages($query, "history.php");
@@ -28,7 +28,7 @@ $count=1;
 //right now there are no videos 
 $query="Select id from video where hash in"; 
 $query.= "(Select VideoID from history where UserID=";
-$query.= $_SESSION['User_ID'];
+$query.= $_SESSION[SESSIONUSERID];
 $query.=" order by Date desc)";
 $results = ex_query($query);
 

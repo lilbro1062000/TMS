@@ -25,8 +25,8 @@ if(!isset($User_ID))
 }
 else{
     include_once("session.php");
-    $_SESSION['User_ID']=$User_ID;
-    $_SESSION['User_Name']=$username;
+    $_SESSION[SESSIONUSERID]=$User_ID;
+    $_SESSION[SESSIONUSERNAME]=$username;
 	//setcookie(session_name(),'',time()+3600,'/');
     redirect_to("../index.php");
 }

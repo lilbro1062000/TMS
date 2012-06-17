@@ -1,10 +1,21 @@
 <?php
 date_default_timezone_set('America/New_York');
+require_once 'constants.php';
 function login($User_ID,$Username)
 {
 	session_start();
-	$_SESSION['User_ID']=$User_ID;
-    $_SESSION['User_Name']=$username;
+	$_SESSION[SESSIONUSERID]=$User_ID;
+    $_SESSION[SESSIONUSERNAME]=$username;
+}
+function isSitelogin()
+{
+	if(isset($_SESSION[SESSIONUSERID]) && isset($_SESSION[SESSIONUSERNAME]))
+	{
+		return true;
+	}
+	else {
+		return false;
+	}
 }
 function videoExists($vidHash)
 {

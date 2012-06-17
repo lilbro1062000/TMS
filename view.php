@@ -135,7 +135,7 @@ echo("</div>");
 
 if (checklogin()) {
 	// i have to add a check to see if this has been seen if so then it should just edit the date
-	//$query ="Insert into History(USERID,VideoID,Date) Values('{$_SESSION['User_ID']}','".$hash."','".to_mysqlDate(time())."')";
+	//$query ="Insert into History(USERID,VideoID,Date) Values('{$_SESSION[SESSIONUSERID]}','".$hash."','".to_mysqlDate(time())."')";
 	//ex_query($query);
 	$vidID = GetVideoID($hash);
 	UpdateHistory($_SESSION[SESSIONUSERID], $hash, to_mysqlDate(time()));
