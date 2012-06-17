@@ -1,38 +1,9 @@
-body {background-color:rgb(242,232,220);}
+body {position:relative;
+	background-color:rgb(242,232,220);}
 
-.PostedComment
+#CommentArea
 {
-	border-style: solid;	
-	border-color: gray;
-	border-bottom-width: 15px;
-	background-color: rgb(89,76,71);
-	overflow: auto;
-	padding: 5px;
-}
-.PostedComment tr
-{
-	height:40px;
-}
-.PostedComment tr td
-{
-	
-	border-left-style: groove;
-	border-left-color: gray;
-	border-left-width: 10px;
-}
-#CommentBlock
-{
-	padding-left: 20px;
-}
-#AgComments
-{
-	height: 430px;
-	overflow: auto;
-	padding: 5px;
-	border-bottom-style:solid;
-	border-bottom-color:rgb(242,232,220);
-	border-bottom-width: 20px;
-	
+	height:inherit;
 }
 #user_menu{
  
@@ -122,6 +93,7 @@ h1 {
 
 background:rgb(2,89,73);
 text-align:left;
+position:relative;
 height:inherit;
 }
 

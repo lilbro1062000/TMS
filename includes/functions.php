@@ -1,5 +1,16 @@
 <?php
 date_default_timezone_set('America/New_York');
+function videoExists($vidHash)
+{
+	$query = "select 1 from video where hash='$vidHash'";
+	if(ex_query1RowAns($query)==1)
+	{
+		return true;
+	}
+	else {
+		return false;
+	}
+}
 function belongs_to_person($userID,$videoID)
 {
 	$query ="Select 1 from video where hash='{$videoID}' and UserID=".$userID;
@@ -328,6 +339,14 @@ function generateHash()
     $arhash = str_split("ABCDEFGHIKJLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz");
     shuffle($arhash);
     $arhash = array_slice($arhash, 0, rand(6, 15));
+    $hash = implode("", $arhash);
+    return $hash;
+}
+function genFBState()
+{
+	$arhash = str_split("ABCDEFGHIKJLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz");
+    shuffle($arhash);
+    $arhash = array_slice($arhash, 0, rand(10, 25));
     $hash = implode("", $arhash);
     return $hash;
 }

@@ -4,7 +4,7 @@ if(isset($_GET['vid']))
 {
 	//640x360
 	$toWidth=640;
-	$toHeight=360;	
+	$toHeight=310;	
 }
 else {
 	$toWidth=160;

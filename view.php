@@ -3,6 +3,9 @@ include_once("includes/session.php");
 include_once("includes/head.php");
 include_once ("includes/categories.php")
 ?>
+<link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet">
+<script src="http://vjs.zencdn.net/c/video.js"></script>
+
 <?php
 	if(isset($_POST['VideoID']))
 {
@@ -21,9 +24,10 @@ $hash =$_GET['videoID'];
 $row = ex_query1Row("select * from video where hash =\"".$hash."\"");
 echo("<div class=\"grid_5\"  id=\"VideoContainer\">\n");
 echo("<h2> ".$row['VideoName']."</h2> \n");
-echo("<video id=\"Video\" ");
+echo("<video name=\"$hash\" height=\"310\" width=\"640\" id=\"Video\" ");
 echo("poster=\"includes/image.php?vid=1&fname=".$row['videoImage']."\" ");
-echo(" controls=\"controls\">\n");
+echo(" class=\"video-js vjs-default-skin\" controls  preload=\"auto\" >\n");
+
 echo("  <source src=\"".$row['mp4Path']."\" type='video/mp4; codecs=\"avc1.42E01E, mp4a.40.2\"' />\n");
 echo(" <source src=\"".$row['webMPath']."\" type='video/webm; codecs=\"vp8, vorbis\"' />\n")
 ?>
@@ -34,158 +38,95 @@ for the Best Views
 
 echo("</video>\n");
 echo("<br />\n");
+
 ?>
 
-<script type="application/javascript">
-$(document).load(function()
-{
-$('#Comment').onclick(function()
-{
-$('#Comment').empty();
-});
-$9'#Comment').onfocusout(function()
-{
-$('#Comment').html(...Add a comment);
-});
-});
+<script>
+	var myvar = setInterval(function() {
+		var myvid = document.getElementById('Video');
+		if (myvid.currentTime > 5) {
+			checkCookie();
+		}
+	}, 1000);
+	function setCookie(c_name, value, exdays) {
+		var exdate = new Date();
+		exdate.setDate(exdate.getDate() + exdays);
+		var c_value = escape(value) + ((exdays == null) ? "" : "; expires=" + exdate.toUTCString());
+		document.cookie = c_name + "=" + c_value;
+		
+		clearInterval(myvar);
+	}
 
+	// function getCookie(c_name)
+	// {
+	// var i,x,y,ARRcookies=document.cookie.split(";");
+	// for (i=0;i<ARRcookies.length;i++)
+	// {
+	// x=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
+	// y=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);
+	// x=x.replace(/^\s+|\s+$/g,"");
+	// if (x==c_name)
+	// {
+	// return unescape(y);
+	// }
+	// }
+	// }
+
+	function checkCookie() {
+		var username = document.getElementById("Video");
+		username = username.getAttribute("Name");
+		setCookie("VideoCount",username,365);
+	}
 </script>
 <div id="BottemVideoPanel">
 	<ul>
+		<li id="viewcount">
+			View Count: <?php 
+			$query = "select Numwatched from views where Video_ID =".GetVideoID($hash);
+			echo ex_query1RowAns($query);
+			 ?>
+		</li>
+		
 		<li id="Description">
 			<?php
-			$descrow = ex_query1Row("select txtDesc from videodesc where VidID=" . $row['ID']);
-			echo($descrow[0]);
+			$descrow = ex_query1RowAns("select txtDesc from videodesc where VidID=" . $row['ID']);
+			if(isset($descrow))
+			{
+			echo($descrow);
+			}
+			else {
+				echo "No Description Added Yet";
+			}
 			?>
 		</li>
+		<li id="Uploader">
+			<?php 
+			$query = "select UserName from users where ID =(select UserID from video where Hash='$hash')";
+			echo ex_query1RowAns($query);
+			 ?>
+			
+		</li>
+<li>
+	<?php 
+	echo "<iframe src=\"http://www.facebook.com/plugins/like.php?href={$_SERVER["HTTP_HOST"]}/view.php?videoID=$hash\"\n 
+        scrolling=\"no\" frameborder=\"0\"\n
+        style=\"border:none; width:450px; height:80px\"></iframe>\n";
+	 ?>
+	
+</li>
 
-		<?php
-		if (checklogin()) {
-			echo "<li id=\"FavoriteLink\">";
-			echo "<a href=\"";
-			if (!Favorited($_SESSION['User_ID'], $hash)) {
-				//Show favorite button
-				echo("includes/operations.php?fav=1&videoID=");
-				echo($_GET['videoID']);
-				echo("\" />");
-				echo('Favorite');
-			} else {
-				//show unfavorite button
-				echo("includes/operations.php?fav=0&videoID=");
-				echo($_GET['videoID']);
-				echo("\" />");
-				echo('UnFavorite');
-			}
-			echo "</a> </li>";
-		} else {
-			echo "#";
-		}
-		?>
-
-		<?php
-		if (checklogin()) {
-			if (!liked($_SESSION['User_ID'], GetVideoID($hash))) {
-				//Show liked button
-				echo "<li id=\"Like\">";
-				echo "<a href=\"";
-				echo("includes/operations.php?liked=1&videoID=");
-				echo($_GET['videoID']);
-				echo("\" />");
-				echo('Like');
-				echo "</a> </li>\n";
-			} else {
-				//show unlike button
-				echo "<li id=\"unLike\">";
-				echo "<a href=\"";
-				echo("includes/operations.php?liked=0&videoID=");
-				echo($_GET['videoID']);
-				echo("\" />");
-				echo('Unlike');
-				echo "</a> </li>\n";
-			}
-			if (!reported($_SESSION['User_ID'], GetVideoID($hash))) {
-				//Show report button
-				echo "<li id=\"report\">";
-				echo "<a href=\"";
-				echo("includes/operations.php?reported=1&videoID=");
-				echo($_GET['videoID']);
-				echo("\" />");
-				echo('report');
-				echo "</a> </li>\n";
-			} else {
-				//show unreport button
-				echo "<li id=\"unreport\">";
-				echo "<a href=\"";
-				echo("includes/operations.php?fav=0&videoID=");
-				echo($_GET['videoID']);
-				echo("\" />");
-				echo('unreport');
-				echo "</a> </li>\n";
-			}
-		}
-		?>
 	</ul>
 </div>
-
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 <div id="CommentArea">
-
-	<?php
-	if (checklogin()) {
-		echo "<form action=\"\" method=\"post\">\n";
-		echo "<table>\n";
-		echo "<tr>";
-		echo "	<h3>";
-		if (checklogin()) {
-			echo getUsername($_SESSION[SESSIONUSERID]);
-		}
-		echo "</h3>";
-		echo "<textarea rows=\"8\" cols=\"80\" id=\"Comment\" name=\"PComment\" placeholder=\"Please Comment\" required=\"true\" ></textarea>";
-		echo "</tr>";
-		echo "<tr>";
-		echo "<input type=\"submit\" name=\"Submit\"  value=\"Add Comment\"/>";
-		echo "<input type=\"hidden\" name=\"VideoID\" value=\"{$_GET['videoID']}\"/>";
-		echo "</tr>";
-		echo "</table>";
-		echo "</form>";
-	} else {
-		echo "Please Login to Comment";
-	}
-	?>
-
-	<div id= "AgComments">
-		<?php
-		$query = "Select VideoID,UserID,Comment,DateSubmited from comments where videoID='" . GetVideoID($hash) . "' order by ID desc";
-		$results = ex_query($query);
-		while ($row = mysql_fetch_array($results)) {
-
-			echo "<div class=\"PostedComment\">\n";
-			echo "<table>\n";
-			echo "<tr>\n";
-			echo "<td>\n";
-
-			echo "<a> ";
-			echo getUsername($row['UserID']);
-			echo " </a> \n";
-
-			if (checklogin()) {
-				echo "<a href=\"#\" > Report </a>\n";
-				echo "<a href=\"#\" > ThumbsUp </a>\n";
-				if ($_SESSION[SESSIONUSERID] == $row['UserID']) {
-					echo "<a href=\"#\" > Delete </a>\n";
-				}
-
-			}
-			echo "</td>\n";
-			echo "<td>\n";
-			echo "<div id=\"CommentBlock\">{$row['Comment']}</div> \n";
-
-			echo "</td>\n";
-			echo "</tr>\n";
-			echo "</table>\n";
-			echo "</div>\n";
-		}
-		?>
-	</div>
+<div class="fb-comments" data-href="<?php echo $_SERVER["HTTP_HOST"]; ?>" data-num-posts="5" data-width="470" data-colorscheme="light"></div>
 </div>
 <?php
 
@@ -198,8 +139,7 @@ if (checklogin()) {
 	//ex_query($query);
 	$vidID = GetVideoID($hash);
 	UpdateHistory($_SESSION[SESSIONUSERID], $hash, to_mysqlDate(time()));
-	$query = "Update views set Numwatched = Numwatched+1 where video_id='{$vidID}'";
-	ex_query($query);
+	
 }
 }
 else{

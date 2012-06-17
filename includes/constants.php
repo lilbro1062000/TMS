@@ -18,5 +18,12 @@ define("SESSIONUSERID","User_ID");
 define("SESSIONUSERNAME","User_name");
 
 //Video Constants
-define("VideoHeighxWidth", "640x360")
+define("VideoHeighxWidth", "640x360");
+
+//Facebook Constants 
+define("FB_APP_ID", "453077271378502");
+
+define("FB_APP_SECRETE_KET", '1ce917324ae4808349272af8f3580f1f');
+
+
 ?>

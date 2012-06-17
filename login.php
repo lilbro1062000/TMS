@@ -22,7 +22,26 @@ if (isset($_GET['msg'])) {
 include_once ("includes/head.php");
 include_once ("includes/categories.php");
 ?>
-<form id="Login" method="post" class="grid_4" action="includes/login_code.php" >
+ <div id="fb-root"></div>
+      <script>
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId      : '<?php echo FB_APP_ID;?>',
+            status     : true, 
+            cookie     : true,
+            xfbml      : true,
+            oauth      : true,
+          });
+        };
+        (function(d){
+           var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
+           js = d.createElement('script'); js.id = id; js.async = true;
+           js.src = "//connect.facebook.net/en_US/all.js";
+           d.getElementsByTagName('head')[0].appendChild(js);
+         }(document));
+      </script>
+
+<form id="Login" class="grid_4">
 	<table>
 		<tr>
 			<?php
@@ -51,6 +70,7 @@ include_once ("includes/categories.php");
 
 		</tr>
 	</table>
+      <div class="fb-login-button" scope="email,user_checkins">Login with Facebook</div>
 </form>
 
 <?php
