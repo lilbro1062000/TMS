@@ -22,13 +22,15 @@ if (isset($_COOKIE['VideoCount'])) {
 
 if (isFBLoggedin()) {
 	// if logged in then check db for user info
-	if (!fbUserExists()) {
-		createFBUser();
+	if (!isSitelogin()) {
+
+		if (!fbUserExists()) {
+			createFBUser();
+		}
+
+		//start session with that user
+		login(GetFBUserID(), GetFBUserName());
 	}
-
-	//start session with that user
-	login(GetFBUserID(), GetFBUserName());
-
 	//if non exists then create one
 
 	//That id will be use for video Uploads as well for video count
@@ -36,7 +38,9 @@ if (isFBLoggedin()) {
 	// dont forget for user creation
 
 }
-
+if (!isFBLoggedin() && isSitelogin()) {
+	loggout();
+}
 ?>
 <!DOCTYPE HTML>
 <html lang="en" >
@@ -94,7 +98,7 @@ ref.parentNode.insertBefore(js, ref);
 			$results = ex_query("Select * from header_menu order by ID asc;");
 			while ($row = mysql_fetch_array($results)) {
 				if ($row[1] == "Login" && isFBLoggedin()) {
-					echo("<li id=\"NavMenu\"><a href=\"" . GetFBlogoutURL() . "\">logout</a></li>\n");
+					echo("<li id=\"NavMenu\"><a href=\"login.php?msg=4\">logout</a></li>\n");
 				} else if ($row[1] == "SignUp" && isFBLoggedin()) {
 				} else {
 					echo("<li id=\"NavMenu\"><a href=\"" . $row[2] . "\">" . $row[1] . "</a></li>\n");

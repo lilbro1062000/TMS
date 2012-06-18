@@ -7,6 +7,23 @@ function login($User_ID,$Username)
 	$_SESSION[SESSIONUSERID]=$User_ID;
     $_SESSION[SESSIONUSERNAME]=$Username;
 }
+function loggout()
+{
+    //removing all instance of session once logged out. 
+    session_start();
+    
+    $_SESSION = array(); //empty session
+    
+    if(isset($_COOKIE[session_name()]))
+    {
+        setcookie(session_name(),'',time()-450000,'/');
+    }
+    
+    session_destroy();
+    
+    redirect_to('login.php?logout=2');
+}
+
 function isSitelogin()
 {
 	if(isset($_SESSION[SESSIONUSERID]) && isset($_SESSION[SESSIONUSERNAME]))

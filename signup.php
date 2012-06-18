@@ -86,6 +86,7 @@ if(isset($_POST['Firstname']))
 		}
 
 }
+redirect_to("login.php?msg=3");
 ?>
 
 

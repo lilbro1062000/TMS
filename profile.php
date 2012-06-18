@@ -38,19 +38,7 @@ include_once ("includes/categories.php");
 		echo getnumVideosUploaded($_SESSION[SESSIONUSERID]);
 		?>
 	</div>
-	<div id="NumberOfComments">
-		Number of Comments posted:
-		<?php
-		echo NumberofComments($_SESSION[SESSIONUSERID]);
-		?>
-	</div>
-	<div id="UserDescrpt">
-		Status:
-		<?php
-		echo GetDescofUser($_SESSION[SESSIONUSERID]);
-		?>
-	</div>
-
+	
 </div>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 

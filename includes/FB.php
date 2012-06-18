@@ -16,8 +16,6 @@ function isFBLoggedin() {
 			error_log($e -> getType());
 			error_log($e -> getMessage());
 			$user = null;
-			$login_URL = $facebook -> getLoginURL();
-			echo "Please <a href=" . $login_URL . '"> login.</a>';
 			return false;
 		}
 	}
@@ -26,14 +24,8 @@ function isFBLoggedin() {
 function GetFBlogoutURL() {
 	global $facebook, $user;
 
-	if ($user) {
-		$logoutUrl = $facebook -> getLogoutUrl();
-		return $logoutUrl;
-	} else {
-		$loginUrl = $facebook -> getLoginUrl();
-		return $loginUrl;
-	}
-
+	$logoutUrl = $facebook -> getLogoutUrl();
+	return $logoutUrl;
 }
 
 function redirectIfloggedIN() {

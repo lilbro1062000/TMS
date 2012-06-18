@@ -1,9 +1,6 @@
 <?php
 if (isset($_GET['logout'])) {
-	if ($_GET['logout'] == 1) {
-		include_once ("includes/logout.php");
-		loggout();
-	} else if ($_GET['logout'] == 2) {
+	if ($_GET['logout'] == 2) {
 		$message = ' You have been logged out!';
 	}
 }
@@ -15,7 +12,11 @@ if (isset($_GET['msg'])) {
 		$message = "You Must be logged In";
 	}
 	if ($_GET['msg'] == 3) {
-		$message = "Sign Up sucessfull Please enter your Credentials";
+		$message = "Sign Up Through FaceBook";
+	}
+	if($_GET['msg'] == 4)
+	{
+		$message = "Are you sure you want to logout?";
 	}
 
 }
@@ -23,7 +24,8 @@ include_once ("includes/head.php");
 include_once ("includes/categories.php");
 require_once ("includes/FB.php");
 ?>
-<?php   redirectIfloggedIN();?>
+<?php  if($_GET['msg'] !=4)
+{redirectIfloggedIN();}?>
  <div id="fb-root"></div>
       <script>
         window.fbAsyncInit = function() {
@@ -35,6 +37,12 @@ require_once ("includes/FB.php");
             oauth      : true,
           });
         };
+        FB.Event.subscribe('auth.login', function(response) {
+    window.location.reload();
+});
+FB.Event.subscribe('auth.logout', function(response) {
+    window.location.reload();
+});
         (function(d){
            var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
            js = d.createElement('script'); js.id = id; js.async = true;
@@ -42,7 +50,6 @@ require_once ("includes/FB.php");
            d.getElementsByTagName('head')[0].appendChild(js);
          }(document));
       </script>
-<META HTTP-EQUIV="refresh" CONTENT="5;URL=login.php">
 <form id="Login" class="grid_4">
 	<table>
 		<tr>
@@ -72,7 +79,18 @@ require_once ("includes/FB.php");
 
 		</tr>
 	</table>
-      <div class="fb-login-button" scope="email,user_checkins">Login with Facebook</div>
+	<?php 
+	
+	if ($_GET['msg'] == 4)
+	{
+		echo "Yes i am sure i want to <a href=".GetFBlogoutURL()."> logout </a>";
+	} 
+	else
+		{
+			echo "<div class=\"fb-login-button\" scope=\"email,user_checkins\" data-redirect-uri=\"index.php\">Login with Facebook</div>";
+		} 
+	?>
+      
 </form>
 
 <?php
