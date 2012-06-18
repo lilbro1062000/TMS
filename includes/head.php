@@ -50,17 +50,7 @@ if (!isFBLoggedin() && isSitelogin()) {
 		<link href="stylesheets/reset.css" rel="stylesheet" type="text/css" />
 		<link href="stylesheets/960.css" rel="stylesheet" type="text/css" />
 		<link href="stylesheets/Style.css" rel="stylesheet" type="text/css" />
-
-		<!-- Video stuff  -->
-		<!--
-		<link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet" />
-		<script src="http://vjs.zencdn.net/c/video.js"></script>
-		-->
-
-		<!--To use when not connected to internet-->
-		<link href="videojs/video-js.css" rel="stylesheet"/>
-		<script src="videojs/video.js"></script>
-
+		
 	</head>
 	<body class="container_12">
 		<!--Facebook Stuff-->
@@ -68,7 +58,7 @@ if (!isFBLoggedin() && isSitelogin()) {
 		<script>
 			window.fbAsyncInit = function() {
 FB.init({
-appId      : '453077271378502', // App ID
+appId      : '<?php echo FB_APP_ID;?>', // App ID
 channelUrl : '//<?php echo($_SERVER["HTTP_HOST"])?>/infomatica.html', // Channel File
 status     : true, // check login status
 cookie     : true, // enable cookies to allow the server to access the session
@@ -93,12 +83,13 @@ ref.parentNode.insertBefore(js, ref);
 			<input type="text" placeholder="Cool" class="grid_4" name="Search"/>
 			<input type="submit" value="Search" class="grid_1" />
 		</form>
+		
 		<ul id="NavMenu" class="grid_3">
 			<?php
 			$results = ex_query("Select * from header_menu order by ID asc;");
 			while ($row = mysql_fetch_array($results)) {
 				if ($row[1] == "Login" && isFBLoggedin()) {
-					echo("<li id=\"NavMenu\"><a href=\"login.php?msg=4\">logout</a></li>\n");
+					echo("<li id=\"NavMenu\"> <img src=\"images/Facebook-32.png\"  alt=\"Logged in Via Facebook\" /> <a href=\"login.php?msg=4\">logout</a></li>\n");
 				} else if ($row[1] == "SignUp" && isFBLoggedin()) {
 				} else {
 					echo("<li id=\"NavMenu\"><a href=\"" . $row[2] . "\">" . $row[1] . "</a></li>\n");
@@ -113,7 +104,7 @@ ref.parentNode.insertBefore(js, ref);
 			echo("<div id=\"user_menu\" class=\"grid_12\">\n");
 			echo("<ul>\n");
 			$results = ex_query("Select * from user_menu order by ID asc;");
-			echo("<li><a href=\"profile.php\">" . $_SESSION[SESSIONUSERNAME] . " </a></li>");
+			echo("<li><a href=\"profile.php\">" . $_SESSION[SESSIONUSERNAME] . " </a></li>\n");
 			while ($row = mysql_fetch_array($results)) {
 
 				echo("<li><a href=\"" . $row['Path'] . "\">" . $row['Name'] . "</a></li>\n");

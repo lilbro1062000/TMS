@@ -24,8 +24,18 @@ include_once ("includes/head.php");
 include_once ("includes/categories.php");
 require_once ("includes/FB.php");
 ?>
-<?php  if($_GET['msg'] !=4)
-{redirectIfloggedIN();}?>
+<?php
+
+  if($_GET['msg'] !=4)
+{redirectIfloggedIN();}
+  else{
+  	if(!isFBLoggedin())
+	{
+		redirect_to("index.php");
+	}
+  }
+
+?>
  <div id="fb-root"></div>
       <script>
         window.fbAsyncInit = function() {
@@ -37,6 +47,7 @@ require_once ("includes/FB.php");
             oauth      : true,
           });
         };
+        
         FB.Event.subscribe('auth.login', function(response) {
     window.location.reload();
 });
@@ -49,6 +60,14 @@ FB.Event.subscribe('auth.logout', function(response) {
            js.src = "//connect.facebook.net/en_US/all.js";
            d.getElementsByTagName('head')[0].appendChild(js);
          }(document));
+  function after_login_button(){
+    FB.getLoginStatus(function(response) {
+        if (response.status=="connected") {
+            //User logged in! Do your code here
+            window.location = "../index.php";
+        }
+    }, true);
+}
       </script>
 <form id="Login" class="grid_4">
 	<table>
@@ -87,7 +106,7 @@ FB.Event.subscribe('auth.logout', function(response) {
 	} 
 	else
 		{
-			echo "<div class=\"fb-login-button\" scope=\"email,user_checkins\" data-redirect-uri=\"index.php\">Login with Facebook</div>";
+			echo "<div class=\"fb-login-button\" onlogin=\"after_login_button()\" scope=\"email,user_checkins\" data-redirect-uri=\"index.php\">Login with Facebook</div>";
 		} 
 	?>
       
