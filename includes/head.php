@@ -89,7 +89,7 @@ ref.parentNode.insertBefore(js, ref);
 			$results = ex_query("Select * from header_menu order by ID asc;");
 			while ($row = mysql_fetch_array($results)) {
 				if ($row[1] == "Login" && isFBLoggedin()) {
-					echo("<li id=\"NavMenu\"> <img src=\"images/Facebook-32.png\"  alt=\"Logged in Via Facebook\" /> <a href=\"login.php?msg=4\">logout</a></li>\n");
+					echo("<li id=\"NavMenu\"> <a href=\"login.php?msg=4\">logout</a></li>\n");
 				} else if ($row[1] == "SignUp" && isFBLoggedin()) {
 				} else {
 					echo("<li id=\"NavMenu\"><a href=\"" . $row[2] . "\">" . $row[1] . "</a></li>\n");
@@ -98,13 +98,13 @@ ref.parentNode.insertBefore(js, ref);
 			}
 			?>
 		</ul>
-
+<!-- <img src=\"images/Facebook-32.png\"  width = 15 height = 15 alt=\"Logged in Via Facebook\" /> -->
 		<?php
 		if (isFBLoggedin()) {
 			echo("<div id=\"user_menu\" class=\"grid_12\">\n");
 			echo("<ul>\n");
 			$results = ex_query("Select * from user_menu order by ID asc;");
-			echo("<li><a href=\"profile.php\">" . $_SESSION[SESSIONUSERNAME] . " </a></li>\n");
+			echo("<li> <img src=\"images/Facebook-32.png\"  width = 15 height = 15 alt=\"Logged in Via Facebook\" />  <a href=\"profile.php\">" . $_SESSION[SESSIONUSERNAME] . " </a></li>\n");
 			while ($row = mysql_fetch_array($results)) {
 
 				echo("<li><a href=\"" . $row['Path'] . "\">" . $row['Name'] . "</a></li>\n");

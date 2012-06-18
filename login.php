@@ -25,9 +25,8 @@ include_once ("includes/categories.php");
 require_once ("includes/FB.php");
 ?>
 <?php
-
   if($_GET['msg'] !=4)
-{redirectIfloggedIN();}
+	{redirectIfloggedIN();}
   else{
   	if(!isFBLoggedin())
 	{
@@ -100,9 +99,12 @@ FB.Event.subscribe('auth.logout', function(response) {
 	</table>
 	<?php 
 	
-	if ($_GET['msg'] == 4)
+	if (isset($_GET['msg']))
 	{
+		if($_GET['msg'] == 4)
+		{
 		echo "Yes i am sure i want to <a href=".GetFBlogoutURL()."> logout </a>";
+		}
 	} 
 	else
 		{
