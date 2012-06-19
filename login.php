@@ -25,7 +25,7 @@ include_once ("includes/categories.php");
 require_once ("includes/FB.php");
 ?>
 <?php
-  if(isset($_GET['msg'])&&$_GET['msg'] !=4)
+  if($_GET['msg'] !=4)
 	{redirectIfloggedIN();}
   else{
   	if(!isFBLoggedin())
