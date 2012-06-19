@@ -131,7 +131,7 @@ if (isset($_POST['Keywords'])) {
 if(isset($_GET['fb']))
 {
 	echo "\nVideo Updated!!<br />\n";
-	echo "<a href='view.php?videoID=".$_GET['videoID'].">watch video</a> or ...\n";
+	echo "<a href='view.php?videoID=".$_GET['videoID']."'>watch video</a> or ...\n";
 }
 else {
 	echo "<input type=\"submit\" name=\"submit\" value=\"Submit\" required=\"true\" />\n";
