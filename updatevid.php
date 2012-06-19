@@ -157,7 +157,7 @@ if(isset($_GET['fb']))
           picture: '".ex_query1RowAns("Select videoImage from video where Hash='".$_GET['videoID']."'")." ',\n
           name: '".ex_query1Row("select videoName from video where hash =\"" . $_GET['videoID'] . "\"")."',\n
           caption: 'Watch This Video',\n
-          description: '".ex_query1RowAns('Select txtDesc from videodesc where VidID=' . GetVideoID($_GET['videoID'])."'")."'\n
+          description: '".ex_query1RowAns('Select txtDesc from videodesc where VidID=' . GetVideoID($_GET['videoID']))."'\n
         };\n
 \n
         function callback(response) {\n

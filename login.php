@@ -48,7 +48,7 @@ require_once ("includes/FB.php");
         };
         
         FB.Event.subscribe('auth.login', function(response) {
-    window.location.reload();
+     window.location = "../index.php";
 });
 FB.Event.subscribe('auth.logout', function(response) {
     window.location.reload();
