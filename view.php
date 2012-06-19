@@ -101,11 +101,17 @@ echo("<br />\n");
 		</li>
 		<li id="Uploader">
 			<?php 
+			$query = "select fblink from users where ID =(select UserID from video where Hash='$hash')";
+			echo "<a href='";
+			echo ex_query1RowAns($query);
+			echo "'> ";
 			$query = "select UserName from users where ID =(select UserID from video where Hash='$hash')";
 			echo ex_query1RowAns($query);
+			echo " </a>";
 			 ?>
-			
 		</li>
+		
+		
 <li>
 	<?php 
 	echo "<iframe src=\"http://www.facebook.com/plugins/like.php?href={$_SERVER["HTTP_HOST"]}/view.php?videoID=$hash\"\n 
@@ -126,7 +132,7 @@ echo("<br />\n");
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 <div id="CommentArea">
-<div class="fb-comments" data-href="<?php echo $_SERVER["HTTP_HOST"]; ?>" data-num-posts="5" data-width="470" data-colorscheme="light"></div>
+<div class="fb-comments" data-href="<?php echo $_SERVER["HTTP_HOST"]."/view.php?videoID=$hash\""; ?>" data-num-posts="5" data-width="470" data-colorscheme="light"></div>
 </div>
 <?php
 

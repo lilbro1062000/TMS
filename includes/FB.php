@@ -90,15 +90,16 @@ function createFBUser() {
 		ex_query($query);
 		$query = 'Insert into ';
 		$query .= 'users ';
-		$query .= '(ID,Username,Password) ';
+		$query .= '(ID,Username,fblink) ';
 		$query .= 'Values( \'';
 		$query .= $user_profile["id"];
 		$query .= '\' , \'';
 		$query .= $user_profile["name"];
 		$query .= ' \', \'';
-		$query .= "fbLoggedinNow";
+		$query .= $user_profile["link"];
 		$query .= '\' ) ';
-		ex_query($query);
+		ex_query($query);		
+				
 	}
 
 }

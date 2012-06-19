@@ -1,6 +1,6 @@
 <?php
 include_once ("includes/session.php");
-Logged_in();
+ Logged_in();
 include_once ("includes/head.php");
 include_once ("includes/categories.php");
 
@@ -92,9 +92,33 @@ enctype="multipart/form-data">
 <div id="FileInfo">
 </div>
 
+<div class="grid_9">
+<p>
+	<h1>RULES</h1> 
+	<ul>
+		<table>
+			<tr>
+		<li> <h2> By uploading you agree to theses Terms and Rules </h2></li>
+			</tr>
+			
+<tr><td><li><h5> Site follows the youtube rules.</h5></li></td></tr>
+		<tr><td><li>Do not upload content that may be copyrighted where you have not obtained the explicity permission to use it in that video.</li></td></tr>
+		<tr><td><li>Do not upload content with sexually explicit or strongly sexually suggestive material.</li></td></tr>
+		<tr><td><li>Do not upload content with nudity or partial nudity.</li></td></tr>
+		<tr><td><li>Do not upload content with hate or abusive speech against any individual or group.</li></td></tr>
+		<tr><td><li>Do not upload content with excessive profanity.</li></td></tr>
+		<tr><td><li>Do not upload content with graphic violence.</li></td></tr>
+		<tr><td><li>Do not upload content with drugs or drug use.</li></td></tr>
+		<tr><td><li>Do not upload content depicting cruelty to animals.</li></td></tr>
+		<tr><td><li>Do not upload content that may put that minors at risk or exploits them in a negative or harmful manner.</li></td></tr>
+		<tr><td><li>Do not upload content that promotes and encourages an illegal or dangerous activity.</li></td></tr>
+		<tr><td><li>Do not upload content promoting eating disorders.</li></td></tr>
+		<tr><td><li>Do not upload content with misleading or inaccurate metadata including video thumbs, titles, tags, and category. This abuse leads to a bad user experience on the site.</li></td></tr>
+		</table>
+	</ul>
 
-
-
+</p>
+</div>
   <?php
 
 include_once ("includes/foot.php");

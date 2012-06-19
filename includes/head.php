@@ -15,7 +15,7 @@ if (isset($_COOKIE['VideoCount'])) {
 		ex_query($query);
 	}
 
-	//remove cookie
+	//remove cookie'
 	setcookie("VideoCount", "", time() - 3600);
 	unset($_COOKIE['VideoCount']);
 }

@@ -54,8 +54,8 @@ if (isset($_POST['Keywords'])) {
 			ex_query($query);
 
 		}
-		redirect_to("view.php?videoID=" . $_GET['id']);
-		//redirect_to("updatevid.php?videoID=" . $_GET['id']);
+		//redirect_to("view.php?videoID=" . $_GET['id']);
+		redirect_to("updatevid.php?fb=1&videoID=" . $_GET['id']);
 	}
 } elseif (isset($_GET['videoID'])) {
 	require_once ("includes/connection.php");
@@ -70,7 +70,7 @@ if (isset($_POST['Keywords'])) {
 		header("location: index.php");
 	}
 } else {
-	var_dump($_POST);
+	//var_dump($_POST); //for errors checking
 	exit ;
 }
 ?>
@@ -127,9 +127,50 @@ if (isset($_POST['Keywords'])) {
 	}
 	?>
 	/>
+<?php 
+if(isset($_GET['fb']))
+{
+	echo "\nVideo Updated!!<br />\n";
+	echo "<a href='view.php?videoID=".$_GET['videoID'].">watch video</a> or ...\n";
+}
+else {
+	echo "<input type=\"submit\" name=\"submit\" value=\"Submit\" required=\"true\" />\n";
+}
 
-	<input type="submit" name="submit" value="Submit" required="true" />
+?>
+	
 </form>
+<?php 
+if(isset($_GET['fb']))
+{
+	echo ("<div id='fb-root'></div>\n
+    <script src='http://connect.facebook.net/en_US/all.js'></script>\n
+    <p><a onclick='postToFeed(); return false;'>Post video to Feed</a></p>\n
+    <p id='msg'></p>\n
+    <script> \n
+      FB.init({appId: ".FB_APP_ID.", status: true, cookie: true});\n
+\n
+      function postToFeed() {\n      
+        var obj = {\n
+          method: 'feed',\n
+          link: 'https://developers.facebook.com/docs/reference/dialogs/',\n
+          picture: '".ex_query1RowAns("Select videoImage from video where Hash='".$_GET['videoID']."'")." ',\n
+          name: '".ex_query1Row("select videoName from video where hash =\"" . $_GET['videoID'] . "\"")."',\n
+          caption: 'Watch This Video',\n
+          description: '".ex_query1RowAns('Select txtDesc from videodesc where VidID=' . GetVideoID($_GET['videoID'])."'")."'\n
+        };\n
+\n
+        function callback(response) {\n
+          document.getElementById('msg').innerHTML = \"Post ID: \" + response['post_id'];\n
+        }\n
+\n
+        FB.ui(obj, callback);\n
+      }\n
+    \n
+    </script>\n");
+	
+}
+?>
 
 <?php
 include_once ("includes/foot.php");
