@@ -140,6 +140,7 @@ else {
 ?>
 	
 </form>
+<div class="grid_9">
 <?php 
 if(isset($_GET['fb']))
 {
@@ -172,6 +173,7 @@ if(isset($_GET['fb']))
 }
 ?>
 
+</div>
 <?php
 include_once ("includes/foot.php");
 ?>
