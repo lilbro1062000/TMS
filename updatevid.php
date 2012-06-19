@@ -145,7 +145,7 @@ if(isset($_GET['fb']))
 {
 	echo ("<div id='fb-root'></div>\n
     <script src='http://connect.facebook.net/en_US/all.js'></script>\n
-    <p><a onclick='postToFeed(); return false;'>Post video to Feed</a></p>\n
+    <p><a href='' onclick='postToFeed(); return false;'>Post video to Feed</a><img src=\"images/Facebook-32.png\"  width = 20 height = 20 alt=\"Logged in Via Facebook\" /> </p>\n
     <p id='msg'></p>\n
     <script> \n
       FB.init({appId: ".FB_APP_ID.", status: true, cookie: true});\n
@@ -155,7 +155,7 @@ if(isset($_GET['fb']))
           method: 'feed',\n
           link: 'https://developers.facebook.com/docs/reference/dialogs/',\n
           picture: '".ex_query1RowAns("Select videoImage from video where Hash='".$_GET['videoID']."'")." ',\n
-          name: '".ex_query1Row("select videoName from video where hash =\"" . $_GET['videoID'] . "\"")."',\n
+          name: '".ex_query1RowAns("select videoName from video where hash =\"" . $_GET['videoID'] . "\"")."',\n
           caption: 'Watch This Video',\n
           description: '".ex_query1RowAns('Select txtDesc from videodesc where VidID=' . GetVideoID($_GET['videoID']))."'\n
         };\n

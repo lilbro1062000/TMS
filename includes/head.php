@@ -104,7 +104,7 @@ ref.parentNode.insertBefore(js, ref);
 			echo("<div id=\"user_menu\" class=\"grid_12\">\n");
 			echo("<ul>\n");
 			$results = ex_query("Select * from user_menu order by ID asc;");
-			echo("<li> <img src=\"images/Facebook-32.png\"  width = 15 height = 15 alt=\"Logged in Via Facebook\" />  <a href=\"profile.php\">" . $_SESSION[SESSIONUSERNAME] . " </a></li>\n");
+			echo("<li> <img src=\"images/Facebook-32.png\"  width = 20 height = 20 alt=\"Logged in Via Facebook\" />  <a href=\"profile.php\">" . $_SESSION[SESSIONUSERNAME] . " </a></li>\n");
 			while ($row = mysql_fetch_array($results)) {
 
 				echo("<li><a href=\"" . $row['Path'] . "\">" . $row['Name'] . "</a></li>\n");
