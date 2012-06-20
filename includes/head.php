@@ -19,23 +19,24 @@ if (isset($_COOKIE['VideoCount'])) {
 	setcookie("VideoCount", "", time() - 3600);
 	unset($_COOKIE['VideoCount']);
 }
+//if logged in via Session  Then dont check the Is FB logged in
 
-if (isFBLoggedin()) {
-	// if logged in then check db for user info
-	if (!isSitelogin()) {
+if (!isSitelogin()) {
 
-		if (!fbUserExists()) {
-			createFBUser();
+	if (isFBLoggedin()) {
+		// if logged in then check db for user info
+		if (!isSitelogin()) {
+
+			if (!fbUserExists()) {
+				createFBUser();
+			}
+			//start session with that user
+			login(GetFBUserID(), GetFBUserName());
 		}
-
-		//start session with that user
-		login(GetFBUserID(), GetFBUserName());
+		//if non exists then create one
+		//That id will be use for video Uploads as well for video count
+		// dont forget for user creation
 	}
-	//if non exists then create one
-
-	//That id will be use for video Uploads as well for video count
-
-	// dont forget for user creation
 
 }
 if (!isFBLoggedin() && isSitelogin()) {
@@ -56,10 +57,13 @@ if (!isFBLoggedin() && isSitelogin()) {
 		<!--Facebook Stuff-->
 		<div id="fb-root"></div>
 		<script>
-			window.fbAsyncInit = function() {
+						window.fbAsyncInit = function() {
 FB.init({
-appId      : '<?php echo FB_APP_ID;?>', // App ID
-channelUrl : '//<?php echo($_SERVER["HTTP_HOST"])?>/infomatica.html', // Channel File
+appId      : '<?php echo FB_APP_ID; ?>
+	'
+	, // App ID
+	channelUrl : '//
+<?php echo($_SERVER["HTTP_HOST"])?>/infomatica.html', // Channel File
 status     : true, // check login status
 cookie     : true, // enable cookies to allow the server to access the session
 xfbml      : true  // parse XFBML
@@ -77,44 +81,45 @@ js.src = "//connect.facebook.net/en_US/all.js";
 ref.parentNode.insertBefore(js, ref);
 }(document));
 		</script>
-		<!--End Facebook Stuff-->
-		<a href="index.php" > <img src="images/website_Layout.png"  alt="Teach ME Something" class="grid_3"/> </a>
-		<form class="grid_6" action="search.php" method="get" enctype="multipart/form-data">
-			<input type="text" placeholder="Cool" class="grid_4" name="Search"/>
-			<input type="submit" value="Search" class="grid_1" />
-		</form>
-		
-		<ul id="NavMenu" class="grid_3">
-			<?php
-			$results = ex_query("Select * from header_menu order by ID asc;");
-			while ($row = mysql_fetch_array($results)) {
-				if ($row[1] == "Login" && isFBLoggedin()) {
-					echo("<li id=\"NavMenu\"> <a href=\"login.php?msg=4\">logout</a></li>\n");
-				} else if ($row[1] == "SignUp" && isFBLoggedin()) {
-				} else {
-					echo("<li id=\"NavMenu\"><a href=\"" . $row[2] . "\">" . $row[1] . "</a></li>\n");
-				}
+<!--End Facebook Stuff-->
+<a href="index.php" > <img src="images/website_Layout.png"  alt="Teach ME Something" class="grid_3"/> </a>
+<form class="grid_6" action="search.php" method="get" enctype="multipart/form-data">
+	<input type="text" placeholder="Cool" class="grid_4" name="Search"/>
+	<input type="submit" value="Search" class="grid_1" />
+</form>
 
-			}
-			?>
-		</ul>
-<!-- <img src=\"images/Facebook-32.png\"  width = 15 height = 15 alt=\"Logged in Via Facebook\" /> -->
-		<?php
-		if (isFBLoggedin()) {
-			echo("<div id=\"user_menu\" class=\"grid_12\">\n");
-			echo("<ul>\n");
-			$results = ex_query("Select * from user_menu order by ID asc;");
-			echo("<li> <img src=\"images/Facebook-32.png\"  width = 20 height = 20 alt=\"Logged in Via Facebook\" />  <a href=\"profile.php\">" . $_SESSION[SESSIONUSERNAME] . " </a></li>\n");
-			while ($row = mysql_fetch_array($results)) {
-
-				echo("<li><a href=\"" . $row['Path'] . "\">" . $row['Name'] . "</a></li>\n");
-
-			}
-			echo("</ul>\n");
-			echo("</div>\n");
+<ul id="NavMenu" class="grid_3">
+	<?php
+	$results = ex_query("Select * from header_menu order by ID asc;");
+	while ($row = mysql_fetch_array($results)) {
+		if ($row[1] == "Login" && isFBLoggedin()) {
+			echo("<li id=\"NavMenu\"> <a href=\"login.php?msg=4\">logout</a></li>\n");
+		} else if ($row[1] == "SignUp" && isFBLoggedin()) {
+		} else {
+			echo("<li id=\"NavMenu\"><a href=\"" . $row[2] . "\">" . $row[1] . "</a></li>\n");
 		}
-		?>
 
-		<div id="AdBar" class="grid_12">
+	}
+	?>
+</ul>
+<!-- <img src=\"images/Facebook-32.png\"  width = 15 height = 15 alt=\"Logged in Via Facebook\" /> -->
+<?php
+if (isFBLoggedin()) {
+	echo("
+<div id=\"user_menu\" class=\"grid_12\">\n");
+	echo("<ul>\n");
+	$results = ex_query("Select * from user_menu order by ID asc;");
+	echo("<li> <img src=\"images/Facebook-32.png\"  width = 20 height = 20 alt=\"Logged in Via Facebook\" />  <a href=\"profile.php\">" . $_SESSION[SESSIONUSERNAME] . " </a></li>\n");
+	while ($row = mysql_fetch_array($results)) {
 
-		</div>
+		echo("<li><a href=\"" . $row['Path'] . "\">" . $row['Name'] . "</a></li>\n");
+
+	}
+	echo("</ul>\n");
+	echo("</div>\n");
+}
+?>
+
+	<div id="AdBar" class="grid_12">
+
+	</div>
