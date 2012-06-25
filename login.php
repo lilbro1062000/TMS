@@ -26,7 +26,9 @@ require_once ("includes/FB.php");
 ?>
 <?php
   if($_GET['msg'] !=4)
-	{redirectIfloggedIN();}
+	{
+		redirectIfloggedIN();
+	}
   else{
   	if(!isFBLoggedin())
 	{

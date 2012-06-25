@@ -54,7 +54,8 @@ if (!isFBLoggedin() && isSitelogin()) {
 		
 	</head>
 	<body class="container_12">
-		<!--Facebook Stuff-->
+<div class="grid_12" id="headmenu">
+			<!--Facebook Stuff-->
 		<div id="fb-root"></div>
 		<script>
 						window.fbAsyncInit = function() {
@@ -119,7 +120,7 @@ if (isFBLoggedin()) {
 	echo("</div>\n");
 }
 ?>
-
-	<div id="AdBar" class="grid_12">
-
-	</div>
+<div class="grid_7">
+	Home Entertainment Style Food + Drink Home Graphic Design 
+</div>
+</div>

@@ -1,6 +1,15 @@
-body {position:relative;
-	background-color:rgb(242,232,220);}
+body {
+	position:relative;
+	background-color:rgb(242,232,220);
+	font-size: 15;
+	}
 
+#headmenu
+{
+	border-bottom-width: 20px;
+	border-bottom-style: solid;
+	border-bottom-color: transparent;
+}
 #CommentArea
 {
 	height:inherit;
@@ -83,7 +92,7 @@ top:40px;
 
 #mainPage {
 background-color:rgb(166,149,134);
-width:700px;
+/*width:700px;*/
 height:auto;
 }
 
@@ -94,7 +103,12 @@ h1 {
 background:rgb(2,89,73);
 text-align:left;
 position:relative;
-height:inherit;
+height: 170px;
+
+border-bottom-style: solid;
+border-bottom-width: 20px;
+border-bottom-color: rgb(242,232,220);
+
 }
 
 #Categories a {
