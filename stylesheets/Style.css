@@ -94,6 +94,10 @@ top:40px;
 background-color:rgb(166,149,134);
 /*width:700px;*/
 height:auto;
+
+border-bottom-style: solid;
+border-bottom-width: 20px;
+border-bottom-color: rgb(242,232,220);
 }
 
 h1 {
@@ -103,8 +107,7 @@ h1 {
 background:rgb(2,89,73);
 text-align:left;
 position:relative;
-height: 170px;
-
+/*height: 170px;*/
 border-bottom-style: solid;
 border-bottom-width: 20px;
 border-bottom-color: rgb(242,232,220);
