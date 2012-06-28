@@ -27,7 +27,6 @@ while ($row =mysql_fetch_array($result))
 		echo "<input type=\"submit\" value=\"Delete Video\" />";
 		echo "</form>";
 	}
-	echo "add to facebook comming soon";
 	echo "</div>\n";	
 }
 ?>

@@ -154,7 +154,7 @@ if(isset($_GET['fb']))
       function postToFeed() {\n      
         var obj = {\n
           method: 'feed',\n
-          link: 'https://developers.facebook.com/docs/reference/dialogs/',\n
+          link: '".$_SERVER["HTTP_HOST"]."/view.php?videoID=" . $_GET['videoID'] ."',\n
           picture: '".ex_query1RowAns("Select videoImage from video where Hash='".$_GET['videoID']."'")." ',\n
           name: '".ex_query1RowAns("select videoName from video where hash =\"" . $_GET['videoID'] . "\"")."',\n
           caption: 'Watch This Video',\n
