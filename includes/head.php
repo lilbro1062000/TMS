@@ -54,7 +54,7 @@ if (!isFBLoggedin() && isSitelogin()) {
 		
 	</head>
 	<body class="container_12">
-<div class="grid_12" id="headmenu">
+<div id="headmenu">
 			<!--Facebook Stuff-->
 		<div id="fb-root"></div>
 		<script>
@@ -63,8 +63,7 @@ FB.init({
 appId      : '<?php echo FB_APP_ID; ?>
 	'
 	, // App ID
-	channelUrl : '//
-<?php echo($_SERVER["HTTP_HOST"])?>/infomatica.html', // Channel File
+	channelUrl : '<?php echo($_SERVER["HTTP_HOST"])?>/infomatica.html', // Channel File
 status     : true, // check login status
 cookie     : true, // enable cookies to allow the server to access the session
 xfbml      : true  // parse XFBML

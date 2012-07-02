@@ -70,7 +70,7 @@ function Cat_Pages($query,$phpFile,$Category)
 				// Show pages links
 			    $divider =7;
 			    $NumPages =ceil((count($arrayName)/$divider));
-				echo "<div class=\"grid_9\">\n";
+				echo "<div class=\"grid_12\">\n";
 				for ($i=0; $i < $NumPages; $i++) 
 				{
 					//create the links 
@@ -89,7 +89,7 @@ function Cat_Pages($query,$phpFile,$Category)
 function GenMultipleThumb($results)
 {
 	$count=1;	
-	echo"<div id=\"mainPage\" class=\"grid_3\"  >";
+	//echo"<div id=\"mainPage\" class=\"grid_3\"  >";
 	   while($row = mysql_fetch_array($results))
 			    {
 			    	if($count<7)
@@ -98,7 +98,7 @@ function GenMultipleThumb($results)
 					}
 					$count++;
 				}
-	echo ("</div>");
+	//echo ("</div>");
 	return $count;
 }
 function LikeVideo($UserID, $videoID)
@@ -200,7 +200,7 @@ function Pages_search($query,$phpFile,$search)
 				// Show pages links
 			    $divider =7;
 			    $NumPages =ceil((count($arrayName)/$divider));
-				echo "<div class=\"grid_9\">\n";
+				echo "<div class=\"grid_12\">\n";
 				for ($i=0; $i < $NumPages; $i++) 
 				{
 					//create the links 
@@ -230,7 +230,7 @@ function Pages($query,$phpFile)
 				// Show pages links
 			    $divider =7;
 			    $NumPages =ceil((count($arrayName)/$divider));
-				echo "<div class=\"grid_9\">\n";
+				echo "<div class=\"grid_12\">\n";
 				for ($i=0; $i < $NumPages; $i++) 
 				{
 					//create the links 
@@ -282,12 +282,13 @@ function GEnerateImageThumb($vidID)
 	{
     echo("<div class=\"grid_2\" id=\"VideoThumb\">\n");
     echo("<a href=\"view.php?videoID=".$row['Hash']."\">\n");
-   
-    echo("<br />\n");
+   echo("<label> <strong>".$row['VideoName']."</strong></label>\n");
+	 echo("<br />\n");
+	 
+    
     echo("<img src=\"".Image2Thumb($row['videoImage'])."\"/>\n"); 
     //echo("<img src=\"".Image2Thumb($row[4])."\" />");
-    echo("<label> <strong>".$row['VideoName']."</strong></label>\n");
-	 echo("<br />\n");
+    echo("<br />\n");
     $desc = ex_query1RowAns("Select txtdesc from videodesc where vidid =".$row['ID']);
     echo("<p>".substr($desc, 0,90)."...</p>\n");
     echo("</a>\n"); 
@@ -313,7 +314,7 @@ function redirect_to($location =NULL)
 function generateImage($filepath,$thumbnailPath)
 {
 	$ffmpeg="ffmpeg";
-	$command =$ffmpeg." -i ".$filepath." -vcodec mjpeg -vframes 1 -an ".$thumbnailPath.">ffmpeglog.txt";
+	$command =$ffmpeg." -i ".$filepath." -vcodec mjpeg -vframes 10 -an ".$thumbnailPath;
 exec($command);
 }
 function NumberofComments($userid)

@@ -2,7 +2,7 @@
 include_once ("includes/head.php");
 include_once ("includes/categories.php");
 ?>
-<div id="fb-root"></div>
+<!-- <div id="fb-root"></div>
 
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -10,8 +10,7 @@ include_once ("includes/categories.php");
   js = d.createElement(s); js.id = id;
   js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=453077271378502";
   fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
+}(document, 'script', 'facebook-jssdk'));</script> -->
 <div id="mainPage" class="grid_12">
 	<img src="images/Mark-Fletcher-Haleakala-960x900.jpg" width="940"/>
 	<video

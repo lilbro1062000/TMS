@@ -22,9 +22,9 @@ if(isset($_GET['videoID']))
 {
 $hash =$_GET['videoID'];    
 $row = ex_query1Row("select * from video where hash =\"".$hash."\"");
-echo("<div class=\"grid_5\"  id=\"VideoContainer\">\n");
+echo("<div class=\"grid_12\"  id=\"VideoContainer\">\n");
 echo("<h2> ".$row['VideoName']."</h2> \n");
-echo("<video name=\"$hash\" height=\"310\" width=\"640\" id=\"Video\" ");
+echo("<video name=\"$hash\" height=\"530\" width=\"940\" id=\"Video\" ");
 echo("poster=\"includes/image.php?vid=1&fname=".$row['videoImage']."\" ");
 echo(" class=\"video-js vjs-default-skin\" controls  preload=\"auto\" >\n");
 
