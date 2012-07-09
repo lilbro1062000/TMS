@@ -119,7 +119,5 @@ if (isFBLoggedin()) {
 	echo("</div>\n");
 }
 ?>
-<div class="grid_7">
-	Home Entertainment Style Food + Drink Home Graphic Design 
-</div>
+
 </div>
