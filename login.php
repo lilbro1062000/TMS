@@ -70,11 +70,16 @@ FB.Event.subscribe('auth.logout', function(response) {
     }, true);
 }
       </script>
-<form id="Login" class="grid_4">
+<form id="Login" class="grid_12">
 	<table>
 		<tr>
 			<?php
 			echo("<p>");
+					?>
+			<br />
+		<br />
+		<br />
+		<?php
 			if (isset($message)) {echo($message);
 			}
 			echo("</p>");
@@ -99,6 +104,7 @@ FB.Event.subscribe('auth.logout', function(response) {
 
 		</tr>
 	</table>
+
 	<?php 
 	
 	if (isset($_GET['msg'])&&$_GET['msg'] == 4)
@@ -106,6 +112,7 @@ FB.Event.subscribe('auth.logout', function(response) {
 		
 		
 		echo "Yes i am sure i want to <a href=".GetFBlogoutURL()."> logout </a>";
+
 		
 	} 
 	else

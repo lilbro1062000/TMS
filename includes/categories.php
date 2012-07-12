@@ -156,14 +156,14 @@
 					//Add some trending vids here.
 					//This Template
 					
-						$query ="Select Video_ID From views  order by Numwatched desc limit  0, 7";
+						$query ="Select Video_ID From views order by Numwatched desc limit  0, 7";
 						 $results= ex_query($query);
 					echo "<ul id=\"slider1\">";	 
 						 while($row = mysql_fetch_array($results))
 					    {
 					    	echo "<li>";
-					             GEnerateImageThumb($row[0]);
-								 echo "</li>";    
+					             GEnerateImageThumbHeader($row[0]);
+							echo "</li>";    
 					    }
 					
 					
@@ -181,8 +181,8 @@
 						 while($row = mysql_fetch_array($results))
 					    {
 					    	echo "<li>";
-					             GEnerateImageThumb($row[0]);
-								 echo "</li>";    
+					             GEnerateImageThumbHeader($row[0]);
+							echo "</li>";    
 					    }
 					
 					
@@ -201,7 +201,7 @@
 						 while($row = mysql_fetch_array($results))
 					    {
 					    	echo "<li>";
-					             GEnerateImageThumb($row[0]);
+					             GEnerateImageThumbHeader($row[0]);
 							echo "</li>";    
 					    }
 					

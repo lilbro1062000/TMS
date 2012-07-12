@@ -111,7 +111,7 @@ if (isset($_POST['Keywords'])) {
 ?></textarea>
 	<br />
 	<label>Keywords Comma seperated </label>
-	<input type="text" name="Keywords" placeholder="Enter Keywords"
+	<input type="text" name="Keywords" placeholder="Enter Keywords" required="true"
 	<?php
 	$query = 'Select 1 from keywords where VideoID=' . GetVideoID($_GET['videoID']);
 	if (ex_query1RowAns($query) == 1) {

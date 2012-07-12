@@ -280,7 +280,7 @@ function GEnerateImageThumb($vidID)
     $row = mysql_fetch_array($results);
 	if(!empty($row[0]))
 	{
-    echo("<div class=\"grid_2\" id=\"VideoThumb\">\n");
+    echo("<div class=\"grid_3\" id=\"VideoThumb\">\n");
     echo("<a href=\"view.php?videoID=".$row['Hash']."\">\n");
    echo("<label> <strong>".$row['VideoName']."</strong></label>\n");
 	 echo("<br />\n");
@@ -296,7 +296,29 @@ function GEnerateImageThumb($vidID)
 
 	}    
 	else {
-		echo "not in Video Library";
+		// echo "not in Video Library";
+	
+	}
+}
+function GEnerateImageThumbHeader($vidID)
+{
+    $results=ex_query("Select * from video where id ='".$vidID."'");
+    $row = mysql_fetch_array($results);
+	if(!empty($row[0]))
+	{
+    echo("<div class=\"grid_2\" id=\"VideoThumbHeader\">\n");
+    echo("<a href=\"view.php?videoID=".$row['Hash']."\">\n");
+    echo("<label> <strong>".substr($row['VideoName'], 0,12)."...</strong></label>\n");
+    echo("<img src=\"".Image2Thumb($row['videoImage'])."\"/>\n"); 
+    //echo("<img src=\"".Image2Thumb($row[4])."\" />");
+    $desc = ex_query1RowAns("Select txtdesc from videodesc where vidid =".$row['ID']);
+    echo("<p>".substr($desc, 0,30)."...</p>\n");
+    echo("</a>\n"); 
+    echo("</div>\n");		
+
+	}    
+	else {
+		// echo "not in Video Library";
 	
 	}
 }

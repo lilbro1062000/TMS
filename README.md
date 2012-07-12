@@ -44,4 +44,6 @@ Make sure to finish papaer
 copy vm folder.
 
 Login Page
+Remove signup and put signup through facebook 
+background Images for categories and clicks 
 

@@ -1,6 +1,7 @@
 <?php
 include_once("includes/head.php");
-include_once("includes/categories.php")
+include_once("includes/categories.php");
+
 ?>
 
 <?php

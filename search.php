@@ -12,7 +12,12 @@ if(isset($_GET['Page']) && $_GET['Page']>0 && isset($_GET['VidNum']))
 		if(isset($_GET['Search']))
 		{
 		$checked = mysql_real_escape_string($_GET['Search']);
-		$query ="Select Distinct VideoID from (Select keywords.VideoID from keywords, video where keywords.VideoID = video.ID and keyword like '%{$checked}%') as tempTable";
+						$query ="Select Distinct VideoID from 
+		(Select keywords.VideoID 
+		 from keywords, video 
+		 where keywords.VideoID = video.ID 
+		 and (keyword like '%{$checked}%' or video.VideoName like '%{$checked}%')  
+		 ) as tempTable";
 		showPages($_GET['Page'], $_GET['VidNum'],$query);
 		Pages_search($query, "Search.php",$_GET['Search']);	
 		}
@@ -24,7 +29,13 @@ if(isset($_GET['Page']) && $_GET['Page']>0 && isset($_GET['VidNum']))
 					
 						
 			$checked = mysql_real_escape_string($_GET['Search']);
-			$query ="Select Distinct VideoID from (Select keywords.VideoID from keywords, video where keywords.VideoID = video.ID and keyword like '%{$checked}%') as tempTable";
+					$query ="Select Distinct VideoID from 
+		(Select keywords.VideoID 
+		 from keywords, video 
+		 where keywords.VideoID = video.ID 
+		 and (keyword like '%{$checked}%' or video.VideoName like '%{$checked}%')  
+		 ) as tempTable";
+			
 			$results = ex_query($query);
 			
 			$count =GenMultipleThumb($results);

@@ -94,8 +94,15 @@ ref.parentNode.insertBefore(js, ref);
 	while ($row = mysql_fetch_array($results)) {
 		if ($row[1] == "Login" && isFBLoggedin()) {
 			echo("<li id=\"NavMenu\"> <a href=\"login.php?msg=4\">logout</a></li>\n");
-		} else if ($row[1] == "SignUp" && isFBLoggedin()) {
-		} else {
+		} 
+		else if ($row[1] == "SignUp" && isFBLoggedin()) {
+			
+		}
+		else if ($row[1]== "SignUp" && !isFBLoggedin())
+		{
+			echo("<li id=\"NavMenu\"> <a href=\"login.php?msg=3\">SignUp</a></li>\n");
+		}
+		else {
 			echo("<li id=\"NavMenu\"><a href=\"" . $row[2] . "\">" . $row[1] . "</a></li>\n");
 		}
 
