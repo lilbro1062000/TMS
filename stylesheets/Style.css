@@ -30,6 +30,27 @@ text-decoration:none;
 text-decoration:underline;
 background-color:orange;
 }
+#next :hover{
+	background:rgb(2,89,73);
+}
+#prev :hover{
+	background:rgb(2,89,73);
+}
+#side1{
+	background:white;
+	  
+}
+#catIDANIMATION
+{
+	background-image: 'images/FreeVector-Robot-Cartoon.jpg';
+	background-repeat:repeat-y;
+}
+#side2
+{
+	border-left-width: 80px;
+	border-left-color: transparent;
+	border-left-style: solid;
+}
 #info
 {
 	background-color: orange;
@@ -40,11 +61,11 @@ background-color:orange;
 	list-style: none;
 	display:inline-block;
 	height: 30px;
-	width: 200px;
+	width: 195px;
 }
 #info li
 {
-	width:200px;
+	width:195px;
 }
 #info{
 	height: 200px;
