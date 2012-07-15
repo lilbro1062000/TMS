@@ -120,7 +120,7 @@ body {
 	list-style: none;
 	text-align: left;
 }
-#VideoThumb {
+.VideoThumb {
 	border-style: solid;
 	/*position:relative;*/
 	/*border-bottom-width: 20px;*/
@@ -206,7 +206,7 @@ h1 {
 .headMenu {
 }
 
-#NavMenu {
+.NavMenu {
 	display: inline;
 	list-style: none;
 	padding: 0;
