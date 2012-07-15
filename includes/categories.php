@@ -198,7 +198,7 @@
 					<tr>
 				<td>	
 				<div id="prev">
-							<img style=" border-top-width: 100px; border-bottom-width: 90px; border-style: solid; border-color: transparent; " src="images/left.png" />
+							<img alt="Prev" style=" border-top-width: 100px; border-bottom-width: 90px; border-style: solid; border-color: transparent; " src="images/left.png" />
 			</div>
 			</td>
 			<td>
@@ -294,7 +294,7 @@ $count =0;
 				</td>
 			<td>
 			<div id="next">
-					<img style=" border-top-width: 100px; border-bottom-width: 90px; 100px; border-style: solid; border-color: transparent;" src="images/right.png" />
+					<img  alt="Next" style=" border-top-width: 100px; border-bottom-width: 90px; 100px; border-style: solid; border-color: transparent;" src="images/right.png" />
 						
 			</div>
 			</td>

@@ -55,12 +55,12 @@ if (!isFBLoggedin() && isSitelogin()) {
 	</head>
 	<body class="container_12">
 <div id="headmenu">
-	<!-- -- Google an stuff  -->
+	
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-33378653-1']);
-  _gaq.push(['_setDomainName', 'tmsomething.com']);
+  _gaq.push(['_setDomainName', 'wwwtmsomething.com']);
   _gaq.push(['_trackPageview']);
 
   (function() {

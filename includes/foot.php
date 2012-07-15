@@ -65,9 +65,9 @@
 <table>
 	<tr>
 	 <td>
-			<table style=" width: 200px; ">
+			<table >
 				<tr>
-					 <div id="TMSc" style=" width: 200px; ">
+					 <div id="TMSc">
 						<a >TMS</a>
 							<br />			
 				</div>		
