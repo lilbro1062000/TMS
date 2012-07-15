@@ -40,7 +40,17 @@ echo("</video>\n");
 echo("<br />\n");
 
 ?>
-
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-4475426569219871";
+/* Video Ads */
+google_ad_slot = "4140414938";
+google_ad_width = 468;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
 <script>
 	var myvar = setInterval(function() {
 		var myvid = document.getElementById('Video');

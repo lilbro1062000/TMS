@@ -22,5 +22,9 @@ Newly Listed
 
 
 
-background Images for categories and clicks 
+background Images for categories and clicks  no images but arranged diffrently 
+
+Now i need to add some pages in the about us Page
+
+ 
 

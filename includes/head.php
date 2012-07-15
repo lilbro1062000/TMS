@@ -103,7 +103,7 @@ ref.parentNode.insertBefore(js, ref);
 	<input type="submit" value="Search" class="grid_1" />
 </form>
 
-<ul id="NavMenu" class="grid_3">
+<ul  class="grid_3">
 	<?php
 	$results = ex_query("Select * from header_menu order by ID asc;");
 	while ($row = mysql_fetch_array($results)) {

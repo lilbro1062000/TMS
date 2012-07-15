@@ -5,6 +5,7 @@ body {
 	text-align:center;
 	position:relative;
 	top:40px;
+	
 }
 .elasticMenuOptions
 {
@@ -42,8 +43,23 @@ background-color:orange;
 }
 #catIDANIMATION
 {
-	background-image: 'images/FreeVector-Robot-Cartoon.jpg';
-	background-repeat:repeat-y;
+	
+	
+	
+	/*background-image: url('../images/FreeVector-Robot-Cartoon.jpg');*/
+	/*background-size:100% 100%;*/
+	
+	/*background-repeat:repeat-y;*/
+	
+	/*height:50px;
+	width:80px;
+	*/
+}
+#catIDDOCUMENTARY
+{
+	/*background-color: blue;*/
+	/*height:50px;
+	width:80px;*/
 }
 #side2
 {
@@ -57,11 +73,18 @@ background-color:orange;
 	/*width:600px;*/
 	
 }
-#info #Categories ul{
-	list-style: none;
-	display:inline-block;
-	height: 30px;
-	width: 195px;
+#Categories_info{
+	width:585px;
+}
+#Categories_info td{
+
+border-left-width:60px;
+border-bottom-width:60px;
+border-style:solid;
+border-color:transparent;
+
+
+	
 }
 #info li
 {
@@ -81,6 +104,10 @@ background-color:orange;
 	border-bottom-width: 80px;
 	border-bottom-style: solid;
 	border-bottom-color: transparent;
+}
+#footinfo
+{
+	
 }
 #CommentArea
 {
@@ -226,9 +253,35 @@ background-color:transparent;
 
 #Footer {
 background-color:rgb(131,167,122);
-height:100px;
+height:200px;
+border-bottom-width: 60px;
+border-style: solid;
+border-bottom-color: rgb(242,232,220);
+}
+#TMSc {
+	height: 35px;
+}
+#TMSc :hover{
+	text-decoration:underline;
+background-color:orange;
+
 }
 
+#AboutUSc :hover{
+	text-decoration:underline;
+	background-color:orange;
+}
+#AboutUSc
+{
+	height: 35px;
+}
+#ContactUSc :hover{
+	text-decoration:underline;
+	background-color:orange;
+}
+#ContactUSc{
+	height: 35px;
+}
 #AdBar {
 height:120px;
 background-color:rgb(131,167,122);

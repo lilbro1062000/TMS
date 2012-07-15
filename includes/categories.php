@@ -3,6 +3,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
+		
 		var slider1=$('#slider1').bxSlider({
 			displaySlideQty : 3,
 			moveSlideQty : 1,
@@ -69,6 +70,7 @@
 			$(this).css("background-color","orange");
 			$("#Ct").css("background-color","rgb(2,89,73)");
 			$("#MW").css("background-color","rgb(2,89,73)");
+			$('#Rce').css("background-color","rgb(2,89,73)");
 			reset();
 			
 			$('#info').animate({
@@ -82,6 +84,7 @@
 			$(this).css("background-color","orange");
 			$("#Trending").css("background-color","rgb(2,89,73)");
 			$("#MW").css("background-color","rgb(2,89,73)");
+			$('#Rce').css("background-color","rgb(2,89,73)");
 			reset();
 			
 			$('#info').animate({
@@ -96,6 +99,7 @@
 			$(this).css("background-color","orange");
 			$("#Trending").css("background-color","rgb(2,89,73)");
 			$("#Ct").css("background-color","rgb(2,89,73)");
+			$('#Rce').css("background-color","rgb(2,89,73)");
 			reset();
 			$('#info').animate({
 				width : "620px"
@@ -108,6 +112,9 @@
 		
 		$('#Rce').click(function() {
 			$(this).css("background-color","orange");
+			$("#Trending").css("background-color","rgb(2,89,73)");
+			$("#Ct").css("background-color","rgb(2,89,73)");
+			$("#MW").css("background-color","rgb(2,89,73)");
 			reset();
 			$('#info').animate({
 				width : "620px"
@@ -196,21 +203,30 @@
 			</td>
 			<td>
 				<div id="Categories_info">
-					<ul>
-						<li>
-							
-						</li>
-						<li
-					</ul>
+					
 					<?php
 					$results = ex_query("Select upper(name) from categories order by ID");
-
+echo "\n<table>\n";
+$count =0;
 					while ($row = mysql_fetch_array($results)) {
 							// echo "<ul id=\"Categories\" class=\"grid_3\">";
-						echo "<ul>";
-						echo("\n<li id=\"catID".$row[0]."\"><a href=\"browse.php?Category=" . urlencode($row[0]) . "\">" . $row[0] . "</a></li> \n");
-							echo "</ul>";
+						if($count==0)
+						{
+							echo "\n<tr>\n";
+						}
+						
+						echo("\n<td id=\"catID".$row[0]."\"> <a href=\"browse.php?Category=" . urlencode($row[0]) . "\">" . $row[0] . "</a></td> \n");
+						
+						$count = $count + 1;
+						
+						if($count==3)
+						{
+							echo "\n</tr>";
+							$count =0;
+						}
+			
 					}
+				echo "\n</table>\n";
 					?>
 				</div>
 				<div id="Trending_info">
