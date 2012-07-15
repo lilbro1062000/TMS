@@ -177,7 +177,8 @@
 						<li>
 							<a>	Recent</a>
 						</li>
-					</ul></td>
+					</ul>
+					</td>
 				</tr>
 				<tr>
 					<td>
