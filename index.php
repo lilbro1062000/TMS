@@ -65,7 +65,7 @@ echo("</video>\n");
   ?>
 <!-- </div> -->
 <div  class="grid_5">
-	<div id= "side1" class="fb-activity" data-site="www.TMSomething.com" data-app-id="<?php echo FB_APP_ID; ?>" data-width="440" data-height="300" data-header="true" data-recommendations="false"></div>
+	<div id= "side1" class="fb-activity" data-site="www.TMSomething.com" data-app-id="<?php echo FB_APP_ID; ?>" data-width="440" data-height="390" data-header="true" data-recommendations="false"></div>
 </div>
 <div id= "side2" class="grid_5">
 	 <script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
