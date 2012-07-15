@@ -44,15 +44,15 @@ include_once ("includes/categories.php");
 	?>
 </div>
 
-<div class="grid_9" id="recom">
+<div class="grid_12" id="recom" style="height: 400px">
 
 	<form method="post" action="reco.php">
-		<label> Recommendations for site </label>
+		<strong class="grid_12"> Recommendations for site </Strong>
 		<?
 			if (isset($msg)) {echo $msg . "\n";
 			}
 		?>
-		<textarea name="Textarea" cols="84" rows="18"></textarea>
+		<textarea name="Textarea" cols="114" rows="16"></textarea>
 		<input  type="submit" />
 	</form>
 

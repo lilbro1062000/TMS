@@ -197,7 +197,7 @@
 				<table>
 					<tr>
 				<td>	
-				<div id="prev" ">
+				<div id="prev">
 							<img style=" border-top-width: 100px; border-bottom-width: 90px; border-style: solid; border-color: transparent; " src="images/left.png" />
 			</div>
 			</td>
