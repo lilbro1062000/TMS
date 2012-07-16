@@ -34,7 +34,8 @@ include_once ("includes/categories.php");
 		$mail -> Body = $_POST['Textarea'];
 		if (!$mail -> Send()) 
 		{
-			$msg = "Mailer Error: " . $mail -> ErrorInfo;
+			// $msg = "Mailer Error: " . $mail -> ErrorInfo;
+			$msg = "Sorry Seems it didnt go through. Please try again or send an EMail";
 		}
 		 else 
 		{
@@ -53,7 +54,7 @@ include_once ("includes/categories.php");
 			}
 		?>
 		<textarea name="Textarea" cols="114" rows="16"></textarea>
-		<input  type="submit" />
+		<input type="submit" value="Submit" />
 	</form>
 
 </div>

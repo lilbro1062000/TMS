@@ -75,7 +75,7 @@ body {
 	border-color: transparent;
 }
 #info li {
-	width: 180px;
+	width: 195px;
 }
 #info {
 	height: 200px;
@@ -243,27 +243,29 @@ h1 {
 	width:200px;
 	cursor: pointer;
 	background-color: transparent;
+	text-decoration: underline;
 }
 #TMSc :hover {
-	text-decoration: underline;
 	background-color: orange;
 }
 
 #AboutUSc :hover {
-	text-decoration: underline;
+
 	background-color: orange;
 }
 #AboutUSc {
 	height: 35px;
 	cursor: pointer;
+	text-decoration: underline;
 }
 #ContactUSc :hover {
-	text-decoration: underline;
+
 	background-color: orange;
 }
 #ContactUSc {
 	height: 35px;
 	cursor: pointer;
+	text-decoration: underline;
 }
 #AdBar {
 	height: 120px;
