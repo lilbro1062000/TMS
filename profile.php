@@ -1,7 +1,7 @@
 <?php
 //check log in
 include_once ("includes/session.php");
-Logged_in();
+ Logged_in();
 include_once ("includes/head.php");
 include_once ("includes/categories.php");
 //Option to edit profile
@@ -29,7 +29,7 @@ include_once ("includes/categories.php");
 	<div id="Username">
 		<?php
 		 echo getUsername(
-		  $_SESSION[SESSIONUSERID]
+		   $_SESSION[SESSIONUSERID]
 		 );
 		?>
 	</div>
