@@ -134,25 +134,12 @@
 			<table >
 				<tr>
 					<td>
-						<!-- <table>
-							<tr>
-										<td>
-										
-									</td>
-										<td>
-										
-									</td>
-										<td>
-										
-									</td>
-							</tr>
-						</table> -->
-						
-					<ul id="Trending" class="elasticMenuOptions">
-						<li>
-							<a>Trending</a>
-						</li>
-					</ul></td>
+						<ul id="Trending" class="elasticMenuOptions">
+							<li>
+								<a>Trending</a>
+							</li>
+						</ul>
+					</td>
 
 				</tr>
 				<tr>
@@ -286,8 +273,6 @@ $count =0;
 					             GEnerateImageThumbHeader($row[0]);
 							echo "</li>";    
 					    }
-					
-					
 					echo "</ul>";
 					?>
 										<a href="browse.php?Recent="> Look at full List</a>

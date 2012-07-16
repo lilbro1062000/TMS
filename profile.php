@@ -28,13 +28,17 @@ include_once ("includes/categories.php");
 <div id="userinfo" class="grid_6">
 	<div id="Username">
 		<?php
-		 echo getUsername($_SESSION[SESSIONUSERID]);
+		 echo getUsername(
+		  $_SESSION[SESSIONUSERID]
+		 );
 		?>
 	</div>
 	<div id="numberofVideos" class="grid_6">
 		Number of Videos Uploaded:
 		<?php
-		 echo getnumVideosUploaded($_SESSION[SESSIONUSERID]);
+		 echo getnumVideosUploaded(
+		  $_SESSION[SESSIONUSERID]
+		 );
 		?>
 	</div>
 	
@@ -46,7 +50,7 @@ include_once ("includes/categories.php");
 		$("#RefreshPage").load("includes/videoloadcontent.php");
 		var refreshid = setInterval(function() {
 			$("#RefreshPage").load("includes/videoloadcontent.php");
-		}, 5000);
+		}, 1000);
 	})
 </script>
 <div id="RefreshPage" class="grid_12">

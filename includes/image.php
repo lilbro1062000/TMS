@@ -1,5 +1,6 @@
 <?php
 $filename =urldecode($_GET['fname']);
+
 if(isset($_GET['vid']))
 {
 	//640x360
