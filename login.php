@@ -117,7 +117,8 @@ FB.Event.subscribe('auth.logout', function(response) {
 	} 
 	else
 		{
-			echo "<div class=\"fb-login-button\" onlogin=\"after_login_button()\" scope=\"email,user_checkins\" data-redirect-uri=\"index.php\">Login with Facebook</div>";
+			echo "<div id=\"fbloginbox\" class=\"fb-login-button\"  scope=\"email,user_checkins\" data-redirect-uri=\"index.php\">Login with Facebook</div>\n <br/>";
+			echo "Click <a href=\"index.php\"> Here</a> after login if you are not automatically logged in.";
 		} 
 	?>
       

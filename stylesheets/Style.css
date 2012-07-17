@@ -208,7 +208,20 @@ h1 {
 	height: 35px;
 	list-style: none;
 }
-
+#Rules
+{
+	border-top-width:30px;
+	border-style: solid;
+	border-color: transparent;
+	border-bottom-width: 30px;
+}
+#fbloginbox
+{	border-top-width:30px;
+	border-style: solid;
+	border-color: transparent;
+	border-bottom-width: 30px;
+	
+}
 .headMenu {
 }
 

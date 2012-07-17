@@ -1,6 +1,6 @@
 <?php
 include_once ("includes/session.php");
- Logged_in();
+Logged_in();
 include_once ("includes/head.php");
 include_once ("includes/categories.php");
 
@@ -67,9 +67,11 @@ $(function() {
 
 
 
-<form id="Upload_Box" class="grid_9" action="includes/upload_file.php" method="post"
+<form id="Upload_Box" class="grid_12" action="includes/upload_file.php" method="post"
 enctype="multipart/form-data">
-    <input type="hidden"  name="MAX_FILE_SIZE" value="<?php  echo getUploadSize($_SESSION[SESSIONUSERID]); ?>" />
+    <input type="hidden"  name="MAX_FILE_SIZE" value="<?php  
+     echo getUploadSize($_SESSION[SESSIONUSERID]);
+     ?>" />
     
     <label for="VideoName">Video Name</label> 
     
@@ -80,18 +82,16 @@ enctype="multipart/form-data">
     <!--
     <input id="uploadedfile" type="file" name="uploadedfile" onchange=" fileSelected();" />
 -->
-<div id="html5_uploader" class="grid_9" >
+<div id="html5_uploader" class="grid_12" >
 	You browser doesn't support native upload. Google Chrome
 	</div>
     <br />
     <input type="submit" name="submit" value="Upload" />
 </form>
-
-
 <div id="FileInfo">
 </div>
 
-<div class="grid_9">
+<div id="Rules" class="grid_12">
 <p>
 	<h1>RULES</h1> 
 	<ul>
