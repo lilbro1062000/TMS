@@ -8,7 +8,6 @@ include_once ("includes/categories.php");
 
 <!-- Load Queue widget CSS and jQuery -->
 <style type="text/css">@import url(js/jquery.plupload.queue/css/jquery.plupload.queue.css);</style>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 
 
 <!-- Load plupload and all it's runtimes and finally the jQuery queue widget -->
