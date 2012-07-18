@@ -128,7 +128,7 @@
 								<br/>
 								TMSomething is a video Website that pays people to aquire unique Views on videos. 
 								<br />
-								Using Advertisements, So please watch, click and read them.
+								Using Advertisements, we pay Uploaders to generate Views.
 								<br />
 								 
 								<br />

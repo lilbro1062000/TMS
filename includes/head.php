@@ -2,6 +2,16 @@
 require_once ("connection.php");
 require_once ("functions.php");
 require_once ("FB.php");
+
+if($_SERVER['HTTP_HOST']!="www.tmsomething.com")
+{
+	header("location: http://www.tmsomething.com");
+}
+
+// if($_SERVER['HTTP_HOST']!="127.0.1.1")
+// {
+	// header("location: http://127.0.1.1/TMS/");
+// }
 ?>
 <?php
 // this is to check the video
@@ -60,7 +70,7 @@ if (!isFBLoggedin() && isSitelogin()) {
 
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-33378653-1']);
-  _gaq.push(['_setDomainName', 'wwwtmsomething.com']);
+  _gaq.push(['_setDomainName', 'tmsomething.com']);
   _gaq.push(['_trackPageview']);
 
   (function() {

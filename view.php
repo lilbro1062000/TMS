@@ -40,6 +40,7 @@ echo("</video>\n");
 echo("<br />\n");
 
 ?>
+
 <script type="text/javascript"><!--
 google_ad_client = "ca-pub-4475426569219871";
 /* Video Ads */
@@ -87,6 +88,17 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 		username = username.getAttribute("Name");
 		setCookie("VideoCount",username,365);
 	}
+</script>
+<!-- Place this tag where you want the +1 button to render. -->
+<div class="g-plusone"></div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
 </script>
 <div id="BottemVideoPanel">
 	<ul>
