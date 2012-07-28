@@ -57,6 +57,7 @@ if (!isFBLoggedin() && isSitelogin()) {
 <html lang="en" >
 	<head>
 		<title>Teach Me Something</title>
+		<meta name="google-site-verification" content="dc14ttAF-hCGX-dzG26c15mdK7HlzLG3V7x4wsXv6zo" />
 		<!-- Style sheets added by Abdoulaye Camara  -->
 		<link href="stylesheets/reset.css" rel="stylesheet" type="text/css" />
 		<link href="stylesheets/960.css" rel="stylesheet" type="text/css" />
