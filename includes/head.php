@@ -3,10 +3,10 @@ require_once ("connection.php");
 require_once ("functions.php");
 require_once ("FB.php");
 
-if($_SERVER['HTTP_HOST']!="www.tmsomething.com")
-{
-	header("location: http://www.tmsomething.com");
-}
+// if($_SERVER['HTTP_HOST']!="www.tmsomething.com")
+// {
+	// header("location: http://www.tmsomething.com");
+// }
 
 // if($_SERVER['HTTP_HOST']!="127.0.1.1")
 // {
@@ -62,7 +62,17 @@ if (!isFBLoggedin() && isSitelogin()) {
 		<link href="stylesheets/reset.css" rel="stylesheet" type="text/css" />
 		<link href="stylesheets/960.css" rel="stylesheet" type="text/css" />
 		<link href="stylesheets/Style.css" rel="stylesheet" type="text/css" />
-		
+		<script type="text/javascript">var p="http",d="static";if(document.location.protocol=="https:"){p+="s";d="engine";}var z=document.createElement("script");z.type="text/javascript";z.async=true;z.src=p+"://"+d+".adzerk.net/ados.js";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(z,s);
+		</script>
+<script type="text/javascript">
+var ados = ados || {};
+ados.run = ados.run || [];
+ados.run.push(function() {
+/* load placement for account: lilbro1062000, site: Teach Me Something, size: 728x90 - Leaderboard*/
+ados_add_placement(3125, 17733, "azk43115", 4);
+ados_load();
+});</script>
+
 	</head>
 	<body class="container_12">
 <div id="headmenu">

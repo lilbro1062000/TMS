@@ -5,7 +5,7 @@ include_once ("includes/categories.php")
 ?>
 <link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet">
 <script src="http://vjs.zencdn.net/c/video.js"></script>
-
+<div id="azk43115"></div>
 <?php
 	if(isset($_POST['VideoID']))
 {
@@ -145,6 +145,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 
 	</ul>
 </div>
+
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
