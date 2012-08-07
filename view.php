@@ -132,7 +132,48 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 			echo " </a>";
 			 ?>
 		</li>
+		<?php
+		if (!liked($_SESSION['User_ID'], GetVideoID($hash))) {
+				//Show liked button
+				echo "<li id=\"Like\">";
+				echo "<a href=\"";
+				echo("includes/operations.php?liked=1&videoID=");
+				echo($_GET['videoID']);
+				echo("\" />");
+				echo('Like');
+				echo "</a> </li>\n";
+			} else {
+				//show unlike button
+				echo "<li id=\"unLike\">";
+				echo "<a href=\"";
+				echo("includes/operations.php?liked=0&videoID=");
+				echo($_GET['videoID']);
+				echo("\" />");
+				echo('Unlike');
+				echo "</a> </li>\n";
+			}
+			if (!reported($_SESSION['User_ID'], GetVideoID($hash))) {
+				//Show report button
+				echo "<li id=\"report\">";
+				echo "<a href=\"";
+				echo("includes/operations.php?reported=1&videoID=");
+				echo($_GET['videoID']);
+				echo("\" />");
+				echo('report');
+				echo "</a> </li>\n";
+			} else {
+				//show unreport button
+				echo "<li id=\"unreport\">";
+				echo "<a href=\"";
+				echo("includes/operations.php?fav=0&videoID=");
+				echo($_GET['videoID']);
+				echo("\" />");
+				echo('unreport');
+				echo "</a> </li>\n";
+			}
 		
+		
+		?>
 		
 <li>
 	<?php 

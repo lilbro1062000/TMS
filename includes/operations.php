@@ -37,7 +37,7 @@ elseif(isset($_GET['reported']))
         reportVideo($_SESSION[SESSIONUSERID],GetVideoID($_GET['videoID']));
         redirect_to("../view.php?videoID={$_GET['videoID']}");
     }
-    elseif($_GET['fav']==0){
+    elseif($_GET['reported']==0){
         unReportVideo($_SESSION[SESSIONUSERID],GetVideoID($_GET['videoID']));
         redirect_to("../view.php?videoID={$_GET['videoID']}");
     }

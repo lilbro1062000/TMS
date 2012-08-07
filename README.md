@@ -27,4 +27,17 @@ background Images for categories and clicks  no images but arranged diffrently
 Now i need to add some pages in the about us Page
 
  
+ Adding Video like and report video 
+ 
+ Adding the bar with .0008 per view 
+ 
+ added the Terms and condition 
+ 
+ Make videos for getting started 
+ 
+ Update servers 
+ 
+ Email when comment posted 
+ 
+ 
 
