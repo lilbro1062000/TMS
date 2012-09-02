@@ -114,7 +114,7 @@ function unLikeVideo($UserID, $videoID)
 }
 function reportVideo($UserID, $videoID)
 {
-	$query = "insert into reportedvideo(UserID,VideoID,Reported) Values('{$videoID}','{$UserID}',1)";
+	$query = "insert into reportedvideo(UserID,VideoID,Reported) Values('{$UserID}','{$videoID}',1)";
 	ex_query($query);
 }
 function unReportVideo($UserID, $videoID)

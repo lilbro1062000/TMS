@@ -162,11 +162,16 @@ if(isSitelogin())  // Testing
 <div id=\"user_menu\" class=\"grid_12\">\n");
 	echo("<ul>\n");
 	$results = ex_query("Select * from user_menu order by ID asc;");
+	// This is for money Calculations and it will compare to the db 
+	// Name of Up loader 
+	// Requested amount  This is would be the requested amount so far I would subtract the amount 
+	// get # of views * .0008 $ Link to request amount  
+	$SelectView = "Select sum(Numwatched) from views where Video_ID in (Select ID from video where UserID ='".$_SESSION[SESSIONUSERID]."')";
+	$amount = ex_query1RowAns($SelectView) * .0008;
+	echo "<li>$".$amount."</li>";
 	echo("<li> <img src=\"images/Facebook-32.png\"  width = 20 height = 20 alt=\"Logged in Via Facebook\" />  <a href=\"profile.php\">" . $_SESSION[SESSIONUSERNAME] . " </a></li>\n");
 	while ($row = mysql_fetch_array($results)) {
-
 		echo("<li><a href=\"" . $row['Path'] . "\">" . $row['Name'] . "</a></li>\n");
-
 	}
 	echo("</ul>\n");
 	echo("</div>\n");

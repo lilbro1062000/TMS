@@ -165,7 +165,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 				//show unreport button
 				echo "<li id=\"unreport\">";
 				echo "<a href=\"";
-				echo("includes/operations.php?fav=0&videoID=");
+				echo("includes/operations.php?reported=0&videoID=");
 				echo($_GET['videoID']);
 				echo("\" />");
 				echo('unreport');
