@@ -2,16 +2,6 @@
 require_once ("connection.php");
 require_once ("functions.php");
 require_once ("FB.php");
-
-// if($_SERVER['HTTP_HOST']!="www.tmsomething.com")
-// {
-	// header("location: http://www.tmsomething.com");
-// }
-
-// if($_SERVER['HTTP_HOST']!="127.0.1.1")
-// {
-	// header("location: http://127.0.1.1/TMS/");
-// }
 ?>
 <?php
 // this is to check the video
@@ -70,8 +60,44 @@ login('704520593', 'Abdoulaye Camara');
 		<link href="stylesheets/reset.css" rel="stylesheet" type="text/css" />
 		<link href="stylesheets/960.css" rel="stylesheet" type="text/css" />
 		<link href="stylesheets/Style.css" rel="stylesheet" type="text/css" />
-		<script type="text/javascript">var p="http",d="static";if(document.location.protocol=="https:"){p+="s";d="engine";}var z=document.createElement("script");z.type="text/javascript";z.async=true;z.src=p+"://"+d+".adzerk.net/ados.js";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(z,s);
+		<link href="stylesheets/jquery-ui-1.8.23.custom.css" rel="stylesheet" type="text/css"/>
+		<script> 
+		"use strict";
 		</script>
+		<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-33378653-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' === document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+	</head>
+	<body class="container_12">
+<div id="headmenu">
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="js/jquery-ui-1.8.23.custom.min.js"></script>
+ <script type="text/javascript">
+"use strict";
+		var p = "http", d = "static";
+		if (document.location.protocol == "https:") {
+		    p += "s";
+		    d = "engine";
+		}
+		var z = document.createElement("script");
+		z.type = "text/javascript";
+		z.async = true;
+		z.src = p + "://" + d + ".adzerk.net/ados.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(z,s);
+</script>
+		
 <script type="text/javascript">
 var ados = ados || {};
 ados.run = ados.run || [];
@@ -79,35 +105,17 @@ ados.run.push(function() {
 /* load placement for account: lilbro1062000, site: Teach Me Something, size: 728x90 - Leaderboard*/
 ados_add_placement(3125, 17733, "azk43115", 4);
 ados_load();
-});</script>
-
-	</head>
-	<body class="container_12">
-<div id="headmenu">
-	
-<script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-33378653-1']);
-  _gaq.push(['_setDomainName', 'tmsomething.com']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
+});
+</script> 
 			<!--Facebook Stuff-->
-		<div id="fb-root"></div>
-		<script>
-						window.fbAsyncInit = function() {
+<div id="fb-root"></div>
+<script>
+window.fbAsyncInit = function() {
 FB.init({
 appId      : '<?php echo FB_APP_ID; ?>
 	'
 	, // App ID
-	channelUrl : '<?php echo($_SERVER["HTTP_HOST"])?>/infomatica.html', // Channel File
+channelUrl : '<?php echo($_SERVER["HTTP_HOST"])?>/infomatica.html', // Channel File
 status     : true, // check login status
 cookie     : true, // enable cookies to allow the server to access the session
 xfbml      : true  // parse XFBML
@@ -123,6 +131,9 @@ if (d.getElementById(id)) {return;}
 js = d.createElement('script'); js.id = id; js.async = true;
 js.src = "//connect.facebook.net/en_US/all.js";
 ref.parentNode.insertBefore(js, ref);
+
+
+
 }(document));
 		</script>
 <!--End Facebook Stuff-->
@@ -132,6 +143,43 @@ ref.parentNode.insertBefore(js, ref);
 	<input type="submit" value="Search" class="grid_1" />
 </form>
 
+<script>
+$(document).ready(function(){
+$("#dialog-confirm").hide();	
+		$("#dialog-confirm" ).dialog({
+					autoOpen: false,
+					width: 600,
+					buttons: {
+						<?php
+						$mdate = ex_query1RowAns("select min(dtuploaded) from video where UserID ='".$_SESSION[SESSIONUSERID]."'");
+						if((time()-strtotime($mdate) ) >(60*60*24*30))
+						{
+							echo "\"Request Payment\": \nfunction() {	\n$(this).dialog(\"close\")},\n
+							";
+							
+						}
+
+						?>
+						"Ok": function() {
+							
+							$(this).dialog("close");
+							
+						},
+						"Cancel": function() {
+							
+							$(this).dialog("close");
+						}
+					}
+				});
+
+
+	$('#Amount').click(function() {
+		$("#dialog-confirm").dialog('open');
+		// prevent the default action, e.g., following a link
+		return false;
+	});
+});
+</script> 
 <ul  class="grid_3">
 	<?php
 	$results = ex_query("Select * from header_menu order by ID asc;");
@@ -168,7 +216,16 @@ if(isSitelogin())  // Testing
 	// get # of views * .0008 $ Link to request amount  
 	$SelectView = "Select sum(Numwatched) from views where Video_ID in (Select ID from video where UserID ='".$_SESSION[SESSIONUSERID]."')";
 	$amount = ex_query1RowAns($SelectView) * .0008;
-	echo "<li>$".$amount."</li>";
+	//now i would need to subtract the information from the previous requested amounts 
+	$prevPayments = ex_query1RowAns("Select sum(requested) from payments where UserID ='".$_SESSION[SESSIONUSERID]."'");
+	if(!isset($prevPayments))
+	{
+		$prevPayments =0;
+	}
+	$amount = $amount-$prevPayments;
+	echo "\n<li><a href=\"#\"id=\"Amount\">$".$amount."</a></li>\n";
+	//i need to make that a link so that when you click on it the screen dims and a pop
+	//up shows up and then a button that says request 
 	echo("<li> <img src=\"images/Facebook-32.png\"  width = 20 height = 20 alt=\"Logged in Via Facebook\" />  <a href=\"profile.php\">" . $_SESSION[SESSIONUSERNAME] . " </a></li>\n");
 	while ($row = mysql_fetch_array($results)) {
 		echo("<li><a href=\"" . $row['Path'] . "\">" . $row['Name'] . "</a></li>\n");
@@ -179,3 +236,30 @@ if(isSitelogin())  // Testing
 ?>
 
 </div>
+ 
+<div id="dialog-confirm" title="Dialog Title">
+<p> you have accumalted $<?php
+echo $amount;
+?> dollars from videos. 
+</p>
+<p>
+Altogether you have <?php echo ex_query1RowAns($SelectView);?> Views.
+</p>
+<?php
+if((time()-strtotime($mdate) ) >(60*60*24*30))
+{
+							echo "<p>
+	You can request payments for your views. It will be sent to a paypall email address that is associated with you account.
+	You must also verify your paypal email address. 
+</p>";
+}
+else{
+	echo "<p>
+	You can request payments for your views 30 days after your first video upload.
+</p>";
+}
+?>
+
+
+</div>
+

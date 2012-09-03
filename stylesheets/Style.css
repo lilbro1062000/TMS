@@ -29,8 +29,20 @@ body {
 	text-decoration: underline;
 	background-color: orange;
 }
+#next1{
+	 border-top-width: 100px;
+	 border-bottom-width: 90px; 
+	 border-style: solid; border-color: transparent;
+}
+#prev1 {
+	 border-top-width: 100px; 
+	 border-bottom-width: 90px; 
+	 border-style: solid; 
+	 border-color: transparent; 
+}
 #next :hover {
 	background: rgb(2,89,73);
+	
 }
 #prev :hover {
 	background: rgb(2,89,73);

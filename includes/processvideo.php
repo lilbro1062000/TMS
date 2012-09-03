@@ -87,8 +87,8 @@ if (isset($row['ID'])) {
 	//Store in DB and Get ID Store mp4 Store webm
 
 	//change DB to push both
-	$query = "INSERT INTO video (VideoName ,mp4Path,webMPath ,Hash,videoImage,UserID) VALUES (";
-	$query .= "'" . check_input($row['VideoName']) . "', '" . $mp4URI . "','" . $webmURI . "','" . $uniqeHash . "','" . $imageURI . "',{$row['UserID']})";
+	$query = "INSERT INTO video (VideoName ,mp4Path,webMPath ,Hash,videoImage,UserID,dtuploaded) VALUES (";
+	$query .= "'" . check_input($row['VideoName']) . "', '" . $mp4URI . "','" . $webmURI . "','" . $uniqeHash . "','" . $imageURI . "',{$row['UserID']}"."','".to_mysqlDate(time()).")";
 
 	ex_query($query);
 	$vidID = ex_query1RowAns("Select id from video where hash='{$uniqeHash}'");

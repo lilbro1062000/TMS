@@ -1,4 +1,3 @@
-<script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="javascripts/jquery.bxSlider.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -10,7 +9,7 @@
 			randomStart : true,
 			auto : true,
 			autoControls : false,
-			controls: false,
+			controls: false
 		});
 
 		var slider2=$('#slider2').bxSlider({
@@ -19,7 +18,7 @@
 			randomStart : true,
 			auto : true,
 			autoControls : false,
-			controls: false,
+			controls: false
 		});
 
 		var slider3=$('#slider3').bxSlider({
@@ -28,7 +27,7 @@
 			randomStart : true,
 			auto : true,
 			autoControls : false,
-			controls: false,
+			controls: false
 		});
 		
 		$('#Recent').hide();
@@ -39,11 +38,11 @@
 		// }, 1000);
 
 		$('#prev').click(function(){
-    		slider1.goToPreviousSlide();
-    		slider2.goToPreviousSlide();
-    		slider3.goToPreviousSlide();
-    		return false;
-  			});
+			slider1.goToPreviousSlide();
+			slider2.goToPreviousSlide();
+			slider3.goToPreviousSlide();
+			return false;
+			});
 
   $('#next').click(function(){
     slider1.goToNextSlide();
@@ -186,7 +185,7 @@
 					<tr>
 				<td>	
 				<div id="prev">
-							<img alt="Prev" style=" border-top-width: 100px; border-bottom-width: 90px; border-style: solid; border-color: transparent; " src="images/left.png" />
+							<img alt="Prev" id="prev1" src="images/left.png" />
 			</div>
 			</td>
 			<td>
@@ -280,7 +279,7 @@ $count =0;
 				</td>
 			<td>
 			<div id="next">
-					<img  alt="Next" style=" border-top-width: 100px; border-bottom-width: 90px; 100px; border-style: solid; border-color: transparent;" src="images/right.png" />
+					<img alt="Next" id="next1" src="images/right.png" />
 						
 			</div>
 			</td>
