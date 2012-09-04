@@ -104,5 +104,8 @@ require_once ('aws.php');
 	 
 	 redirect_to("../profile.php");
 }
+elseif (isset($_GET['changeEmail'])) {
+	
+}
 
 ?>

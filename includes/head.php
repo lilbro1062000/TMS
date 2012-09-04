@@ -260,7 +260,7 @@ $(\"#dialog-confirm\").hide();
 							echo "\"Request Payment\": \nfunction(){";	
 							echo "\n$(\"#dialog-confirm\").html(' <p>Please wait...</p> <iframe height=\"600\" width=\"600\" src =\"http://"; 
 			echo $_SERVER["HTTP_HOST"];
-			echo "/TMS/includes/verify.php?requestpay=";
+			echo "/includes/verify.php?requestpay=";
 			echo urlencode($amount);
 			echo "&";
 			echo "ID=".$_SESSION[SESSIONUSERID];

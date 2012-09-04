@@ -61,7 +61,7 @@ include_once ("includes/categories.php");
 			$("#VerifyEmail").click(function() {
 			$dialog.html('Please wait till a message pops up for Validation <iframe height="600" width="600" src ="http://<?php 
 			echo $_SERVER["HTTP_HOST"];
-			?>/TMS/includes/verify.php?email=<?php
+			?>/includes/verify.php?email=<?php
 			echo $email;
 			echo "&";
 			echo "hash=".generateHash();
