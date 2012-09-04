@@ -154,7 +154,13 @@ $("#dialog-confirm").hide();
 						$mdate = ex_query1RowAns("select min(dtuploaded) from video where UserID ='".$_SESSION[SESSIONUSERID]."'");
 						if((time()-strtotime($mdate) ) >(60*60*24*30))
 						{
-							echo "\"Request Payment\": \nfunction() {	\n$(this).dialog(\"close\")},\n
+							//first i would need to add the information and then send myself an email that the person requested their money 
+							// How about verification email 
+							// Maybe that should go into the info tab
+							//commiting everything 
+							echo "\"Request Payment\": \nfunction() {
+								
+									\n$(this).dialog(\"close\")},\n
 							";
 							
 						}
@@ -223,7 +229,7 @@ if(isSitelogin())  // Testing
 		$prevPayments =0;
 	}
 	$amount = $amount-$prevPayments;
-	echo "\n<li><a href=\"#\"id=\"Amount\">$".$amount."</a></li>\n";
+	echo "\n<li><a href=\"#\" id=\"Amount\">$".$amount."</a></li>\n";
 	//i need to make that a link so that when you click on it the screen dims and a pop
 	//up shows up and then a button that says request 
 	echo("<li> <img src=\"images/Facebook-32.png\"  width = 20 height = 20 alt=\"Logged in Via Facebook\" />  <a href=\"profile.php\">" . $_SESSION[SESSIONUSERNAME] . " </a></li>\n");

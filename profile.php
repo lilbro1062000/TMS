@@ -31,7 +31,69 @@ include_once ("includes/categories.php");
 		 echo getUsername(
 		   $_SESSION[SESSIONUSERID]
 		 );
+		 $email = ex_query1RowAns("Select Email from usersinfo where id ={$_SESSION[SESSIONUSERID]}");
 		?>
+	</div>
+	<script>
+	$(document).ready(function(){
+	var $dialog = $('<div></div>')
+		.html('<iframe height="600" width="600" src ="http://<?php 
+			echo $_SERVER["HTTP_HOST"];
+			?>/TMS
+			/includes/verify.php?email=
+			<?php
+			echo $email;
+			echo "&";
+			echo "hash=".generateHash();
+			?>"></iframe>')
+		.dialog({
+			autoOpen: false,
+			title: 'Verify Email',
+			width: 600,
+			height: 600
+			
+		});
+			
+			
+			$("#VerifyEmail").click(function() {
+				 $dialog.dialog('open');
+				//so i need to create a verification page 
+				
+		});
+			});
+	</script>
+	<div>
+		Validate Email: 
+		<form>
+			<?php
+			
+			echo $email;
+			?>
+			<p>
+				<?php
+				$verified = ex_query1RowAns("select VerifiedEmail from usersinfo where id ={$_SESSION[SESSIONUSERID]}");
+				if($verified==1)
+				{
+					echo "<button> Verified</button>";
+				}
+				else {
+					//echo "<button> Verify Email</button>";
+				}
+				
+				?>
+			<a href="#" id="VerifyEmail"> Verify Email</a>
+			</p>
+			<?php
+			//if verified you cant change you email
+			// what if you lose access 
+			//true point then what 
+			// well every email must be verified 
+			?>
+			<p>
+				<input />
+			<button> Change Email</button>
+			</p>
+		</form>
 	</div>
 	<div id="numberofVideos" class="grid_6">
 		Number of Videos Uploaded:

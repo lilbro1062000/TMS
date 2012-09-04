@@ -7,8 +7,8 @@ include_once 'connection.php';
 require_once 'functions.php';
 
 $query  ="Select Progress, VideoName, Percentage from jobs where Userid='";
-//$query.= $_SESSION[SESSIONUSERID];
-$query.= '704520593';
+$query.= $_SESSION[SESSIONUSERID];
+//$query.= '704520593';
 $query.= "' order by ID desc";
 $result =ex_query($query);
 while ($row =mysql_fetch_array($result))
