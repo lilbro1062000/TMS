@@ -105,7 +105,7 @@ include_once ("includes/categories.php");
 			echo $email;
 			?>" />
 			<button type="submit"> Change Email</button>
-			//maybe do a popup dialog button
+			
 			</p>
 		</form>
 	</div>

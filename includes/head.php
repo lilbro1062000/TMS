@@ -215,7 +215,7 @@ echo $amount;
 echo "dollars from videos."; 
 echo "</p>
 <p>
-Altogether you have <?php echo ex_query1RowAns($SelectView);?> Views.
+ Altogether you have" .ex_query1RowAns($SelectView)." Views.
 </p>
 ";
 if((time()-strtotime($mdate) ) >(60*60*24*30))
