@@ -21,35 +21,35 @@ if (isset($_COOKIE['VideoCount'])) {
 }
 //if logged in via Session  Then dont check the Is FB logged in
 
-	// if (!isSitelogin()) {
-// 	
-		// if (isFBLoggedin()) {
-			// // if logged in then check db for user info
-			// if (!isSitelogin()) {
-// 	
-				// if (!fbUserExists()) {
-					// createFBUser();
-				// }
-				// //start session with that user
-				// login(GetFBUserID(), GetFBUserName());
-			// }
-			// //if non exists then create one
-			// //That id will be use for video Uploads as well for video count
-			// // dont forget for user creation
-		// }
-// 	
-	// }
-	// if (!isFBLoggedin() && isSitelogin()) {
-		// // loggout();
-	// }
+	if (!isSitelogin()) {
+	
+		if (isFBLoggedin()) {
+			// if logged in then check db for user info
+			if (!isSitelogin()) {
+	
+				if (!fbUserExists()) {
+					createFBUser();
+				}
+				//start session with that user
+				login(GetFBUserID(), GetFBUserName());
+			}
+			//if non exists then create one
+			//That id will be use for video Uploads as well for video count
+			// dont forget for user creation
+		}
+	
+	}
+	if (!isFBLoggedin() && isSitelogin()) {
+		// loggout();
+	}
 
 //testing login
 
-if (!isSitelogin()) {
-
-login('704520593', 'Abdoulaye Camara');
-	
-}
+// if (!isSitelogin()) {
+// 
+// login('704520593', 'Abdoulaye Camara');
+// 	
+// }
 ?>
 <!DOCTYPE HTML>
 <html lang="en" >
@@ -143,49 +143,7 @@ ref.parentNode.insertBefore(js, ref);
 	<input type="submit" value="Search" class="grid_1" />
 </form>
 
-<script>
-$(document).ready(function(){
-$("#dialog-confirm").hide();	
-		$("#dialog-confirm" ).dialog({
-					autoOpen: false,
-					width: 600,
-					buttons: {
-						<?php
-						$mdate = ex_query1RowAns("select min(dtuploaded) from video where UserID ='".$_SESSION[SESSIONUSERID]."'");
-						if((time()-strtotime($mdate) ) >(60*60*24*30))
-						{
-							//first i would need to add the information and then send myself an email that the person requested their money 
-							// How about verification email 
-							// Maybe that should go into the info tab
-							//commiting everything 
-							echo "\"Request Payment\": \nfunction() {
-								
-									\n$(this).dialog(\"close\")},\n
-							";
-							
-						}
 
-						?>
-						"Ok": function() {
-							
-							$(this).dialog("close");
-							
-						},
-						"Cancel": function() {
-							
-							$(this).dialog("close");
-						}
-					}
-				});
-
-
-	$('#Amount').click(function() {
-		$("#dialog-confirm").dialog('open');
-		// prevent the default action, e.g., following a link
-		return false;
-	});
-});
-</script> 
 <ul  class="grid_3">
 	<?php
 	$results = ex_query("Select * from header_menu order by ID asc;");
@@ -229,6 +187,10 @@ if(isSitelogin())  // Testing
 		$prevPayments =0;
 	}
 	$amount = $amount-$prevPayments;
+	if($amount<0.001)
+	{
+		$amount =0;
+	}
 	echo "\n<li><a href=\"#\" id=\"Amount\">$".$amount."</a></li>\n";
 	//i need to make that a link so that when you click on it the screen dims and a pop
 	//up shows up and then a button that says request 
@@ -264,8 +226,74 @@ else{
 	You can request payments for your views 30 days after your first video upload.
 </p>";
 }
+echo "<p>
+	You must also have more then 0.10  in your account to request money. 
+</p>";
 ?>
 
+<script>
+$(document).ready(function(){
+$("#dialog-confirm").hide();	
 
+		$("#dialog-confirm" ).dialog({
+					autoOpen: false,
+					width: 600,
+					buttons: {
+						<?php
+						$mdate = ex_query1RowAns("select min(dtuploaded) from video where UserID ='".$_SESSION[SESSIONUSERID]."'");
+						if((time()-strtotime($mdate) ) >(60*60*24*30))
+						{
+							//first i would need to add the information and then send myself an email that the person requested their money 
+							// How about verification email 
+							// Maybe that should go into the info tab
+							//commiting everything 
+							if(ex_query1RowAns("select VerifiedEmail from usersinfo where ID=".$_SESSION[SESSIONUSERID]) ==1)
+							{
+								if ($amount >0.001) {
+									
+								
+							echo "\"Request Payment\": \nfunction(){";	
+							echo "\n$(\"#dialog-confirm\").html(' <p>Please wait...</p> <iframe height=\"600\" width=\"600\" src =\"http://"; 
+			echo $_SERVER["HTTP_HOST"];
+			echo "/TMS/includes/verify.php?requestpay=";
+			echo urlencode($amount);
+			echo "&";
+			echo "ID=".$_SESSION[SESSIONUSERID];
+			echo "\"><\/iframe>');";
+			
+			echo "\n},";
+								}
+								else{
+									echo "\"Not Enough Money\": \nfunction(){";
+									
+									echo "\n$(this).dialog(\"close\")},\n";
+								}				
+							}
+							else {
+								echo "\"Please Validate Email\": \nfunction() {";
+								echo "\n$(this).dialog(\"close\")},\n";
+							}
+							
+								
+							
+							
+						}
+
+						?>
+						"close": function() {
+							
+							$(this).dialog("close");
+						}
+					}
+				});
+
+
+	$('#Amount').click(function() {
+		$("#dialog-confirm").dialog('open');
+		// prevent the default action, e.g., following a link
+		return false;
+	});
+});
+</script> 
 </div>
 

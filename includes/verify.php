@@ -16,7 +16,7 @@ if (isset($_GET['ind'])) {
 		$hash = $_GET['hash'];
 		$email = $_GET['email'];
 		if (ex_query1RowAns("select VerifiedEmail from usersinfo where Email='" . $email . "' ") == $hash) {
-			$query = "UPDATE  usersinfo SET  `VerifiedEmail` =1";
+			$query = "UPDATE  usersinfo SET  `VerifiedEmail` =1 where Email='" . $email . "' ";
 			ex_query($query);
 			echo "<div  class=\"grid_6\" >Email Verified!!!!</div>";
 		} else {
@@ -63,7 +63,7 @@ http://www.' . $_SERVER["HTTP_HOST"] . '.com/verify.php?ind=1&email=' . $email .
 
 				ex_query($query);
 
-				echo "<p> Verification Email Has been sent you your email at " . $email . ".</p> <p> Please click on the link in your email to verify your paypal and contact Email address. </p>";
+				echo "<p> Verification Email Has been sent to your email at " . $email . ".</p> <p> Please click on the link in your email to verify your paypal and contact Email address. </p>";
 				echo "<p> If for any reason you did not get the email as expected please check you spam or contact us Directly at help AT tmsomething.com</p>";
 
 			}
@@ -71,8 +71,45 @@ http://www.' . $_SERVER["HTTP_HOST"] . '.com/verify.php?ind=1&email=' . $email .
 		} else {
 			echo "<div>invalided link!!!</div>";
 		}
-	} else {
-		echo "<div class=\"grid_6\" >invalided link!!!</div>";
+	} else if(isset($_GET['requestpay'])){
+		if(isset($_GET['ID']))
+		{
+			$userID =$_GET['ID'];
+			$pay =$_GET['requestpay'];
+			
+			//update Table for request and sent Email to support@tmsomething.com
+			//first update table 
+			//only one request per day 
+			$query = "select max(dtRequested) from payments where UserID =".$userID;
+			if((time() - strtotime(ex_query1RowAns($query))) > (60*60*24)){
+			$query = "Insert into payments(UserID,requested,dtRequested) Values(";
+			$query .="'".$userID."',";
+			$query .="'".$pay."',";
+			$query .="'".to_mysqlDate(time())."'";
+			$query .=")";
+			
+			ex_query($query);	
+			require_once ("../phpmailer/class.phpmailer.php");
+
+			$mail = new phpmailer();
+			$mail -> IsSendmail();
+			$mail -> SetFrom("noreply@TMSomething.com", 'Teach Me Something', '');
+			$mail -> AddAddress("support@TMSOmething.com","Support");
+			$mail -> Subject = "'Request Payment'";
+			$mail -> Body = "ID $userID has requested payment of $pay";
+			$mail -> Send();		
+
+echo "<div class=\"grid_6\" >Request Sent Please close this box we will contact you within 10 days after the request!!!</div>";
+			}
+			else {
+				echo "<div class=\"grid_6\" >Only 1 Request per Day Please.</div>";
+			} 
+			
 	}
+		
+	}
+else {
+	echo "<div class=\"grid_6\" >invalided link!!!</div>";
+}
 }
 ?>

@@ -1,4 +1,8 @@
 <?php
+if(isset($_POST['ChangeEmail']))
+{
+	
+}
 //check log in
 include_once ("includes/session.php");
  Logged_in();
@@ -36,26 +40,32 @@ include_once ("includes/categories.php");
 	</div>
 	<script>
 	$(document).ready(function(){
-	var $dialog = $('<div></div>')
-		.html('<iframe height="600" width="600" src ="http://<?php 
-			echo $_SERVER["HTTP_HOST"];
-			?>/TMS
-			/includes/verify.php?email=
-			<?php
-			echo $email;
-			echo "&";
-			echo "hash=".generateHash();
-			?>"></iframe>')
+	var $dialog = $('<div class ="modal"><\/div>')
 		.dialog({
 			autoOpen: false,
 			title: 'Verify Email',
 			width: 600,
-			height: 600
+			height: 600,
+			buttons: {
+				"Ok": function() {	
+						$(this).dialog("close");
+							},
+				"Cancel": function() {	
+							$(this).dialog("close");
+						}
+					}
 			
 		});
 			
 			
 			$("#VerifyEmail").click(function() {
+			$dialog.html('Please wait till a message pops up for Validation <iframe height="600" width="600" src ="http://<?php 
+			echo $_SERVER["HTTP_HOST"];
+			?>/TMS/includes/verify.php?email=<?php
+			echo $email;
+			echo "&";
+			echo "hash=".generateHash();
+			?>"><\/iframe>')
 				 $dialog.dialog('open');
 				//so i need to create a verification page 
 				
@@ -74,14 +84,14 @@ include_once ("includes/categories.php");
 				$verified = ex_query1RowAns("select VerifiedEmail from usersinfo where id ={$_SESSION[SESSIONUSERID]}");
 				if($verified==1)
 				{
-					echo "<button> Verified</button>";
+					echo "<a href=\"#\" id=\"Verified\"> Verified </a>";
 				}
 				else {
-					//echo "<button> Verify Email</button>";
+					echo "<a href=\"#\" id=\"VerifyEmail\"> Verify Email</a>";
 				}
 				
 				?>
-			<a href="#" id="VerifyEmail"> Verify Email</a>
+			
 			</p>
 			<?php
 			//if verified you cant change you email
@@ -90,8 +100,12 @@ include_once ("includes/categories.php");
 			// well every email must be verified 
 			?>
 			<p>
-				<input />
-			<button> Change Email</button>
+				<input  type="email"  id="ChangeEmail" required="true" placeholder="<?php
+			
+			echo $email;
+			?>" />
+			<button type="submit"> Change Email</button>
+			//maybe do a popup dialog button
 			</p>
 		</form>
 	</div>
