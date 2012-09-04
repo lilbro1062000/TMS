@@ -204,16 +204,20 @@ if(isSitelogin())  // Testing
 ?>
 
 </div>
+ <?php
+ if(isSitelogin())
+ {
+ 	
  
-<div id="dialog-confirm" title="Dialog Title">
-<p> you have accumalted $<?php
+echo "<div id=\"dialog-confirm\" title=\"Dialog Title\">
+<p> you have accumalted $";
 echo $amount;
-?> dollars from videos. 
-</p>
+echo "dollars from videos."; 
+echo "</p>
 <p>
 Altogether you have <?php echo ex_query1RowAns($SelectView);?> Views.
 </p>
-<?php
+";
 if((time()-strtotime($mdate) ) >(60*60*24*30))
 {
 							echo "<p>
@@ -229,17 +233,18 @@ else{
 echo "<p>
 	You must also have more then 0.10  in your account to request money. 
 </p>";
-?>
+
+echo "</div>
 
 <script>
 $(document).ready(function(){
-$("#dialog-confirm").hide();	
+$(\"#dialog-confirm\").hide();	
 
-		$("#dialog-confirm" ).dialog({
+		$(\"#dialog-confirm\" ).dialog({
 					autoOpen: false,
 					width: 600,
 					buttons: {
-						<?php
+						";
 						$mdate = ex_query1RowAns("select min(dtuploaded) from video where UserID ='".$_SESSION[SESSIONUSERID]."'");
 						if((time()-strtotime($mdate) ) >(60*60*24*30))
 						{
@@ -279,21 +284,22 @@ $("#dialog-confirm").hide();
 							
 						}
 
-						?>
-						"close": function() {
+						
+						echo "\"close\": function() {
 							
-							$(this).dialog("close");
+							$(this).dialog(\"close\");
 						}
 					}
 				});
 
 
 	$('#Amount').click(function() {
-		$("#dialog-confirm").dialog('open');
+		$(\"#dialog-confirm\").dialog('open');
 		// prevent the default action, e.g., following a link
 		return false;
 	});
 });
 </script> 
-</div>
-
+";
+}
+?>
