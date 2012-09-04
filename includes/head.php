@@ -187,7 +187,7 @@ if(isSitelogin())  // Testing
 		$prevPayments =0;
 	}
 	$amount = $amount-$prevPayments;
-	if($amount<0.001)
+	if($amount<0.1)
 	{
 		$amount =0;
 	}
