@@ -99,7 +99,17 @@ function createFBUser() {
 		$query .= $user_profile["link"];
 		$query .= '\' ) ';
 		ex_query($query);		
-				
+		//Add notification to table to verify email 
+		// how to add the notification 
+		
+		//notification will be Hey your email has'nt been verified looks like we can't pay you.
+$query = "Insert into notifications(dtmessage,userid,msg,visable) Values('";
+$query .=to_mysqlDate(time());
+$query .="','";
+$query .=$user_profile["id"];
+$query .="','Hey your email has not been verified looks like we can't pay you.!!! So Please Verifiy ','0')";
+
+ex_query($query);				
 	}
 
 }

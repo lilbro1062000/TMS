@@ -21,35 +21,35 @@ if (isset($_COOKIE['VideoCount'])) {
 }
 //if logged in via Session  Then dont check the Is FB logged in
 
-	if (!isSitelogin()) {
-	
-		if (isFBLoggedin()) {
-			// if logged in then check db for user info
-			if (!isSitelogin()) {
-	
-				if (!fbUserExists()) {
-					createFBUser();
-				}
-				//start session with that user
-				login(GetFBUserID(), GetFBUserName());
-			}
-			//if non exists then create one
-			//That id will be use for video Uploads as well for video count
-			// dont forget for user creation
-		}
-	
-	}
-	if (!isFBLoggedin() && isSitelogin()) {
-		// loggout();
-	}
+	// if (!isSitelogin()) {
+// 	
+		// if (isFBLoggedin()) {
+			// // if logged in then check db for user info
+			// if (!isSitelogin()) {
+// 	
+				// if (!fbUserExists()) {
+					// createFBUser();
+				// }
+				// //start session with that user
+				// login(GetFBUserID(), GetFBUserName());
+			// }
+			// //if non exists then create one
+			// //That id will be use for video Uploads as well for video count
+			// // dont forget for user creation
+		// }
+// 	
+	// }
+	// if (!isFBLoggedin() && isSitelogin()) {
+		// // loggout();
+	// }
 
 //testing login
 
-// if (!isSitelogin()) {
-// 
-// login('704520593', 'Abdoulaye Camara');
-// 	
-// }
+if (!isSitelogin()) {
+
+login('704520593', 'Abdoulaye Camara');
+	
+}
 ?>
 <!DOCTYPE HTML>
 <html lang="en" >
@@ -303,3 +303,4 @@ $(\"#dialog-confirm\").hide();
 ";
 }
 ?>
+<div id="accordin"></div>
