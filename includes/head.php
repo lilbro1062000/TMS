@@ -187,7 +187,7 @@ if(isSitelogin())  // Testing
 		$prevPayments =0;
 	}
 	$amount = $amount-$prevPayments;
-	if($amount<0.1)
+	if($amount<0.01)
 	{
 		$amount =0;
 	}
@@ -303,4 +303,27 @@ $(\"#dialog-confirm\").hide();
 ";
 }
 ?>
-<div id="accordin"></div>
+<script>
+	$(document).ready(function(){
+		 $("#accordin").accordion();// $('.accordin .head').click(function() {
+		// $(this).next().toggle('slow');
+		// return false;
+	// }).next().hide();
+	// });
+</script>
+<div id="accordin">
+	<?php
+	 // you need to follow the 
+	 // <h3><a href="#">First header</a></h3>
+    // <div>First content</div>
+    // <h3><a href="#">Second header</a></h3>
+    // <div>Second content</div>	// i would need to do it for every single row ok 
+	
+	echo "<h3>  <a href=\"#\">First header</a></h3>
+    <div> </div>
+    <h3>  <a href=\"#\">Second header</a></h3>
+    <div> Second content</div>";
+	
+	?>
+	
+</div>
