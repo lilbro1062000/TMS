@@ -309,7 +309,7 @@ $(\"#dialog-confirm\").hide();
 		// $(this).next().toggle('slow');
 		// return false;
 	// }).next().hide();
-	// });
+	 });
 </script>
 <div id="accordin">
 	<?php

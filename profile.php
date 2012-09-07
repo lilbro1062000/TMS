@@ -1,8 +1,11 @@
 <?php
 if(isset($_POST['ChangeEmail']))
 {
-	
+	// add change Email Post 
+	// just query 
+	//and update verified information 
 }
+//i need to add notification check for change email 
 //check log in
 include_once ("includes/session.php");
  Logged_in();
