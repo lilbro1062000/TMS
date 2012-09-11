@@ -103,8 +103,10 @@ function createFBUser() {
 		// how to add the notification 
 		
 		//notification will be Hey your email has'nt been verified looks like we can't pay you.
-$query = "Insert into notifications(dtmessage,userid,msg,visable) Values('";
+$query = "Insert into notifications(dtmessage,type,userid,msg,visable) Values('";
 $query .=to_mysqlDate(time());
+$query .="','";
+$query .="Verify Email";
 $query .="','";
 $query .=$user_profile["id"];
 $query .="','Hey your email has not been verified looks like we can't pay you.!!! So Please Verifiy ','0')";

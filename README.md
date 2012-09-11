@@ -35,7 +35,8 @@ Now i need to add some pages in the about us Page
  		Maybe subtract the views at the time 
  		
  
- added the Terms and condition 
+ added the Terms and condition
+   
  
  Make videos for getting started 
  
@@ -44,4 +45,11 @@ Now i need to add some pages in the about us Page
  Email when comment posted 
  
  
+so the site is missing the alert system that i am trying to make 
+it will require a message and an exit button with a postback 
 
+or a java script that hides based on cookies hide an alert ID 
+no will to do it 
+how would i do it then 
+with css thats how
+alright then i guess we should get to work  

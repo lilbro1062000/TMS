@@ -305,25 +305,35 @@ $(\"#dialog-confirm\").hide();
 ?>
 <script>
 	$(document).ready(function(){
-		 $("#accordin").accordion();// $('.accordin .head').click(function() {
-		// $(this).next().toggle('slow');
-		// return false;
-	// }).next().hide();
+		  $("#accordion").accordion();
 	 });
 </script>
-<div id="accordin">
+<div id="accordion">
+    <h3><a href="#">First header</a></h3>
+    <div>First content <a href="#">deleteme</a></div>
+    <h3><a href="#">Second header</a></h3>
+    <div>Second content <a href="#">deleteme</a></div>
+</div>
+
 	<?php
-	 // you need to follow the 
-	 // <h3><a href="#">First header</a></h3>
-    // <div>First content</div>
-    // <h3><a href="#">Second header</a></h3>
-    // <div>Second content</div>	// i would need to do it for every single row ok 
-	
-	echo "<h3>  <a href=\"#\">First header</a></h3>
-    <div> </div>
-    <h3>  <a href=\"#\">Second header</a></h3>
-    <div> Second content</div>";
-	
+$query ="Select * from notifications where userid=\"".$_SESSION[SESSIONUSERID]."\"";
+$results = ex_query($query);
+while($row = mysql_fetch_array($results))
+{
+	//this is to create an id for every row 
+	// first i should make the script 
+	//then i should make the div tag 
+	// two variables 1 script 	
+	// the other would be html
+	$divid .=generateHash();
+	$html .= "\n <h3 class=\"".$divid."\"><a href=\"#\">".$row["type"]."</a></h3>\n";
+	$html .="\n<div class=\"".$divid."\">".$row["msg"]." <a id=\"{$divid}\" href=\"#\">hideme</a> </div>\n";
+
+	$script .="$(\"#$divid\").click(function(){
+		$(\".$divid\").hide(\"slow\");
+	})\;";
+	//now i need to get a cookie that would keep the alerts down 
+	  }
+		
 	?>
 	
-</div>
