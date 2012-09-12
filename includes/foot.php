@@ -1,6 +1,4 @@
 
-<footer id="Footer" class="grid_12">
-
 <script type="text/javascript">
 
 	$(document).ready(function() {
@@ -60,6 +58,10 @@
 		});
 	});
 </script>
+
+
+<footer id="Footer" class="grid_12">
+
 
 
 <table>

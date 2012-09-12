@@ -69,11 +69,11 @@ login('704520593', 'Abdoulaye Camara');
   _gaq.push(['_setAccount', 'UA-33378653-1']);
   _gaq.push(['_trackPageview']);
 
-  (function() {
+  function() {
     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
     ga.src = ('https:' === document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
+  };
 
 </script>
 
@@ -84,7 +84,7 @@ login('704520593', 'Abdoulaye Camara');
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="js/jquery-ui-1.8.23.custom.min.js"></script>
  <script type="text/javascript">
-"use strict";
+
 		var p = "http", d = "static";
 		if (document.location.protocol == "https:") {
 		    p += "s";
@@ -258,7 +258,7 @@ $(\"#dialog-confirm\").hide();
 									
 								
 							echo "\"Request Payment\": \nfunction(){";	
-							echo "\n$(\"#dialog-confirm\").html(' <p>Please wait...</p> <iframe height=\"600\" width=\"600\" src =\"http://"; 
+							echo "\n$(\"#dialog-confirm\").html(' <p>Please wait...<\/p> <iframe height=\"600\" width=\"600\" src =\"http://"; 
 			echo $_SERVER["HTTP_HOST"];
 			echo "/includes/verify.php?requestpay=";
 			echo urlencode($amount);
@@ -303,21 +303,10 @@ $(\"#dialog-confirm\").hide();
 ";
 }
 ?>
-<script>
-	$(document).ready(function(){
-		  $("#accordion").accordion();
-	 });
-</script>
-<div id="accordion">
-    <h3><a href="#">First header</a></h3>
-    <div>First content <a href="#">deleteme</a></div>
-    <h3><a href="#">Second header</a></h3>
-    <div>Second content <a href="#">deleteme</a></div>
-</div>
-
 	<?php
 $query ="Select * from notifications where userid=\"".$_SESSION[SESSIONUSERID]."\"";
 $results = ex_query($query);
+$int =0;
 while($row = mysql_fetch_array($results))
 {
 	//this is to create an id for every row 
@@ -325,15 +314,40 @@ while($row = mysql_fetch_array($results))
 	//then i should make the div tag 
 	// two variables 1 script 	
 	// the other would be html
-	$divid .=generateHash();
-	$html .= "\n <h3 class=\"".$divid."\"><a href=\"#\">".$row["type"]."</a></h3>\n";
-	$html .="\n<div class=\"".$divid."\">".$row["msg"]." <a id=\"{$divid}\" href=\"#\">hideme</a> </div>\n";
+	$int ++;
+	$divid .= $row["type"].$int;
+	$html  .= "\n <h3 class=\"".$divid."\"><a href=\"#\">".$row["type"]."</a></h3>\n";
+	$html  .="\n<div class=\"".$divid."\">".$row["msg"]." <a id=\"{$divid}\" href=\"#\">hideme</a> </div>\n";
 
-	$script .="$(\"#$divid\").click(function(){
+	$script .="
+	$(\"#$divid\").click(function(){
+			
 		$(\".$divid\").hide(\"slow\");
-	})\;";
+		
+		$.cookie(\"".$divid."\", \"".$divid."\", { expires: 365 });
+	}); 
+	
+	if($.cookie(\"".$divid."\") == \"$divid\")
+	{
+		$(\".$divid\").hide();
+	}";
 	//now i need to get a cookie that would keep the alerts down 
 	  }
 		
 	?>
 	
+<script>
+	$(document).ready(function(){
+		  $("#accordion").accordion();
+		<?php
+		echo $script; 
+		?>
+		
+	 });
+</script>
+<div id="accordion">
+    <?php
+    echo $html;
+    ?>
+</div>
+

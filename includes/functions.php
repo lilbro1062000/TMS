@@ -74,15 +74,17 @@ function Cat_Pages($query,$phpFile,$Category)
 				for ($i=0; $i < $NumPages; $i++) 
 				{
 					//create the links 
+					// I am changing it to one string and echo'ing the string 
 					// has the have the page for the limit  
 					$VidsPerPage ="VidNum=".$divider;
-					echo ("<a href=\"");
-					echo ($phpFile."?");
-					echo "Category=".$Category;
-					echo('&Page=');
-					echo ($i+1);
-					echo("&".$VidsPerPage."\">");
-					echo ($i+1 ."</a>\n");
+					$string .="<a href=\"";
+					$string .=$phpFile."?";
+					$string .= "Category=".$Category;
+					$string .='&Page=';
+					$string .= ($i+1);
+					$string .=("&".$VidsPerPage."\">");
+					$string .= ($i+1 ."</a>\n");
+					echo urlencode($string);
 				}
 				echo "</div>\n";
 }
@@ -206,13 +208,15 @@ function Pages_search($query,$phpFile,$search)
 					//create the links 
 					// has the have the page for the limit  
 					$VidsPerPage ="VidNum=".$divider;
-					echo ("<a href=\"");
-					echo ($phpFile."?");
-					echo('Page=');
-					echo ($i+1);
-					echo "&Search=".$search;
-					echo("&".$VidsPerPage."\">");
-					echo ($i+1 ."</a>\n");
+					$string .= ("<a href=\"");
+					$string .= ($phpFile."?");
+					$string .=('Page=');
+					$string .= ($i+1);
+					$string .= "&Search=".$search;
+					$string .=("&".$VidsPerPage."\">");
+					$string .= ($i+1 ."</a>\n");
+					
+					echo urlencode($string);
 				}
 				echo "</div>\n";
 }
@@ -236,12 +240,16 @@ function Pages($query,$phpFile)
 					//create the links 
 					// has the have the page for the limit  
 					$VidsPerPage ="VidNum=".$divider;
-					echo ("<a href=\"");
-					echo ($phpFile."?");
-					echo('Page=');
-					echo ($i+1);
-					echo("&".$VidsPerPage."\">");
-					echo ($i+1 ."</a>\n");
+					$string .= ("<a href=\"");
+					$string .= ($phpFile."?");
+					$string .=('Page=');
+					$string .= ($i+1);
+					$string .=("&".$VidsPerPage."\">");
+					$string .= ($i+1 ."</a>\n");
+					
+					echo urlencode($string);
+					
+					
 				}
 				echo "</div>\n";
 }

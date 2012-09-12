@@ -10,18 +10,18 @@
 			auto : true,
 			autoControls : false,
 			controls: false
-		});
+		}),
 
-		var slider2=$('#slider2').bxSlider({
+		 slider2=$('#slider2').bxSlider({
 			displaySlideQty : 3,
 			moveSlideQty : 1,
 			randomStart : true,
 			auto : true,
 			autoControls : false,
 			controls: false
-		});
+		}),
 
-		var slider3=$('#slider3').bxSlider({
+		 slider3=$('#slider3').bxSlider({
 			displaySlideQty : 3,
 			moveSlideQty : 1,
 			randomStart : true,

@@ -44,11 +44,11 @@ echo("<video height=\"530\" width=\"940\" id=\"Video\" ");
 echo("poster=\"includes/image.php?vid=1&#38;fname=".$row['videoImage']."\" ");
 echo(" class=\"video-js vjs-default-skin\" controls  preload=\"auto\" >\n");
 
-echo("<source src=\"".$row['mp4Path']."\" type='video/mp4; codecs=\"avc1.42E01E, mp4a.40.2\"' />\n ");
-echo("<source src=\"".$row['webMPath']."\" type='video/webm; codecs=\"vp8, vorbis\"' />\n ")
+echo("<source src=\"".urlencode($row['mp4Path'])."\" type='video/mp4; codecs=\"avc1.42E01E, mp4a.40.2\"' />\n ");
+echo("<source src=\"".urlencode($row['webMPath'])."\" type='video/webm; codecs=\"vp8, vorbis\"' />\n ")
 ?>
 Your Browser does not support this video tag
-<a href="<?php echo ("https://www.google.com/chrome/index.html?hl=en&amp;brand=CHNG&amp;utm_source=en-hpp&amp;utm_medium=hpp&amp;utm_campaign=en");?>"> Dowload Chrome </a>
+<a href="<?php echo urlencode("https://www.google.com/chrome/index.html?hl=en&amp;brand=CHNG&amp;utm_source=en-hpp&amp;utm_medium=hpp&amp;utm_campaign=en");?>"> Dowload Chrome </a>
 for the Best Views
 <?php
 

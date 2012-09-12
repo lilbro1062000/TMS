@@ -24,15 +24,15 @@ $hash =$_GET['videoID'];
 $row = ex_query1Row("select * from video where hash =\"".$hash."\"");
 echo("<div class=\"grid_12\"  id=\"VideoContainer\">\n");
 echo("<h2> ".$row['VideoName']."</h2> \n");
-echo("<video name=\"$hash\" height=\"530\" width=\"940\" id=\"Video\" ");
+echo("<video height=\"530\" width=\"940\" id=\"Video\" ");
 echo("poster=\"".urlencode("includes/image.php?vid=1&fname=".$row['videoImage'])."\" ");
-echo(" class=\"video-js vjs-default-skin\" controls=\"true\"  preload=\"auto\" >\n");
+echo(" class=\"video-js vjs-default-skin\" controls preload=\"auto\" >\n");
 
 echo("  <source src=\"".$row['mp4Path']."\" type='video/mp4; codecs=\"avc1.42E01E, mp4a.40.2\"' />\n");
 echo(" <source src=\"".$row['webMPath']."\" type='video/webm; codecs=\"vp8, vorbis\"' />\n")
 ?>
 Your Browser does not support this video tag
-<a href="https://www.google.com/chrome/index.html?hl=en&brand=CHNG&utm_source=en-hpp&utm_medium=hpp&utm_campaign=en"> Dowload Chrome </a>
+<a href="<?php echo urlencode("https://www.google.com/chrome/index.html?hl=en&amp;brand=CHNG&amp;utm_source=en-hpp&amp;utm_medium=hpp&amp;utm_campaign=en");?>"> Dowload Chrome </a>
 for the Best Views
 <?php
 
@@ -137,18 +137,18 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 				//Show liked button
 				echo "<li id=\"Like\">";
 				echo "<a href=\"";
-				echo("includes/operations.php?liked=1&videoID=");
+				echo urlencode("includes/operations.php?liked=1&videoID=");
 				echo($_GET['videoID']);
-				echo("\" />");
+				echo("\" >");
 				echo('Like');
 				echo "</a> </li>\n";
 			} else {
 				//show unlike button
 				echo "<li id=\"unLike\">";
 				echo "<a href=\"";
-				echo("includes/operations.php?liked=0&videoID=");
+				echo urlencode("includes/operations.php?liked=0&videoID=");
 				echo($_GET['videoID']);
-				echo("\" />");
+				echo("\" >");
 				echo('Unlike');
 				echo "</a> </li>\n";
 			}
@@ -156,18 +156,18 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 				//Show report button
 				echo "<li id=\"report\">";
 				echo "<a href=\"";
-				echo("includes/operations.php?reported=1&videoID=");
+				echo urlencode("includes/operations.php?reported=1&videoID=");
 				echo($_GET['videoID']);
-				echo("\" />");
+				echo("\" >");
 				echo('report');
 				echo "</a> </li>\n";
 			} else {
 				//show unreport button
 				echo "<li id=\"unreport\">";
 				echo "<a href=\"";
-				echo("includes/operations.php?reported=0&videoID=");
+				echo urlencode("includes/operations.php?reported=0&videoID=");
 				echo($_GET['videoID']);
-				echo("\" />");
+				echo("\" >");
 				echo('unreport');
 				echo "</a> </li>\n";
 			}
@@ -178,8 +178,8 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 <li>
 	<?php 
 	echo "<iframe src=\"http://www.facebook.com/plugins/like.php?href={$_SERVER["HTTP_HOST"]}/view.php?videoID=$hash\"\n 
-        scrolling=\"no\" frameborder=\"0\"\n
-        style=\"border:none; width:450px; height:80px\"></iframe>\n";
+        \n class=\"iframe\"
+        ></iframe>\n";
 	 ?>
 	
 </li>
@@ -187,7 +187,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 	</ul>
 </div>
 
-<div id="fb-root"></div>
+<!-- <div id="fb-root"></div> -->
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
@@ -196,7 +196,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 <div id="CommentArea">
-<div class="fb-comments" data-href="<?php echo $_SERVER["HTTP_HOST"]."/view.php?videoID=$hash\""; ?>" data-num-posts="5" data-width="470" data-colorscheme="light"></div>
+<div class="fb-comments" data-href="<?php echo $_SERVER["HTTP_HOST"]."/view.php?videoID=$hash"; ?>" data-num-posts="5" data-width="470" data-colorscheme="light"></div>
 </div>
 <?php
 

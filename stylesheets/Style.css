@@ -99,6 +99,12 @@ body {
 	border-style: solid;
 	border-color: transparent;
 }
+.iframe
+{
+	border:none; 
+	width:450px;
+	height:80px
+}
 #info li {
 	width: 195px;
 }
