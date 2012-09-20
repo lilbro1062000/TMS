@@ -112,7 +112,6 @@ enctype="multipart/form-data">
 		<tr><td><li>Do not upload content that may put that minors at risk or exploits them in a negative or harmful manner.</li></td></tr>
 		<tr><td><li>Do not upload content that promotes and encourages an illegal or dangerous activity.</li></td></tr>
 		<tr><td><li>Do not upload content promoting eating disorders.</li></td></tr>
-		<tr><td><li>Do not upload content with misleading or inaccurate metadata including video thumbs, titles, tags, and category. This abuse leads to a bad user experience on the site.</li></td></tr>
 		</table>
 	</ul>
 

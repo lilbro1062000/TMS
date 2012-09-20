@@ -88,7 +88,7 @@ if (isset($row['ID'])) {
 
 	//change DB to push both
 	$query = "INSERT INTO video (VideoName ,mp4Path,webMPath ,Hash,videoImage,UserID,dtuploaded) VALUES (";
-	$query .= "'" . check_input($row['VideoName']) . "', '" . $mp4URI . "','" . $webmURI . "','" . $uniqeHash . "','" . $imageURI . "',{$row['UserID']}"."','".to_mysqlDate(time()).")";
+	$query .= "'" . check_input($row['VideoName']) . "', '" . $mp4URI . "','" . $webmURI . "','" . $uniqeHash . "','" . $imageURI . "',{$row['UserID']}".",'".to_mysqlDate(time())."')";
 
 	ex_query($query);
 	$vidID = ex_query1RowAns("Select id from video where hash='{$uniqeHash}'");

@@ -148,7 +148,10 @@ if(isset($_POST['ChangeEmail']))
 		 );
 		?>
 	</div>
-	
+	<div class="grid_9">
+		PLease not it may take up to 24 hours for your Video to be uploaded IF it take longer please Email us At Admin@tmsomething.com
+		
+	</div>
 </div>
 
 
