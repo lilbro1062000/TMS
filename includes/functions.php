@@ -89,7 +89,7 @@ function Cat_Pages($query,$phpFile,$Category)
 					$string .= ($i+1);
 					$string .=("&".$VidsPerPage."\">");
 					$string .= ($i+1 ."</a>\n");
-					echo urlencode($string);
+					echo $string;
 				}
 				echo "</div>\n";
 }

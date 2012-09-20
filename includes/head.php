@@ -39,7 +39,7 @@ if (isset($_COOKIE['VideoCount'])) {
 	
 	}
 	if (!isFBLoggedin() && isSitelogin()) {
-		// loggout();
+		 loggout();
 	}
 
 //testing login
@@ -171,7 +171,7 @@ ref.parentNode.insertBefore(js, ref);
 </ul>
 <!-- <img src=\"images/Facebook-32.png\"  width = 15 height = 15 alt=\"Logged in Via Facebook\" /> -->
 <?php
-// if (isFBLoggedin()) //when ready 
+// if (isFBLoggedin()) //when ready removed because it takes to long 
 if(isSitelogin())  // Testing
  {
 	echo("
@@ -308,6 +308,8 @@ $(\"#dialog-confirm\").hide();
 }
 ?>
 	<?php
+	if(isSitelogin())
+	{
 $query ="Select * from notifications where userid=\"".$_SESSION[SESSIONUSERID]."\" and visible=1";
 $results = ex_query($query);
 $int =0;
@@ -350,7 +352,7 @@ while($row = mysql_fetch_array($results))
 	
 	//now i need to get a cookie that would keep the alerts down 
 	  }
-		
+	  }
 	?>
 	
 <script>

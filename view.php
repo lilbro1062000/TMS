@@ -132,11 +132,14 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 			 ?>
 		</li>
 		<?php
+		if(isSitelogin())
+		{
+			
 		if (!liked($_SESSION['User_ID'], GetVideoID($hash))) {
 				//Show liked button
 				echo "<li id=\"Like\">";
 				echo "<a href=\"";
-				echo urlencode("includes/operations.php?liked=1&videoID=");
+				echo ("includes/operations.php?liked=1&videoID=");
 				echo($_GET['videoID']);
 				echo("\" >");
 				echo('Like');
@@ -145,7 +148,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 				//show unlike button
 				echo "<li id=\"unLike\">";
 				echo "<a href=\"";
-				echo urlencode("includes/operations.php?liked=0&videoID=");
+				echo ("includes/operations.php?liked=0&videoID=");
 				echo($_GET['videoID']);
 				echo("\" >");
 				echo('Unlike');
@@ -155,7 +158,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 				//Show report button
 				echo "<li id=\"report\">";
 				echo "<a href=\"";
-				echo urlencode("includes/operations.php?reported=1&videoID=");
+				echo ("includes/operations.php?reported=1&videoID=");
 				echo($_GET['videoID']);
 				echo("\" >");
 				echo('report');
@@ -164,7 +167,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 				//show unreport button
 				echo "<li id=\"unreport\">";
 				echo "<a href=\"";
-				echo urlencode("includes/operations.php?reported=0&videoID=");
+				echo ("includes/operations.php?reported=0&videoID=");
 				echo($_GET['videoID']);
 				echo("\" >");
 				echo('unreport');
@@ -172,6 +175,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 			}
 		
 		
+		}
 		?>
 		
 <li>
