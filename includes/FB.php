@@ -109,7 +109,7 @@ $query .="','";
 $query .="Verify Email";
 $query .="','";
 $query .=$user_profile["id"];
-$query .="','Hey your email has not been verified looks like we can't pay you.!!! So Please Verifiy ','0')";
+$query .="','Hey your email has not been verified looks like we can't pay you.!!! So Please <a href=\"profile.php\">Verifiy</a>','1')";
 
 ex_query($query);				
 	}

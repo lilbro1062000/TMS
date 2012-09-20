@@ -147,11 +147,10 @@
 							Sure Email Us and we will respond as quickly as possible:
 							<br />
 							<br />
-							admin at TMSOMething.com 
+							admin at TMSomething.com 
 							<br />
 							 Abdul at TMSomething.com 
-							 <br />
-							  lilbro1062000 at gmail.com
+							 
 							  </div>
 					  		</td>
 						</tr>

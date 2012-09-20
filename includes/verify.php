@@ -7,8 +7,11 @@ include_once 'connection.php';
 require_once 'functions.php';
 
 if (isset($_GET['ind'])) {
-	include_once ("includes/head.php");
-	include_once ("includes/categories.php");
+echo "<html>
+		<head>
+			<meta http-equiv=\"refresh\" content=\"5; url=../profile.php\"> 
+		</head>
+		<body>";
 	//verify them
 	// To verify we must make sure the hash in your email matches that in the database
 	if (isset($_GET['email'])) {
@@ -18,14 +21,18 @@ if (isset($_GET['ind'])) {
 		if (ex_query1RowAns("select VerifiedEmail from usersinfo where Email='" . $email . "' ") == $hash) {
 			$query = "UPDATE  usersinfo SET  `VerifiedEmail` =1 where Email='" . $email . "' ";
 			ex_query($query);
-			echo "<div  class=\"grid_6\" >Email Verified!!!!</div>";
+			$query = "UPDATE notifications SET visible =0 where type=\"Verify\" and userid=".GetuserIDfromEmail($email);
+			ex_query($query);
+			echo "<div  class=\"grid_6\"> Email Verified!!!! click <a href=\"profile.php\">Here</a></div> ";
 		} else {
-			echo "<div class=\"grid_6\" >invalided link!!!</div>";
+			echo "<div class=\"grid_6\" >invalided link!!! click <a href=\"profile.php\">Here</a></div>";
 		}
 	} else {
-		echo "<div class=\"grid_6\" >invalided link!!!</div>";
+		echo "<div class=\"grid_6\" >invalided link!!! click <a href=\"profile.php\"></a>Here</div>";
 	}
-	include_once ("includes/foot.php");
+	
+echo "</body>
+	</html>";
 
 } else {
 	if (isset($_GET['hash'])) {

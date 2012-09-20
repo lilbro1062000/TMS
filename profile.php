@@ -1,10 +1,5 @@
 <?php
-if(isset($_POST['ChangeEmail']))
-{
-	// add change Email Post 
-	// just query 
-	//and update verified information 
-}
+
 //i need to add notification check for change email 
 //check log in
 include_once ("includes/session.php");
@@ -16,7 +11,38 @@ include_once ("includes/categories.php");
 //
 ?>
 
+
+
 <?php
+if(isset($_POST['ChangeEmail']))
+{
+	// add change Email Post 
+	// just query 
+	//and update verified information
+	$email =$_POST['ChangeEmail']; 
+	
+	$query = "Update usersinfo set Email=\"$email\",VerifiedEmail =  '0' where ID={$_SESSION[SESSIONUSERID]} ";
+	ex_query($query);
+	$query = "Insert into notifications(dtmessage,type,userid,msg,visible) Value(";
+	$query .="'".to_mysqlDate(time())."'";
+	$query .= ",'Verify','".$_SESSION[SESSIONUSERID]."','Hey your email has not been verified looks like we can\'t pay you.!!! So Please <a href=\"profile.php\">Verifiy</a>','1')";
+	ex_query($query);
+	//some sort of alert to tell you that it has been changed 
+	
+	echo "<script>
+	$(document).ready(function(){
+		var $dialog = $('<div></div>')
+		.html('Email Added Please Verify the EMail on Profile Page')
+		.dialog({
+			autoOpen: true,
+			title: 'Basic Dialog'
+		});
+		
+	});
+</script>";
+	
+	
+}
 	if (isset($_POST['delete'])) {
 		//todo add validation that this persson's session is the one able to delete videos
 		$video = $_POST['delete'];
@@ -32,12 +58,14 @@ include_once ("includes/categories.php");
 		//}
 	}
 ?>
+
 <div id="userinfo" class="grid_6">
 	<div id="Username">
 		<?php
 		 echo getUsername(
 		   $_SESSION[SESSIONUSERID]
 		 );
+		 echo "<br/>";
 		 $email = ex_query1RowAns("Select Email from usersinfo where id ={$_SESSION[SESSIONUSERID]}");
 		?>
 	</div>
@@ -77,7 +105,7 @@ include_once ("includes/categories.php");
 	</script>
 	<div>
 		Validate Email: 
-		<form>
+		<form method="post">
 			<?php
 			
 			echo $email;
@@ -103,11 +131,11 @@ include_once ("includes/categories.php");
 			// well every email must be verified 
 			?>
 			<p>
-				<input  type="email"  id="ChangeEmail" required="true" placeholder="<?php
+				<input name="ChangeEmail" type="email"  id="ChangeEmail" required="true" placeholder="<?php
 			
 			echo $email;
 			?>" />
-			<button type="submit"> Change Email</button>
+			<button type="submit" > Change Email</button>
 			
 			</p>
 		</form>

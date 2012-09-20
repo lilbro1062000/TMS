@@ -20,36 +20,35 @@ if (isset($_COOKIE['VideoCount'])) {
 	unset($_COOKIE['VideoCount']);
 }
 //if logged in via Session  Then dont check the Is FB logged in
-
-	// if (!isSitelogin()) {
-// 	
-		// if (isFBLoggedin()) {
-			// // if logged in then check db for user info
-			// if (!isSitelogin()) {
-// 	
-				// if (!fbUserExists()) {
-					// createFBUser();
-				// }
-				// //start session with that user
-				// login(GetFBUserID(), GetFBUserName());
-			// }
-			// //if non exists then create one
-			// //That id will be use for video Uploads as well for video count
-			// // dont forget for user creation
-		// }
-// 	
-	// }
-	// if (!isFBLoggedin() && isSitelogin()) {
-		// // loggout();
-	// }
+	if (!isSitelogin()) {
+	
+		if (isFBLoggedin()) {
+			// if logged in then check db for user info
+			if (!isSitelogin()) {
+	
+				if (!fbUserExists()) {
+					createFBUser();
+				}
+				//start session with that user
+				login(GetFBUserID(), GetFBUserName());
+			}
+			//if non exists then create one
+			//That id will be use for video Uploads as well for video count
+			// Don't forget for user creation
+		}
+	
+	}
+	if (!isFBLoggedin() && isSitelogin()) {
+		// loggout();
+	}
 
 //testing login
 
-if (!isSitelogin()) {
-
-login('704520593', 'Abdoulaye Camara');
-	
-}
+// if (!isSitelogin()) {
+// 
+// login('704520593', 'Abdoulaye Camara');
+// 	
+// }
 ?>
 <!DOCTYPE HTML>
 <html lang="en" >
@@ -61,19 +60,23 @@ login('704520593', 'Abdoulaye Camara');
 		<link href="stylesheets/960.css" rel="stylesheet" type="text/css" />
 		<link href="stylesheets/Style.css" rel="stylesheet" type="text/css" />
 		<link href="stylesheets/jquery-ui-1.8.23.custom.css" rel="stylesheet" type="text/css"/>
+		<link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet">
+<script src="http://vjs.zencdn.net/c/video.js"></script>
 		<script> 
 		"use strict";
 		</script>
+		<script type="text/javascript">var it=document.createElement("img");var u="http://engine.adzerk.net/e/7597/e.gif";var t=new Date().getTime();var ut=u+"?_="+t;it.src=ut;it.border=0;
+			</script>
 		<script type="text/javascript">
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-33378653-1']);
   _gaq.push(['_trackPageview']);
 
-  function() {
+  (function() {
     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
     ga.src = ('https:' === document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  };
+  })();
 
 </script>
 
@@ -83,6 +86,7 @@ login('704520593', 'Abdoulaye Camara');
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="js/jquery-ui-1.8.23.custom.min.js"></script>
+<script src="javascripts/jquery.cookie.js"></script>
  <script type="text/javascript">
 
 		var p = "http", d = "static";
@@ -304,7 +308,7 @@ $(\"#dialog-confirm\").hide();
 }
 ?>
 	<?php
-$query ="Select * from notifications where userid=\"".$_SESSION[SESSIONUSERID]."\"";
+$query ="Select * from notifications where userid=\"".$_SESSION[SESSIONUSERID]."\" and visible=1";
 $results = ex_query($query);
 $int =0;
 while($row = mysql_fetch_array($results))
@@ -317,20 +321,33 @@ while($row = mysql_fetch_array($results))
 	$int ++;
 	$divid .= $row["type"].$int;
 	$html  .= "\n <h3 class=\"".$divid."\"><a href=\"#\">".$row["type"]."</a></h3>\n";
-	$html  .="\n<div class=\"".$divid."\">".$row["msg"]." <a id=\"{$divid}\" href=\"#\">hideme</a> </div>\n";
+	$html  .="\n<div class=\"".$divid."\"> <a id=\"{$divid}\" href=\"#\">Hide Me</a>.    ".$row["msg"]."  </div>\n";
 
 	$script .="
 	$(\"#$divid\").click(function(){
-			
-		$(\".$divid\").hide(\"slow\");
-		
-		$.cookie(\"".$divid."\", \"".$divid."\", { expires: 365 });
-	}); 
-	
+
 	if($.cookie(\"".$divid."\") == \"$divid\")
 	{
-		$(\".$divid\").hide();
+		$(\"#$divid\").text(\"Hide Me\");
+		$(\".$divid\").animate({
+			width: \"100%\"
+		},1500);
+		$.cookie(\"".$divid."\", null);
+}else{
+	$(\".$divid\").animate({
+			width: \"10%\"
+		},1500);
+		$(\"#$divid\").text(\"Show Me\");
+	$.cookie(\"".$divid."\", \"".$divid."\", { expires: 365 });
+}	});
+	if($.cookie(\"".$divid."\") == \"$divid\")
+	{
+		$(\".$divid\").animate({
+			width: \"10%\"
+		},10);
+		$(\"#$divid\").text(\"Show Me\");
 	}";
+	
 	//now i need to get a cookie that would keep the alerts down 
 	  }
 		
@@ -341,9 +358,9 @@ while($row = mysql_fetch_array($results))
 		  $("#accordion").accordion();
 		<?php
 		echo $script; 
-		?>
-		
+		?> 
 	 });
+	 
 </script>
 <div id="accordion">
     <?php
