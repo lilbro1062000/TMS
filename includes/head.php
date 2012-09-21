@@ -216,7 +216,7 @@ if(isSitelogin())  // Testing
 echo "<div id=\"dialog-confirm\" title=\"Dialog Title\">
 <p> you have accumalted $";
 echo $amount;
-echo "dollars from videos."; 
+echo " dollars from videos."; 
 echo "</p>
 <p>
  Altogether you have" .ex_query1RowAns($SelectView)." Views.

@@ -1,6 +1,7 @@
 <?php
 include_once ("includes/head.php");
 include_once ("includes/categories.php")
+
 ?>
 <?php
 //Browse page if the category is set show 30 random video thumbnails as links to the video page 

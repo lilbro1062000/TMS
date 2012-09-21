@@ -221,7 +221,7 @@ function Pages_search($query,$phpFile,$search)
 					$string .=("&".$VidsPerPage."\">");
 					$string .= ($i+1 ."</a>\n");
 					
-					echo urlencode($string);
+					echo ($string);
 				}
 				echo "</div>\n";
 }
@@ -252,7 +252,7 @@ function Pages($query,$phpFile)
 					$string .=("&".$VidsPerPage."\">");
 					$string .= ($i+1 ."</a>\n");
 					
-					echo urlencode($string);
+					echo ($string);
 					
 					
 				}

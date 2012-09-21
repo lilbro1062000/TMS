@@ -162,7 +162,7 @@ if(isset($_GET['fb']))
         };\n
 \n
         function callback(response) {\n
-          document.getElementById('msg').innerHTML = \"Post ID: \" + response['post_id'];\n
+          document.getElementById('msg').innerHTML = \" Video Posted\";\n
         }\n
 \n
         FB.ui(obj, callback);\n
