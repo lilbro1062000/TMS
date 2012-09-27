@@ -84,9 +84,10 @@ if (isset($_COOKIE['VideoCount'])) {
 	<body class="container_12">
 <div id="headmenu">
 
-<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 <script src="js/jquery-ui-1.8.23.custom.min.js"></script>
 <script src="javascripts/jquery.cookie.js"></script>
+<script src="http://cdn.jquerytools.org/1.2.7/all/jquery.tools.min.js"></script>
  <script type="text/javascript">
 
 		var p = "http", d = "static";
@@ -191,7 +192,7 @@ if(isSitelogin())  // Testing
 		$prevPayments =0;
 	}
 	$amount = $amount-$prevPayments;
-	if($amount<0.01)
+	if($amount<0.001)
 	{
 		$amount =0;
 	}
@@ -219,7 +220,7 @@ echo $amount;
 echo " dollars from videos."; 
 echo "</p>
 <p>
- Altogether you have" .ex_query1RowAns($SelectView)." Views.
+ Altogether you have " .ex_query1RowAns($SelectView)." Views.
 </p>
 ";
 if((time()-strtotime($mdate) ) >(60*60*24*30))

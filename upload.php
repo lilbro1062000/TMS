@@ -30,7 +30,7 @@ $(function() {
 
 		// Specify what files to browse for
 		filters : [
-			{title : "Videos", extensions : "mov,mpeg,mp4,wmv"}
+			{title : "Videos", extensions : "mov,mpeg,mp4,wmv,avi"}
 
 		]
 	});

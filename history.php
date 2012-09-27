@@ -10,7 +10,7 @@ include_once ("includes/categories.php");
 if(isset($_GET['Page']) && $_GET['Page']>0 && isset($_GET['VidNum']))
 	{
 	$query="Select id from video where hash in"; 
-	$query.= "(Select VideoID from History where UserID=";
+	$query.= "(Select VideoID from history where UserID=";
 	$query.= $_SESSION[SESSIONUSERID];
 	$query.=" order by Date desc)";
 		showPages($_GET['Page'], $_GET['VidNum'],$query);

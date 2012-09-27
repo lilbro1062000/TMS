@@ -25,7 +25,7 @@ echo("<div class=\"grid_12\"  id=\"VideoContainer\">\n");
 echo("<h2> ".$row['VideoName']."</h2> \n");
 echo("<video height=\"530\" width=\"940\" id=\"Video\" ");
 echo("poster=\"".urlencode("includes/image.php?vid=1&fname=".$row['videoImage'])."\" ");
-echo(" class=\"video-js vjs-default-skin\" controls preload=\"auto\" >\n");
+echo(" class=\"video-js vjs-default-skin\" controls=\"controls\" autoplay=\"autoplay\" preload=\"auto\" >\n");
 
 echo("  <source src=\"".$row['mp4Path']."\" type='video/mp4; codecs=\"avc1.42E01E, mp4a.40.2\"' />\n");
 echo(" <source src=\"".$row['webMPath']."\" type='video/webm; codecs=\"vp8, vorbis\"' />\n")
@@ -52,10 +52,14 @@ google_ad_height = 60;
 src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </script>
 <script>
+//  So i am trying to us ajax with this assocronus thing to talk with server
+// I will also try and save the ip address  
+var myvid = document.getElementById('Video');
 	var myvar = setInterval(function() {
-		var myvid = document.getElementById('Video');
+		
 		if (myvid.currentTime > 5) {
-			checkCookie();
+			//checkCookie();
+			AddRequest();
 		}
 	}, 1000);
 	function setCookie(c_name, value, exdays) {
@@ -67,25 +71,27 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 		clearInterval(myvar);
 	}
 
-	// function getCookie(c_name)
-	// {
-	// var i,x,y,ARRcookies=document.cookie.split(";");
-	// for (i=0;i<ARRcookies.length;i++)
-	// {
-	// x=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
-	// y=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);
-	// x=x.replace(/^\s+|\s+$/g,"");
-	// if (x==c_name)
-	// {
-	// return unescape(y);
-	// }
-	// }
-	// }
-
 	function checkCookie() {
 		var username = document.getElementById("Video");
 		username = username.getAttribute("Name");
 		setCookie("VideoCount",username,365);
+	}
+	
+	function AddRequest()
+	{
+		xmlhttp=new XMLHttpRequest();
+		xmlhttp.open("GET","includes/viewcount.php?videoID=<?php echo $hash; ?>",true);
+		xmlhttp.send();
+		
+		xmlhttp.onreadystatechange=function()
+  			{
+  				if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    				{
+    					document.getElementById("viewcount").innerHTML=xmlhttp.responseText;
+    					clearInterval(myvar);
+ 				  }
+  }
+
 	}
 </script>
 <!-- Place this tag where you want the +1 button to render. -->
@@ -134,7 +140,27 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 		<?php
 		if(isSitelogin())
 		{
-			
+			echo "<li id=\"FavoriteLink\">";
+	echo "<a href=\"";
+	
+	if(!Favorited($_SESSION['User_ID'],$hash))
+	{
+	    //Show favorite button
+	    echo("includes/operations.php?fav=1&videoID="); 
+	    echo($_GET['videoID']);
+	    echo("\" />");
+	    echo('Favorite');
+	}
+	else
+	{
+	    //show unfavorite button
+	    echo("includes/operations.php?fav=0&videoID="); 
+	    echo($_GET['videoID']);
+	    echo("\" />");
+	    echo('UnFavorite');
+	}
+	echo "</a> </li>";
+	
 		if (!liked($_SESSION['User_ID'], GetVideoID($hash))) {
 				//Show liked button
 				echo "<li id=\"Like\">";
@@ -203,7 +229,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </div>
 <?php
 
-//add favories function already exists maybe a button or link That runs whitout reloading the page.
+//add favorites function already exists maybe a button or link That runs without reloading the page.
 echo("</div>");
 
 if (checklogin()) {

@@ -42,7 +42,7 @@ echo("<div class=\"grid_12\"  id=\"VideoContainer\">\n");
 echo("<h2> ".$row['VideoName']."</h2> \n");
 echo("<video height=\"530\" width=\"940\" id=\"Video\" ");
 echo("poster=\"includes/image.php?vid=1&#38;fname=".$row['videoImage']."\" ");
-echo(" class=\"video-js vjs-default-skin\" controls  preload=\"auto\" >\n");
+echo(" class=\"video-js vjs-default-skin\" controls=\"controls\" autoplay=\"autoplay\" muted=\"muted\" preload=\"auto\" >\n");
 
 echo("<source src=\"".$row['mp4Path']."\" type='video/mp4; codecs=\"avc1.42E01E, mp4a.40.2\"' />\n ");
 echo("<source src=\"".$row['webMPath']."\" type='video/webm; codecs=\"vp8, vorbis\"' />\n ")
