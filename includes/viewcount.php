@@ -43,5 +43,5 @@ if(ex_query1RowAns($query)!=1)
 //return the new view  
 //return the views that are stored in the system
 $query =	"select Numwatched from views where Video_ID =".GetVideoID($hash);
-echo ex_query1RowAns($query);
+echo "View Count: ".ex_query1RowAns($query);
  ?>
