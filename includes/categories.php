@@ -135,7 +135,7 @@
 					<td>
 						<ul id="Trending" class="elasticMenuOptions">
 							<li>
-								<a>Trending</a>
+								<a>Trending Videos</a>
 							</li>
 						</ul>
 					</td>
@@ -145,7 +145,7 @@
 					<td>
 					<ul id="Ct" class="elasticMenuOptions">
 						<li>
-							<a >Categories</a>
+							<a >Video Categories</a>
 						</li>
 					</ul></td>
 				</tr>
@@ -153,15 +153,14 @@
 					<td>
 					<ul id="MW" class="elasticMenuOptions">
 						<li>
-							<a> Most Watched</a>
-						</li>
+							<a> Most Watched Videos
 					</ul></td>
 				</tr>
 				<tr>
 					<td>
 					<ul id="Rce" class="elasticMenuOptions">
 						<li>
-							<a>	Recent</a>
+							<a>	Recent Videos</a>
 						</li>
 					</ul>
 					</td>
@@ -170,7 +169,7 @@
 					<td>
 					<ul class="elasticMenuOptions">
 						<li>
-							<a href="reco.php">Recommend</a>
+							<a href="reco.php">Send Us Recommendations </a>
 						</li>
 					</ul></td>
 				</tr>
@@ -217,7 +216,7 @@ $count =0;
 					?>
 				</div>
 				<div id="Trending_info">
-				Trending
+				Trending Videos
 					<?php
 					
 					//Add some trending vids here.
@@ -259,7 +258,7 @@ $count =0;
 				</div>
 				
 				<div id="Recent">
-					Recent
+					Recent Videos
 					<?php
 					//Add some recent vids here.
 					

@@ -142,7 +142,7 @@ ref.parentNode.insertBefore(js, ref);
 }(document));
 		</script>
 <!--End Facebook Stuff-->
-<a href="index.php" > <img src="images/website_Layout.png"  alt="Teach ME Something" class="grid_3"/> </a>
+<a href="index.php" > <img src="images/website_Layout.png"  title="Teach ME Something" class="grid_3"/> </a>
 <form class="grid_6" action="search.php" method="get" enctype="multipart/form-data">
 	<input type="text" placeholder="Cool" class="grid_4" name="Search"/>
 	<input type="submit" value="Search" class="grid_1" />

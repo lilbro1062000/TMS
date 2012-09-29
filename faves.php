@@ -30,7 +30,7 @@ else
 	$query.=" order by ID asc)";
 	$results = ex_query($query);
 
-echo"<div id=\"mainPage\" class=\"grid_3\"  >";
+
 		while($row = mysql_fetch_array($results))
 		{
 			if($count<7)
@@ -39,7 +39,7 @@ echo"<div id=\"mainPage\" class=\"grid_3\"  >";
 				}
 				$count++;	    
 		}
-echo ("</div>");
+
 		Pages($query, "faves.php");
 		
 

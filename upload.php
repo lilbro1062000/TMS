@@ -97,10 +97,10 @@ enctype="multipart/form-data">
 	<ul>
 		<table>
 			<tr>
-		<li> <h2> By uploading you agree to theses Terms and Rules </h2></li>
+		<li> <h2> By uploading you agree to theses Rules </h2></li>
 			</tr>
 			
-<tr><td><li><h5> Site follows the youtube rules.</h5></li></td></tr>
+<tr><td><li><h5> Site follows basic rules.</h5></li></td></tr>
 		<tr><td><li>Do not upload content that may be copyrighted where you have not obtained the explicity permission to use it in that video.</li></td></tr>
 		<tr><td><li>Do not upload content with sexually explicit or strongly sexually suggestive material.</li></td></tr>
 		<tr><td><li>Do not upload content with nudity or partial nudity.</li></td></tr>

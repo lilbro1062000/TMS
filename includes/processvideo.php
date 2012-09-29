@@ -10,27 +10,67 @@ define("UPLOAD_DIR", "/tmp/uploads/process");
 //exit;
 
 //ensure a safe filename
-
+// i have to generate a log for every video uploaded so that i could figure out what's happening. 
+// what should i do
 //get $post Variable and store it in a variable
 
 $query = "Select ID,Progress,tempname,name,VideoName,UserID,Percentage from jobs where Progress ='NotStarted' Limit 0,1";
 $row = ex_query1Row($query);
 
 if (isset($row['ID'])) {
+	
 	function updatePercent($note, $percent, $rowID) {
 		$query = "update jobs set Progress='{$note}' ,";
 		$query .= "Percentage = {$percent} where ";
 		$query .= "ID=" . $rowID;
 		ex_query($query);
-		echo $note . " " . $percent;
+		echo $note . " " . $percent." ";
 	}
+	
+	function ConvertToWebm($filepath)
+{
+	$ffmpeg="ffmpeg";
+	$endPath = $filepath.".wbm";
+	$command =$ffmpeg." -i ".$filepath." -b 1500k -vcodec libvpx -acodec libvorbis -ab 160000 -crf 22 -f webm -g 30 -s ".VideoHeighxWidth." ".$endPath;
+	exec($command, $output);
+	if(is_file($endPath))
+	{
+		echo $output;
+		return $endPath;
+	}
+	else {
+		echo "Convert To webm Faild";
+		echo "<br />";
+		echo $command;
+		exit;
+	}
+	
+}
+function ConvertToMP4($filepath)
+{
+	$ffmpeg="ffmpeg";
+	$endPath = $filepath.".MP4";
+	$command =$ffmpeg." -i ".$filepath." -threads 0 -strict experimental -f mp4 -vcodec libx264 -vpre ipod640 -b 1200k -acodec aac -ab 160000 -ac 2 -s ".VideoHeighxWidth." ".$endPath; 
+	exec($command, $output);
+	if(is_file($endPath))
+	{
+		echo $output;
+		return $endPath;
+	}
+	else {
+		echo "Convert To MP4 Faild";
+		echo "<br />";
+		echo $command;
+		exit;
+	}
+}
 
 	//Change to Started status and change percentage to 1
 	updatePercent("Started", 1, $row['ID']);
 	$name = preg_replace("/[^A-Z0-9._-]/i", "_", $row['name']);
 	$tmpname = $row['tempname'];
 
-	//dont overwrite an existing file
+	//don't overwrite an existing file
 	$i = 0;
 	$parts = pathinfo($name);
 	while (isInBucket($name . ".mp4")) {
