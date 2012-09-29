@@ -33,7 +33,7 @@ if (isset($row['ID'])) {
 	$endPath = $filepath.".wbm";
 	$command =$ffmpeg." -i ".$filepath." -b 1500k -vcodec libvpx -acodec libvorbis -ab 160000 -crf 22 -f webm -g 30 -s ".VideoHeighxWidth." ".$endPath;
 	exec($command, $output);
-	if(is_file($endPath))
+	if(is_file($endPath)) 
 	{
 		echo $output;
 		return $endPath;
