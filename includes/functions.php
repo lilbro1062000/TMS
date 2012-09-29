@@ -469,46 +469,13 @@ Function Favorited($userid,$videoID)
 	}
 	else{return false;}
 }
-function ConvertToWebm($filepath)
-{
-	$ffmpeg="ffmpeg";
-	$endPath = $filepath.".wbm";
-	$command =$ffmpeg." -i ".$filepath." -b 1500k -vcodec libvpx -acodec libvorbis -ab 160000 -crf 22 -f webm -g 30 -s ".VideoHeighxWidth." ".$endPath;
-	exec($command);
-	if(is_file($endPath))
-	{
-		return $endPath;
-	}
-	else {
-		echo "Convert To webm Faild";
-		echo "<br />";
-		echo $command;
-		exit;
-	}
-	
-}
+
 function GetVideoID($hash)
 {
 	$q="Select ID from video where Hash='{$hash}'";
 	return ex_query1RowAns($q);
 }
-function ConvertToMP4($filepath)
-{
-	$ffmpeg="ffmpeg";
-	$endPath = $filepath.".MP4";
-	$command =$ffmpeg." -i ".$filepath." -threads 0 -strict experimental -f mp4 -vcodec libx264 -vpre ipod640 -b 1200k -acodec aac -ab 160000 -ac 2 -s ".VideoHeighxWidth." ".$endPath; 
-	exec($command);
-	if(is_file($endPath))
-	{
-		return $endPath;
-	}
-	else {
-		echo "Convert To MP4 Faild";
-		echo "<br />";
-		echo $command;
-		exit;
-	}
-}
+
 function getnumVideosUploaded($userID)
 {
 	  return ex_query1RowAns("Select count(*) from video where userid=".check_input($userID));
