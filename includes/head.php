@@ -4,20 +4,14 @@ require_once ("functions.php");
 require_once ("FB.php");
 ?>
 <?php
-// this is to check the video
-if (isset($_COOKIE['VideoCount'])) {
-	$vidID = $_COOKIE['VideoCount'];
-
-	// Updated Video view count
-	if (videoExists($vidID)) {
-
-		$query = "Update views set Numwatched = Numwatched+1 where video_id=" . GetVideoID($vidID);
-		ex_query($query);
-	}
-
-	//remove cookie'
-	setcookie("VideoCount", "", time() - 3600);
-	unset($_COOKIE['VideoCount']);
+//check video is working with ajax and updates in real time 
+//adding redirect to www.tmsomething.com
+if($_SERVER["SERVER_NAME"]!="www.tmsomething.com")
+{
+	header('Location: http://www.tmsomething.com');
+	//echo $_SERVER["SERVER_NAME"];
+	exit;
+	
 }
 //if logged in via Session  Then dont check the Is FB logged in
 	if (!isSitelogin()) {
