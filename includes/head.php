@@ -3,16 +3,28 @@ require_once ("connection.php");
 require_once ("functions.php");
 require_once ("FB.php");
 ?>
+
 <?php
 //check video is working with ajax and updates in real time 
 //adding redirect to www.tmsomething.com
-if($_SERVER["SERVER_NAME"]!="www.tmsomething.com")
-{
-	header('Location: http://www.tmsomething.com');
-	//echo $_SERVER["SERVER_NAME"];
-	exit;
-	
-}
+ if($_SERVER["SERVER_NAME"]!="www.tmsomething.com")
+ {
+	// header('Location: http://www.tmsomething.com');
+	// //echo $_SERVER["SERVER_NAME"];
+
+//ok well now i will try a timed redirect 
+//first 
+echo "<html><head>
+<script type=\"text/JavaScript\">
+
+setTimeout(\"location.href = 'http://www.tmsomething.com';\",1500);
+
+</script>
+</head><body>
+Redirecting you to wwww.tmsomething.com ......
+</body></html>";
+ exit;	
+ }
 //if logged in via Session  Then dont check the Is FB logged in
 	if (!isSitelogin()) {
 	
@@ -50,6 +62,7 @@ if($_SERVER["SERVER_NAME"]!="www.tmsomething.com")
 		<title>Teach Me Something</title>
 		<meta name="google-site-verification" content="dc14ttAF-hCGX-dzG26c15mdK7HlzLG3V7x4wsXv6zo" />
 		<!-- Style sheets added by Abdoulaye Camara  -->
+		<link href="images/favicon.ico" rel="icon" type="image/x-icon" />
 		<link href="stylesheets/reset.css" rel="stylesheet" type="text/css" />
 		<link href="stylesheets/960.css" rel="stylesheet" type="text/css" />
 		<link href="stylesheets/Style.css" rel="stylesheet" type="text/css" />
@@ -74,8 +87,8 @@ if($_SERVER["SERVER_NAME"]!="www.tmsomething.com")
 
 </script>
 
-	</head>
-	<body class="container_12">
+</head>
+<body class="container_12">
 <div id="headmenu">
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
