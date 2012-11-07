@@ -14,7 +14,7 @@ define("UPLOAD_DIR", "/tmp/uploads/");
 // what should i do
 //get $post Variable and store it in a variable
 
-$query = "Select ID,Progress,tempname,name,VideoName,UserID,Percentage from jobs where Progress ='NotStarted' Limit 0,1";
+$query = "Select ID,Progress,tempname,name,VideoName,UserID,Percentage from jobs where Percentage =0 Limit 0,1";
 $row = ex_query1Row($query);
 
 if (isset($row['ID'])) {
@@ -61,11 +61,13 @@ if (isset($row['ID'])) {
 	}
 
 	//Change to Started status and change percentage to 1
-	updatePercent("Started", 1, $row['ID']);
+	
 	$name = preg_replace("/[^A-Z0-9._-]/i", "_", $row['name']);
 	$tmpname = $row['tempname'];
 	if (file_exists(UPLOAD_DIR . $tmpname)) {
 		//don't overwrite an existing file
+		// dont start unless it is stored on this server
+		updatePercent("Started", 1, $row['ID']);
 		$i = 0;
 		$parts = pathinfo($name);
 		while (isInBucket($name . ".mp4")) {
@@ -93,19 +95,19 @@ if (isset($row['ID'])) {
 		//Mp4 Generation
 		$mp4_filepath = ConvertToMP4($path);
 		//webm generation
-		updatePercent("adding  multiplayer support", 30, $row['ID']);
+		updatePercent("adding  Awsome multiplayer support", 31, $row['ID']);
 		$webM_filepath = ConvertToWebm($path);
 		//image Genreation
-		updatePercent("removing multiplayer support", 40, $row['ID']);
+		updatePercent("removing Halo4 multiplayer support", 40, $row['ID']);
 
 		$imgpath = $path . "_Thumbnail.jpeg";
 		generateImage($path, $imgpath);
-		updatePercent("Generating SplashImage", 60, $row['ID']);
+		updatePercent("Generating SplashImage", 65, $row['ID']);
 
 		$mp4URI = Insert_into_bucket($mp4_filepath, $name . ".mp4");
 		updatePercent("adding Aliens", 69, $row['ID']);
 		$webmURI = Insert_into_bucket($webM_filepath, $name . ".webm", 'video/webm');
-		updatePercent("Converting to First Person", 70, $row['ID']);
+		updatePercent("Converting to First Person", 72, $row['ID']);
 
 		$imageURI = Insert_into_bucket($imgpath, $name . ".jpg", 'image/jpeg');
 		updatePercent("ok Second Person", 80, $row['ID']);
@@ -131,7 +133,7 @@ if (isset($row['ID'])) {
 		updatePercent("Done", 100, $row['ID']);
 		updatePercent($uniqeHash, 100, $row['ID']);
 	} else {
-		echo("\n No FIles to change");
+		echo("\n Not stored on Server");
 	}
 
 }
