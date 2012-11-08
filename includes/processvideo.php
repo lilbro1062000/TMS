@@ -4,7 +4,7 @@ require_once ("functions.php");
 require_once ("aws.php");
 //so this is a cron job so i have to upload and change the status
 // first thing is should do it run the cron job before i use this script
-define("UPLOAD_DIR", "/tmp/uploads/process");
+define("UPLOAD_DIR", "/tmp/uploads/");
 
 //var_dump($GLOBALS);
 //exit;
