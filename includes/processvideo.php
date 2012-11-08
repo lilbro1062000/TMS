@@ -18,12 +18,13 @@ $query = "Select ID,Progress,tempname,name,VideoName,UserID,Percentage from jobs
 $row = ex_query1Row($query);
 
 if (isset($row['ID'])) {
-	// I should check to make sure that the file exsits on the server first
+	// I should check to make sure that the file exsit's on the server first
 	function updatePercent($note, $percent, $rowID) {
 		$query = "update jobs set Progress='{$note}' ,";
 		$query .= "Percentage = {$percent} where ";
 		$query .= "ID=" . $rowID;
 		ex_query($query);
+		echo "\n";
 		echo $note . " " . $percent . " ";
 	}
 
@@ -129,7 +130,7 @@ if (isset($row['ID'])) {
 		updatePercent("Done", 100, $row['ID']);
 		updatePercent($uniqeHash, 100, $row['ID']);
 	} else {
-		echoln("No FIles to change");
+		echo("\n No FIles to change");
 	}
 
 }
