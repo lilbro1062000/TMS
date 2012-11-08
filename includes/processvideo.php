@@ -26,6 +26,7 @@ if (isset($row['ID'])) {
 		ex_query($query);
 		echo "\n";
 		echo $note . " " . $percent . " ";
+		echo "\n";
 	}
 
 	function ConvertToWebm($filepath) {
