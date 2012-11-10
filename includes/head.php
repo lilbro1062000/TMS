@@ -25,7 +25,7 @@ Redirecting you to wwww.tmsomething.com ......
 </body></html>";
  exit;	
  }
-//if logged in via Session  Then dont check the Is FB logged in
+//if logged in via Session  Then don't check the Is FB logged in
 	if (!isSitelogin()) {
 	
 		if (isFBLoggedin()) {
@@ -266,7 +266,7 @@ $(\"#dialog-confirm\").hide();
 							//commiting everything 
 							if(ex_query1RowAns("select VerifiedEmail from usersinfo where ID=".$_SESSION[SESSIONUSERID]) ==1)
 							{
-								if ($amount >0.001) {
+								if ($amount >0.010) {
 									
 								
 							echo "\"Request Payment\": \nfunction(){";	
