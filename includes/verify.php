@@ -2,7 +2,7 @@
 // if the person isn't verified then verify them
 // check the indicator
 include 'session.php';
-
+Logged_in();
 include_once 'connection.php';
 require_once 'functions.php';
 
@@ -23,12 +23,12 @@ echo "<html>
 			ex_query($query);
 			$query = "UPDATE notifications SET visible =0 where type=\"Verify\" and userid=".GetuserIDfromEmail($email);
 			ex_query($query);
-			echo "<div  class=\"grid_6\"> Email Verified!!!! click <a href=\"profile.php\">Here</a></div> ";
+			echo "<div  class=\"grid_6\"> Email Verified!!!! click <a href=\"../profile.php\">Here</a></div> ";
 		} else {
-			echo "<div class=\"grid_6\" >invalided link!!! click <a href=\"profile.php\">Here</a></div>";
+			echo "<div class=\"grid_6\" >invalided link!!! click <a href=\"../profile.php\">Here</a></div>";
 		}
 	} else {
-		echo "<div class=\"grid_6\" >invalided link!!! click <a href=\"profile.php\"></a>Here</div>";
+		echo "<div class=\"grid_6\" >invalided link!!! click <a href=\"../profile.php\"></a>Here</div>";
 	}
 	
 echo "</body>
@@ -42,7 +42,7 @@ echo "</body>
 			$email = $_GET['email'];
 			$message = ' 
 Thanks for signing up! 
-Your account has been created, you can login after you have activated your account by pressing the url below. 
+Your account has been created, you can login with the following credentials after you have activated your account by pressing the url below. 
  
 Please click this link to activate your account: 
  
