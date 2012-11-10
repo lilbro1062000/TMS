@@ -5,7 +5,7 @@ include 'session.php';
 
     if(!checklogin())
     {
-        redirect_to('..\login.php?msg=2');
+        redirect_to('../login.php?msg=2');
     }
     else
     {
