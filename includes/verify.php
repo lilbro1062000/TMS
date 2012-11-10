@@ -46,7 +46,7 @@ Your account has been created, you can login with the following credentials afte
  
 Please click this link to activate your account: 
  
-http://www.' . $_SERVER["HTTP_HOST"] . '.com/verify.php?ind=1&email=' . $email . '&hash=' . $hash . ' 
+http://www.tmsomething.com/verify.php?ind=1&email=' . $email . '&hash=' . $hash . ' 
  
 ';
 			// Our message above including the link
