@@ -3,6 +3,67 @@ include_once ("includes/head.php");
 include_once ("includes/categories.php")
 
 ?>
+<div class="grid_12">
+	<nav>
+ <p>
+  <a href="/" rel="index up">Main</a> >
+  <a href="browse.php" rel="up up">Browse</a> >
+  	<?php
+  	// This is for bread Crumb
+  	// For each Category start with the last and go backwards
+  	$breakcrumb="up up";
+  	if(isset($_GET['Category']))
+	{
+		
+		$category = $_GET['Category'];
+		//first we make our way up the three then down to find the base
+		$n="nt";
+		while ($n!="no") {
+		$n=ex_query1RowAns("Select Name from categories where PrevName='$category'");
+			if($n=="NULL")
+			{
+				$n= "no";
+			}	
+			else {
+				$category = $n;
+			}
+		} 
+		 // from the bottom we work our way up
+		
+		$breakcrumb = $breakcrumb ." up";
+		$final= " <a href=\"browse.php?Category=$category\" rel=\"$breakcrumb\">$category</a>\n";
+		$query = "Select PrevName from categories where Name='$category'";
+		$fname =ex_query1RowAns($query);
+		while($fname!="NULL")
+		{
+			$breakcrumb = $breakcrumb ." up";
+			//  first i should get the previous name for the Category
+			$query = "Select PrevName from categories where Name='$fname'";
+			$fname =ex_query1RowAns($query);
+			echo " <a href=\"browse.php?Category=$fname\" rel=\"$breakcrumb\">$fname</a>\n";
+			
+		}
+  	  	$category = $_GET['Category'];
+  		$query = "Select PrevName from categories where Name='$category'";
+		
+  	} 
+	
+  	?>
+  	</p>
+</nav>
+</div>
+  <div class="grid_12">
+  	<?php
+  	// This is for bread Crumb
+  	?>
+  	<?php
+  	// so there should be a query 
+  	// this is to create a bread crumb trail and link for a search 
+  	// this will appear as a string of some length 
+  	// than a box will appear with the information 
+  	$query ="Select Name from  where Name=''"  	?>
+  	something cool alwayse cool and never gone  
+  </div>
 <?php
 //Browse page if the category is set show 30 random video thumbnails as links to the video page 
 //if not set show 30 random thumbnails 
