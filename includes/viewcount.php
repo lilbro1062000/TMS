@@ -25,11 +25,11 @@ if(ex_query1RowAns($query)!=1)
 	 	// SO one IP haven't seen this more then 400 times a day 
 	 	
 	 	//Now we add them to the table 
-	 	$query = "INSERT INTO `TMSprdDB`.`viewlog` (`ipaddress`, `videoID`, `datetime`) VALUES ('$ip', '".GetVideoID($hash)."', '".to_mysqlDate(time())."')";
+	 	$query = "INSERT INTO viewlog (`ipaddress`, `videoID`, `datetime`) VALUES ('$ip', '".GetVideoID($hash)."', '".to_mysqlDate(time())."')";
 	 	ex_query($query);
 	 	// Now that its inserted we need to update the view
 	 	
-	 	$query ="UPDATE  `TMSprdDB`.`views` SET  `Numwatched` =  Numwatched + 1 WHERE  `views`.`Video_ID` =".GetVideoID($hash);
+	 	$query ="UPDATE  views SET  `Numwatched` =  Numwatched + 1 WHERE  `views`.`Video_ID` =".GetVideoID($hash);
 		ex_query($query);
 		//Now that is updated we are done. 
 		

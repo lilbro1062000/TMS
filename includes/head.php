@@ -5,10 +5,10 @@ require_once ("FB.php");
 ?>
 
 <?php
-//check video is working with ajax and updates in real time 
+/*//check video is working with ajax and updates in real time 
 //adding redirect to www.tmsomething.com
- if($_SERVER["SERVER_NAME"]!="www.tmsomething.com")
- {
+ //if($_SERVER["SERVER_NAME"]!="www.tmsomething.com")
+ //{
 	// header('Location: http://www.tmsomething.com');
 	// //echo $_SERVER["SERVER_NAME"];
 
@@ -24,9 +24,9 @@ setTimeout(\"location.href = 'http://www.tmsomething.com';\",1500);
 Redirecting you to wwww.tmsomething.com ......
 </body></html>";
  exit;	
- }
+ }*/
 //if logged in via Session  Then don't check the Is FB logged in
-	if (!isSitelogin()) {
+/*if (!isSitelogin()) {
 	
 		if (isFBLoggedin()) {
 			// if logged in then check db for user info
@@ -46,15 +46,14 @@ Redirecting you to wwww.tmsomething.com ......
 	}
 	if (!isFBLoggedin() && isSitelogin()) {
 		 loggout();
-	}
-
+	}
+  */
 //testing login
 
-// if (!isSitelogin()) {
-// 
-// login('704520593', 'Abdoulaye Camara');
-// 	
-// }
+ if (!isSitelogin()) {
+
+login('704520593', 'Abdoulaye Camara');
+	  }
 ?>
 <!DOCTYPE HTML>
 <html lang="en" >
@@ -62,11 +61,12 @@ Redirecting you to wwww.tmsomething.com ......
 		<title>Teach Me Something</title>
 		<meta name="google-site-verification" content="dc14ttAF-hCGX-dzG26c15mdK7HlzLG3V7x4wsXv6zo" />
 		<!-- Style sheets added by Abdoulaye Camara  -->
-		<link href="images/favicon.ico" rel="icon" type="image/x-icon" />
-		<link href="stylesheets/reset.css" rel="stylesheet" type="text/css" />
-		<link href="stylesheets/960.css" rel="stylesheet" type="text/css" />
-		<link href="stylesheets/Style.css" rel="stylesheet" type="text/css" />
-		<link href="stylesheets/jquery-ui-1.8.23.custom.css" rel="stylesheet" type="text/css"/>
+		
+		<link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
+		<link href="/stylesheets/reset.css" rel="stylesheet" type="text/css" />
+		<link href="/stylesheets/960.css" rel="stylesheet" type="text/css" />
+		<link href="/stylesheets/Style.css" rel="stylesheet" type="text/css" />
+		<link href="/stylesheets/jquery-ui-1.8.23.custom.css" rel="stylesheet" type="text/css"/>
 		<link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet">
 <script src="http://vjs.zencdn.net/c/video.js"></script>
 		<script> 
@@ -92,8 +92,8 @@ Redirecting you to wwww.tmsomething.com ......
 <div id="headmenu">
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
-<script src="js/jquery-ui-1.8.23.custom.min.js"></script>
-<script src="javascripts/jquery.cookie.js"></script>
+<script src="/js/jquery-ui-1.8.23.custom.min.js"></script>
+<script src="/javascripts/jquery.cookie.js"></script>
 <script src="http://cdn.jquerytools.org/1.2.7/all/jquery.tools.min.js"></script>
  <script type="text/javascript">
 
@@ -149,7 +149,7 @@ ref.parentNode.insertBefore(js, ref);
 }(document));
 		</script>
 <!--End Facebook Stuff-->
-<a href="index.php" > <img src="images/website_Layout.png"  title="Teach ME Something" class="grid_3"/> </a>
+<a href="/index.php" > <img src="/images/website_Layout.png"  title="Teach ME Something" class="grid_3"/> </a>
 <form class="grid_6" action="search.php" method="get" enctype="multipart/form-data">
 	<input type="text" placeholder="Cool" class="grid_4" name="Search"/>
 	<input type="submit" value="Search" class="grid_1" />
@@ -161,17 +161,17 @@ ref.parentNode.insertBefore(js, ref);
 	$results = ex_query("Select * from header_menu order by ID asc;");
 	while ($row = mysql_fetch_array($results)) {
 		if ($row[1] == "Login" && isFBLoggedin()) {
-			echo("<li class=\"NavMenu\"> <a href=\"login.php?msg=4\">logout</a></li>\n");
+			echo("<li class=\"NavMenu\"> <a href=\"/login.php?msg=4\">logout</a></li>\n");
 		} 
 		else if ($row[1] == "SignUp" && isFBLoggedin()) {
 			
 		}
 		else if ($row[1]== "SignUp" && !isFBLoggedin())
 		{
-			echo("<li class=\"NavMenu\"> <a href=\"login.php?msg=3\">SignUp</a></li>\n");
+			echo("<li class=\"NavMenu\"> <a href=\"/login.php?msg=3\">SignUp</a></li>\n");
 		}
 		else {
-			echo("<li class=\"NavMenu\"><a href=\"" . $row[2] . "\">" . $row[1] . "</a></li>\n");
+			echo("<li class=\"NavMenu\"><a href=\"/" . $row[2] . "\">" . $row[1] . "</a></li>\n");
 		}
 
 	}
@@ -206,9 +206,9 @@ if(isSitelogin())  // Testing
 	echo "\n<li><a href=\"#\" id=\"Amount\">$".$amount."</a></li>\n";
 	//i need to make that a link so that when you click on it the screen dims and a pop
 	//up shows up and then a button that says request 
-	echo("<li> <img src=\"images/Facebook-32.png\"  width = 20 height = 20 alt=\"Logged in Via Facebook\" />  <a href=\"profile.php\">" . $_SESSION[SESSIONUSERNAME] . " </a></li>\n");
+	echo("<li> <img src=\"/images/Facebook-32.png\"  width = 20 height = 20 alt=\"Logged in Via Facebook\" />  <a href=\"/profile.php\">" . $_SESSION[SESSIONUSERNAME] . " </a></li>\n");
 	while ($row = mysql_fetch_array($results)) {
-		echo("<li><a href=\"" . $row['Path'] . "\">" . $row['Name'] . "</a></li>\n");
+		echo("<li><a href=\"/" . $row['Path'] . "\">" . $row['Name'] . "</a></li>\n");
 	}
 	echo("</ul>\n");
 	echo("</div>\n");

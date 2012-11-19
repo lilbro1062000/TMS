@@ -11,13 +11,31 @@ if(isset($_GET['Page']) && $_GET['Page']>0 && isset($_GET['VidNum']))
 	{
 		if(isset($_GET['Search']))
 		{
-		$checked = mysql_real_escape_string($_GET['Search']);
-						$query ="Select Distinct VideoID from 
-		(Select keywords.VideoID 
-		 from keywords, video 
-		 where keywords.VideoID = video.ID 
-		 and (keyword like '%{$checked}%' or video.VideoName like '%{$checked}%')  
+			$query ="Select Distinct ID from 
+		(Select ID from video
+		 left join keywords on video.ID = keywords.VideoID
+		 left join videodesc on video.ID = videodesc.VidID
+		 where (";		
+		$checked = explode(' ', mysql_real_escape_string($_GET['Search']));
+		$r ="";
+		for ($i=0; $i < count($checked); $i++) {
+			if ($i>0) {
+				 $query =$query." or ";
+			 } 
+		$query = $query."
+		 LOWER(keyword) like LOWER('%$checked[$i]%')
+		  or
+		 LOWER(video.VideoName) like LOWER('%$checked[$i]%')
+		 or 
+		 LOWER(videodesc.txtDesc) like LOWER('%$checked[$i]%')
+		 ";
+			 
+		}
+		
+		 $query =$query."
+		 )  
 		 ) as tempTable";
+			
 		showPages($_GET['Page'], $_GET['VidNum'],$query);
 		Pages_search($query, "Search.php",$_GET['Search']);	
 		}
@@ -27,13 +45,28 @@ if(isset($_GET['Page']) && $_GET['Page']>0 && isset($_GET['VidNum']))
 	}
 	else {
 					
-						
-			$checked = mysql_real_escape_string($_GET['Search']);
-					$query ="Select Distinct VideoID from 
-		(Select keywords.VideoID 
-		 from keywords, video 
-		 where keywords.VideoID = video.ID 
-		 and (keyword like '%{$checked}%' or video.VideoName like '%{$checked}%')  
+			$query ="Select Distinct ID from 
+		(Select ID from video
+		 left join keywords on video.ID = keywords.VideoID
+		 left join videodesc on video.ID = videodesc.VidID
+		 where (";			
+		$checked = explode(' ', mysql_real_escape_string($_GET['Search']));
+		$r ="";
+		for ($i=0; $i < count($checked); $i++) {
+			if ($i>0) {
+				 $query =$query." or ";
+			 } 
+		$query = $query."
+		 LOWER(keyword) like LOWER('%$checked[$i]%')
+		 or
+		 LOWER(video.VideoName) like LOWER('%$checked[$i]%')
+		 or 
+		 LOWER(videodesc.txtDesc) like LOWER('%$checked[$i]%')
+		 ";
+		}
+		
+		 $query =$query."
+		 )  
 		 ) as tempTable";
 			
 			$results = ex_query($query);
@@ -43,7 +76,7 @@ if(isset($_GET['Page']) && $_GET['Page']>0 && isset($_GET['VidNum']))
 			
 			if($count ==1)
 			{
-			    echo "<strong class=\"grid_9\">No videos found with Keyword {$checked}</strong>\n";
+			    echo "<strong class=\"grid_9\">No videos found with Keyword $checked</strong>\n";
 				
 			}
 	}

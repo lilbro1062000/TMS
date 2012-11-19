@@ -1,4 +1,4 @@
-<script src="javascripts/jquery.bxSlider.min.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.bxSlider.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -184,14 +184,14 @@
 					<tr>
 				<td>	
 				<div id="prev">
-							<img alt="Prev" id="prev1" src="images/left.png" />
+							<img alt="Prev" id="prev1" src="/images/left.png" />
 			</div>
 			</td>
 			<td>
 				<div id="Categories_info">
 					
 					<?php
-					$results = ex_query("Select upper(name) from categories order by ID");
+					$results = ex_query("Select upper(name) from categories where PrevName ='NULL' order by ID");
 echo "\n<table>\n";
 $count =0;
 					while ($row = mysql_fetch_array($results)) {
@@ -201,7 +201,7 @@ $count =0;
 							echo "\n<tr>\n";
 						}
 						
-						echo("\n<td id=\"catID".$row[0]."\"> <a href=\"browse.php?Category=" . urlencode($row[0]) . "\">" . $row[0] . "</a></td> \n");
+						echo("\n<td id=\"catID".$row[0]."\"> <a href=\"/Category/" . urlencode($row[0]) . "\">" . $row[0] . "</a></td> \n");
 						
 						$count = $count + 1;
 						
@@ -254,7 +254,7 @@ $count =0;
 					
 					echo "</ul>";
 					?>
-					<a href="browse.php?Views="> Look at full List</a>
+					<a href="\browse.php?Views="> Look at full List</a>
 				</div>
 				
 				<div id="Recent">
@@ -273,12 +273,12 @@ $count =0;
 					    }
 					echo "</ul>";
 					?>
-										<a href="browse.php?Recent="> Look at full List</a>
+										<a href="\browse.php?Recent="> Look at full List</a>
 				</div>
 				</td>
 			<td>
 			<div id="next">
-					<img alt="Next" id="next1" src="images/right.png" />
+					<img alt="Next" id="next1" src="/images/right.png" />
 						
 			</div>
 			</td>

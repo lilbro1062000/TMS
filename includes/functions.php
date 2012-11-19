@@ -99,7 +99,7 @@ function GenMultipleThumb($results)
 	//echo"<div id=\"mainPage\" class=\"grid_3\"  >";
 	   while($row = mysql_fetch_array($results))
 			    {
-			    	if($count<7)
+			    	if($count<25)
 					{
 					 GEnerateImageThumb($row[0]);	
 					}
@@ -227,7 +227,7 @@ function Pages_search($query,$phpFile,$search)
 }
 function Pages($query,$phpFile)
 {
-				 $arrayName = array();
+				$arrayName = array();
 			  	$count =0;
 			   	$results= ex_query($query);
 			    while($row = mysql_fetch_array($results))
@@ -237,7 +237,7 @@ function Pages($query,$phpFile)
 					$count++;				    
 			    }
 				// Show pages links
-			    $divider =7;
+			    $divider =17;
 			    $NumPages =ceil((count($arrayName)/$divider));
 				echo "<div class=\"grid_12\">\n";
 				for ($i=0; $i < $NumPages; $i++) 
@@ -293,10 +293,11 @@ function GEnerateImageThumb($vidID)
     $row = mysql_fetch_array($results);
 	if(!empty($row[0]))
 	{
-    echo("<div class=\"grid_3 VideoThumb\" >\n");
-    echo("<a href=\"view.php?videoID=".$row['Hash']."\">\n");
-   echo("<h1>".substr($row['VideoName'], 0,12)."...</h1>\n");
-	 echo("<br />\n");
+	echo("<div class=\"grid_3\" >\n");
+    echo("<div class=\"VideoThumb\" >\n");
+    echo("<a href=\"/view.php?videoID=".$row['Hash']."\">\n");
+    echo("<h1>".substr($row['VideoName'], 0,12)."...</h1>\n");
+	echo("<br />\n");
 	 
     
     echo("<img alt=\"".substr($row['VideoName'], 0,12)."\" src=\"".Image2Thumb($row['videoImage'])."\"/>\n"); 
@@ -305,6 +306,7 @@ function GEnerateImageThumb($vidID)
     $desc = ex_query1RowAns("Select txtdesc from videodesc where vidid =".$row['ID']);
     echo("<p>".substr($desc, 0,90)."...</p>\n");
     echo("</a>\n"); 
+	echo("</div>\n");
     echo("</div>\n");		
 
 	}    
@@ -319,7 +321,7 @@ function GEnerateImageThumbHeader($vidID)
 	if(!empty($row[0]))
 	{
     echo("<div class=\"grid_2 VideoThumbHeader\"> \n");
-    echo("<a href=\"view.php?videoID=".$row['Hash']."\">\n");
+    echo("<a href=\"/view.php?videoID=".$row['Hash']."\">\n");
     echo("<h1>".substr($row['VideoName'], 0,12)."...</h1>\n");
     echo("<img title=\"".$row['VideoName']."\"  src=\"".Image2Thumb($row['videoImage'])."\"/>\n"); 
     //echo("<img src=\"".Image2Thumb($row[4])."\" />");
@@ -357,7 +359,7 @@ function NumberofComments($userid)
 }
 function Image2Thumb($filename)
 {
-   return "includes/image.php?fname=".urlencode($filename);
+   return "/includes/image.php?fname=".urlencode($filename);
 }
 function check_input($fname)
 {

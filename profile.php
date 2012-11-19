@@ -50,7 +50,7 @@ if(isset($_POST['ChangeEmail']))
 		//{
 			echo "<div class=\"grid_8\" id=\"Deletebox\">\n";
 			echo "Are you sure you want to delete this video ?\n";
-			echo "<form action=\"includes/operations.php?delete=$video\" method=\"post\">\n";
+			echo "<form action=\"/includes/operations.php?delete=$video\" method=\"post\">\n";
 			echo "<input type=\"submit\" value=\"YES Delete!!!\"/>\n";
 			echo "</form>\n";
 			echo "<button type=\"button\" onclick=\"window.location.href=window.location.href\"> No Dont </button>\n";
@@ -157,9 +157,9 @@ if(isset($_POST['ChangeEmail']))
 
 <script>
 	$(document).ready(function() {
-		$("#RefreshPage").load("includes/videoloadcontent.php");
+		$("#RefreshPage").load("/includes/videoloadcontent.php");
 		var refreshid = setInterval(function() {
-			$("#RefreshPage").load("includes/videoloadcontent.php");
+			$("#RefreshPage").load("/includes/videoloadcontent.php");
 		}, 1000);
 	})
 </script>

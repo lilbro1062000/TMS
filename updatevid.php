@@ -146,7 +146,7 @@ if(isset($_GET['fb']))
 {
 	echo ("<div id='fb-root'></div>\n
     <script src='http://connect.facebook.net/en_US/all.js'></script>\n
-    <p><a href='' onclick='postToFeed(); return false;'>Post video to Feed</a><img src=\"images/Facebook-32.png\"  width = 20 height = 20 alt=\"Logged in Via Facebook\" /> </p>\n
+    <p><a href='' onclick='postToFeed(); return false;'>Post video to Feed</a><img src=\"/images/Facebook-32.png\"  width = 20 height = 20 alt=\"Logged in Via Facebook\" /> </p>\n
     <p id='msg'></p>\n
     <script> \n
       FB.init({appId: ".FB_APP_ID.", status: true, cookie: true});\n

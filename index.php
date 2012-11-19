@@ -12,7 +12,7 @@ include_once ("includes/categories.php");
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script> -->
 <!-- <div id="mainPage" class="grid_12"> -->
-	<!-- <img src="images/Mark-Fletcher-Haleakala-960x900.jpg" width="940"/> -->
+	<!-- <img src="/images/Mark-Fletcher-Haleakala-960x900.jpg" width="940"/> -->
 	
 	<?php 
 	// show a random video 
@@ -41,7 +41,7 @@ $row = ex_query1Row("select * from video where hash =\"".$hash."\"");
 echo("<div class=\"grid_12\"  id=\"VideoContainer\">\n");
 echo("<h2> ".$row['VideoName']."</h2> \n");
 echo("<video height=\"530\" width=\"940\" id=\"Video\" ");
-echo("poster=\"includes/image.php?vid=1&#38;fname=".$row['videoImage']."\" ");
+echo("poster=\"/includes/image.php?vid=1&#38;fname=".$row['videoImage']."\" ");
 echo(" class=\"video-js vjs-default-skin\" controls=\"controls\" autoplay=\"autoplay\" muted=\"muted\" preload=\"auto\" >\n");
 
 echo("<source src=\"".$row['mp4Path']."\" type='video/mp4; codecs=\"avc1.42E01E, mp4a.40.2\"' />\n ");
@@ -63,6 +63,34 @@ echo("</video>\n");
 	// GenMultipleThumb($result); 
   ?>
 <!-- </div> -->
+<script>
+	var myvid = document.getElementById('Video');
+	var myvar = setInterval(function() {
+		
+		if (myvid.currentTime > 5) {
+			//checkCookie();
+			AddRequest();
+		}
+	}, 1000);
+
+	
+	function AddRequest()
+	{
+		xmlhttp=new XMLHttpRequest();
+		xmlhttp.open("GET","/includes/viewcount.php?videoID=<?php echo $hash; ?>",true);
+		xmlhttp.send();
+		
+		xmlhttp.onreadystatechange=function()
+  			{
+  				if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    				{
+    					//document.getElementById("viewcount").innerHTML=xmlhttp.responseText;
+    					clearInterval(myvar);
+ 				  }
+  }
+
+	}
+</script>
 <div  class="grid_5">
 	<div id= "side1" class="fb-activity" data-site="www.TMSomething.com" data-app-id="<?php echo FB_APP_ID; ?>" data-width="440" data-height="390" data-header="true" data-recommendations="false"></div>
 </div>

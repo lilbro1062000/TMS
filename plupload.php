@@ -125,6 +125,20 @@ if (!$chunks || $chunk == $chunks - 1) {
 	rename("{$filePath}.part", $filePath);
 }
 
+//upload done now send me an email 
+// Our message above including the link
+			require_once ("phpmailer/class.phpmailer.php");
+$message="video has been uploaded. Please run the script";
+			$mail = new phpmailer();
+			$mail -> IsSendmail();
+			$mail -> SetFrom("noreply@TMSomething.com", 'Teach Me Something', '');
+			$mail -> AddAddress($email);
+			$mail -> Subject = "'Email | Verification'";
+			$mail -> Body = $message;
+			if (!$mail -> Send()) {
+				// $msg = "Mailer Error: " . $mail -> ErrorInfo;
+				
+			}
 
 // Return JSON-RPC response
 die('{"jsonrpc" : "2.0", "result" : null, "id" : "id"}');

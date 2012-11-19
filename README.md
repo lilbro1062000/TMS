@@ -52,4 +52,10 @@ or a java script that hides based on cookies hide an alert ID
 no will to do it 
 how would i do it then 
 with css thats how
-alright then i guess we should get to work  
+alright then i guess we should get to work
+
+November 14 2012
+
+Watching One Piece
+Making changes to project for new category catherrization 
+also to make some changes with the project itself   

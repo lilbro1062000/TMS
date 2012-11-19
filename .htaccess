@@ -1,0 +1,9 @@
+Options -indexes
+Options +FollowSymLinks
+RewriteEngine on
+RewriteRule //(.*) /
+RewriteRule user/(.*) /browse.php?user=$1
+RewriteRule user /browse.php
+RewriteRule Category/(.*) /browse.php?Category=$1
+
+
