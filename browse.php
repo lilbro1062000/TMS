@@ -7,7 +7,7 @@ include_once ("includes/categories.php")
 	<nav>
  <p>
   <a href="/" rel="index up">Main</a> >
-  <a href="\browse.php" rel="up up">Browse</a> >
+  <a href="/browse.php" rel="up up">Browse</a> >
   	<?php
   	// This is for bread Crumb
   	// For each Category start with the last and go backwards
@@ -113,12 +113,14 @@ elseif (isset($_GET['Category']))
 	$cat = $_GET['Category'];
 		if(isset($_GET['Page']) && $_GET['Page']>0 && isset($_GET['VidNum']))
 	{
-		$query ="select id from video where hash in ((Select hash from videocatinfo where Category='".$cat."'))";
+		$query ="select id from video where hash in ((Select hash from videocatinfo where LOWER(Category)=LOWER('".$cat."')))";
+		
 		showPages($_GET['Page'], $_GET['VidNum'],$query);
 		Cat_Pages($query, "browse.php",$cat);
 	}
 	else{
-			$query ="select id from video where hash in ((Select hash from videocatinfo where Category='".$cat."'))";
+			$query ="select id from video where hash in ((Select hash from videocatinfo where LOWER(Category)=LOWER('".$cat."')))";
+		
 			$results= ex_query($query);
 			GenMultipleThumb($results);
 			Cat_Pages($query, "browse.php",$cat);   

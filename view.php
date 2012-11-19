@@ -44,6 +44,9 @@ for the Best Views";
 echo("</video>\n");
 echo("<br />\n");
 }
+if ($row['site']=='Youtube') {
+	echo "youtube Video";
+}
 
 ?>
 

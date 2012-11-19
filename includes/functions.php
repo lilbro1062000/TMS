@@ -304,7 +304,7 @@ function GEnerateImageThumb($vidID)
     //echo("<img src=\"".Image2Thumb($row[4])."\" />");
     echo("<br />\n");
     $desc = ex_query1RowAns("Select txtdesc from videodesc where vidid =".$row['ID']);
-    echo("<p>".substr($desc, 0,90)."...</p>\n");
+    echo("<p>".substr($desc, 0,45)."...</p>\n");
     echo("</a>\n"); 
 	echo("</div>\n");
     echo("</div>\n");		
