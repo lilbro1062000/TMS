@@ -123,7 +123,17 @@ elseif (isset($_GET['Category']))
 			GenMultipleThumb($results);
 			Cat_Pages($query, "browse.php",$cat);   
 		}
-} else
+}elseif(isset($_GET['user']))
+{
+	$user =$_GET['user'];
+	
+	$query = "Select id from video where UserID in (Select ID from users where UserName='$user')";
+	$results =ex_query($query);
+	GenMultipleThumb($results);
+	Pages($query, "browse.php");
+	
+} 
+else
 {
 	if(isset($_GET['Page']) && $_GET['Page']>0 && isset($_GET['VidNum']))
 	{
