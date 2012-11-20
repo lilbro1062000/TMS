@@ -45,7 +45,10 @@ echo("</video>\n");
 echo("<br />\n");
 }
 if ($row['site']=='Youtube') {
-	echo "youtube Video";
+	echo("<div class=\"grid_12\"  id=\"VideoContainer\">\n");
+echo("<h2> ".$row['VideoName']."</h2> \n");
+echo $row['mp4Path'];
+
 }
 
 ?>

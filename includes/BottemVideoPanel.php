@@ -13,9 +13,18 @@
 <div id="BottemVideoPanel">
 	<ul>
 		<li id="viewcount">
-			View Count: <?php 
+			View Count: <?php
+			// we want to make sure that the correct count is returned  a 
 			$query = "select Numwatched from views where Video_ID =".GetVideoID($hash);
-			echo ex_query1RowAns($query);
+			$rw =ex_query1RowAns($query);
+			if(empty($rw))
+			{
+				$q1 = "insert into views( Video_ID,Numwatched) values('$rw',0)";
+				ex_query($q1);
+				$rw =ex_query1RowAns($query);
+			}
+			echo $rw;
+			
 			 ?>
 		</li>
 		
@@ -24,7 +33,7 @@
 			$descrow = ex_query1RowAns("select txtDesc from videodesc where VidID=" . $row['ID']);
 			if(isset($descrow))
 			{
-			echo($descrow);
+			echo("\n <br /> <p> ".$descrow."\n <br /> </p> \n <br /> ");
 			}
 			else {
 				echo "No Description Added Yet";
@@ -64,7 +73,7 @@
 	    echo("\" />");
 	    echo('UnFavorite');
 	}
-	echo "</a> </li>";
+	echo "</a> </li> <br/> \n";
 	
 		if (!liked($_SESSION['User_ID'], GetVideoID($hash))) {
 				//Show liked button
@@ -74,7 +83,7 @@
 				echo($_GET['videoID']);
 				echo("\" >");
 				echo('Like');
-				echo "</a> </li>\n";
+				echo "</a> </li> <br/> \n";
 			} else {
 				//show unlike button
 				echo "<li id=\"unLike\">";
@@ -83,7 +92,7 @@
 				echo($_GET['videoID']);
 				echo("\" >");
 				echo('Unlike');
-				echo "</a> </li>\n";
+				echo "</a> </li> <br/> \n";
 			}
 			if (!reported($_SESSION['User_ID'], GetVideoID($hash))) {
 				//Show report button
