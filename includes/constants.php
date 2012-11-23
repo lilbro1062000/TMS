@@ -8,10 +8,10 @@ define("DB_Name", "dbTMS");
 
 
 //aws DB stuff 
-define("AWS_DB_SERVER", "working.crxxqouohlnb.us-east-1.rds.amazonaws.com");
+define("AWS_DB_SERVER", "tmsdb.crxxqouohlnb.us-east-1.rds.amazonaws.com");
 define("AWS_DB_USER", "TMSprdUser");
 define("AWS_DB_PASS", "2bornot2b");
-define("AWS_DB_Name", "TMSdevDB");
+define("AWS_DB_Name", "TMSprdDB");
 //Upload COnstants
 define("IMAGE_PATH", "/images\\");
 define("SESSIONUSERID","User_ID");

@@ -14,7 +14,7 @@ include_once ("includes/categories.php")
 	$query.="'".mysql_real_escape_string($_POST['PComment'])."',";
 	$query.="'" .to_mysqlDate(time())."')";
 	
-	ex_query($query);
+	//ex_query($query);
 	 //redirect_to("../view.php?videoID={$_GET['videoID']}");
 }
 if(isset($_GET['videoID']))
@@ -66,16 +66,28 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </script>
 <script>
 //  So i am trying to us ajax with this assocronus thing to talk with server
-// I will also try and save the ip address  
-var myvid = document.getElementById('Video');
-	var myvar = setInterval(function() {
-		
+// I will also try and save the ip address  <?php
+// this is for the video update for YOUTUBE videos 
+// for now if they stay on this page for more than 6 seconds it should count as a view 
+if ($row['site']=='local') {
+	echo "var myvid = document.getElementById('Video');
+	var myvar = setInterval(function() {		
 		if (myvid.currentTime > 5) {
 			//checkCookie();
 			AddRequest();
 		}
-	}, 1000);
+	}, 1000);";
+} elseif ($row['site']=='Youtube') {
+	echo "$(document).ready(function(){
+	var myvid = document.getElementById('Video');
+	var myvar = setInterval(function() {
+			AddRequest();
+	}, 9000);	
 	
+});";
+}
+
+?>
 	function AddRequest()
 	{
 		xmlhttp=new XMLHttpRequest();

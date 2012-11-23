@@ -153,7 +153,8 @@
 					<td>
 					<ul id="MW" class="elasticMenuOptions">
 						<li>
-							<a> Most Watched Videos
+							<a> Most Watched Videos </a>
+							</li>
 					</ul></td>
 				</tr>
 				<tr>
@@ -254,7 +255,7 @@ $count =0;
 					
 					echo "</ul>";
 					?>
-					<a href="\browse.php?Views="> Look at full List</a>
+					<a href="/browse.php?Views=1"> Look at full List</a>
 				</div>
 				
 				<div id="Recent">
@@ -273,11 +274,11 @@ $count =0;
 					    }
 					echo "</ul>";
 					?>
-										<a href="\browse.php?Recent="> Look at full List</a>
+										<!-- <a href="\browse.php?Recent="> Look at full List</a> -->
 				</div>
 				</td>
 			<td>
-			<div id="next">
+			<div class="ui-icon-seek-next" id="next">
 					<img alt="Next" id="next1" src="/images/right.png" />
 						
 			</div>

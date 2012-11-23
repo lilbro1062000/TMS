@@ -322,7 +322,7 @@ function GEnerateImageThumbHeader($vidID)
 	{
     echo("<div class=\"grid_2 VideoThumbHeader\"> \n");
     echo("<a href=\"/view.php?videoID=".$row['Hash']."\">\n");
-    echo("<h1>".substr($row['VideoName'], 0,12)."...</h1>\n");
+    echo("<p>".substr($row['VideoName'], 0,12)."..</p>\n");
     echo("<img title=\"".$row['VideoName']."\"  src=\"".Image2Thumb($row['videoImage'])."\"/>\n"); 
     //echo("<img src=\"".Image2Thumb($row[4])."\" />");
     $desc = ex_query1RowAns("Select txtdesc from videodesc where vidid =".$row['ID']);
