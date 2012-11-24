@@ -7,7 +7,7 @@ require_once ("FB.php");
 <?php
 //check video is working with ajax and updates in real time 
 //adding redirect to www.tmsomething.com
- if($_SERVER["SERVER_NAME"]!="www.tmsomething.com")
+ /*if($_SERVER["SERVER_NAME"]!="www.tmsomething.com")
  {
 	 header('Location: http://www.tmsomething.com');
 	 //echo $_SERVER["SERVER_NAME"];
@@ -47,13 +47,14 @@ if (!isSitelogin()) {
 	if (!isFBLoggedin() && isSitelogin()) {
 		 loggout();
 	}
-  /*
+   */
+  
 //testing login
 
  if (!isSitelogin()) {
 
 login('704520593', 'Abdoulaye Camara');
-	  }*/
+	  }
 ?>
 <!DOCTYPE HTML>
 <html lang="en" >

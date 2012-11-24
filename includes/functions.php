@@ -99,7 +99,7 @@ function GenMultipleThumb($results)
 	//echo"<div id=\"mainPage\" class=\"grid_3\"  >";
 	   while($row = mysql_fetch_array($results))
 			    {
-			    	if($count<25)
+			    	if($count<16)
 					{
 					 GEnerateImageThumb($row[0]);	
 					}
