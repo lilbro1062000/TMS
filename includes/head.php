@@ -5,12 +5,12 @@ require_once ("FB.php");
 ?>
 
 <?php
-/*//check video is working with ajax and updates in real time 
+//check video is working with ajax and updates in real time 
 //adding redirect to www.tmsomething.com
- //if($_SERVER["SERVER_NAME"]!="www.tmsomething.com")
- //{
-	// header('Location: http://www.tmsomething.com');
-	// //echo $_SERVER["SERVER_NAME"];
+ /*if($_SERVER["SERVER_NAME"]!="www.tmsomething.com")
+ {
+	 header('Location: http://www.tmsomething.com');
+	 //echo $_SERVER["SERVER_NAME"];
 
 //ok well now i will try a timed redirect 
 //first 
@@ -24,9 +24,9 @@ setTimeout(\"location.href = 'http://www.tmsomething.com';\",1500);
 Redirecting you to wwww.tmsomething.com ......
 </body></html>";
  exit;	
- }*/
+ }
 //if logged in via Session  Then don't check the Is FB logged in
-/*if (!isSitelogin()) {
+if (!isSitelogin()) {
 	
 		if (isFBLoggedin()) {
 			// if logged in then check db for user info
@@ -47,7 +47,8 @@ Redirecting you to wwww.tmsomething.com ......
 	if (!isFBLoggedin() && isSitelogin()) {
 		 loggout();
 	}
-  */
+   */
+  
 //testing login
 
  if (!isSitelogin()) {

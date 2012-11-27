@@ -38,42 +38,57 @@ include_once ("includes/categories.php");
 	
 	$hash =ex_query1RowAns($query);    
 $row = ex_query1Row("select * from video where hash =\"".$hash."\"");
+
+
+if ($row['site']=='local') {
 echo("<div class=\"grid_12\"  id=\"VideoContainer\">\n");
 echo("<h2> ".$row['VideoName']."</h2> \n");
 echo("<video height=\"530\" width=\"940\" id=\"Video\" ");
-echo("poster=\"/includes/image.php?vid=1&#38;fname=".$row['videoImage']."\" ");
-echo(" class=\"video-js vjs-default-skin\" controls=\"controls\" autoplay=\"autoplay\" muted=\"muted\" preload=\"auto\" >\n");
-
-echo("<source src=\"".$row['mp4Path']."\" type='video/mp4; codecs=\"avc1.42E01E, mp4a.40.2\"' />\n ");
-echo("<source src=\"".$row['webMPath']."\" type='video/webm; codecs=\"vp8, vorbis\"' />\n ")
-?>
+echo("poster=\"".urlencode("/includes/image.php?vid=1&fname=".$row['videoImage'])."\" ");
+echo(" class=\"video-js vjs-default-skin\" controls=\"controls\" autoplay=\"autoplay\" preload=\"auto\" >\n");
+echo("  <source src=\"".$row['mp4Path']."\" type='video/mp4; codecs=\"avc1.42E01E, mp4a.40.2\"' />\n");
+echo(" <source src=\"".$row['webMPath']."\" type='video/webm; codecs=\"vp8, vorbis\"' />\n");
+echo "
 Your Browser does not support this video tag
-<a href="<?php echo urlencode("https://www.google.com/chrome/index.html?hl=en&amp;brand=CHNG&amp;utm_source=en-hpp&amp;utm_medium=hpp&amp;utm_campaign=en");?>"> Dowload Chrome </a>
-for the Best Views
-<?php
-
+<a href=".urlencode("https://www.google.com/chrome/index.html?hl=en&amp;brand=CHNG&amp;utm_source=en-hpp&amp;utm_medium=hpp&amp;utm_campaign=en")."> Dowload Chrome </a>
+for the Best Views";
 echo("</video>\n");
-// echo "</div>";
-	?>
-	
+echo("<br />\n");
+}
+if ($row['site']=='Youtube') {
+	echo("<div class=\"grid_12\"  id=\"VideoContainer\">\n");
+echo("<h2> ".$row['VideoName']."</h2> \n");
+echo $row['mp4Path'];
 
-  <?php
-    // $select="select ID from video limit 0,6";
-    // $result = ex_query($select);
-	// GenMultipleThumb($result); 
-  ?>
+}
+
+?>
 <!-- </div> -->
 <script>
-	var myvid = document.getElementById('Video');
-	var myvar = setInterval(function() {
-		
+//  So i am trying to us ajax with this assocronus thing to talk with server
+// I will also try and save the ip address  
+<?php
+// this is for the video update for YOUTUBE videos 
+// for now if they stay on this page for more than 6 seconds it should count as a view 
+if ($row['site']=='local') {
+	echo "var myvid = document.getElementById('Video');
+	var myvar = setInterval(function() {		
 		if (myvid.currentTime > 5) {
 			//checkCookie();
 			AddRequest();
 		}
-	}, 1000);
-
+	}, 1000);";
+} elseif ($row['site']=='Youtube') {
+	echo "$(document).ready(function(){
+	var myvid = document.getElementById('Video');
+	var myvar = setInterval(function() {
+			AddRequest();
+	}, 9000);	
 	
+});";
+}
+
+?>
 	function AddRequest()
 	{
 		xmlhttp=new XMLHttpRequest();
@@ -92,7 +107,7 @@ echo("</video>\n");
 	}
 </script>
 <div  class="grid_5">
-	<div id= "side1" class="fb-activity" data-site="www.TMSomething.com" data-app-id="<?php echo FB_APP_ID; ?>" data-width="440" data-height="390" data-header="true" data-recommendations="false"></div>
+	<div id= "side1" class="fb-activity" data-site="www.tmsomething.com" data-app-id="<?php echo FB_APP_ID; ?>" data-width="440" data-height="390" data-header="true" data-recommendations="false"></div>
 </div>
 <div id= "side2" class="grid_5">
 	 <script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>

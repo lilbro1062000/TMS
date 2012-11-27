@@ -140,12 +140,12 @@ else
 	if(isset($_GET['Page']) && $_GET['Page']>0 && isset($_GET['VidNum']))
 	{
 		showPages($_GET['Page'], $_GET['VidNum'],"select id from video ");
-		Pages("select ID from video", "browse.php");	
+		Pages("select ID from video", "/browse.php");	
 	}
 	else {
 			   	$results= ex_query("Select ID from video;");
 				$count=GenMultipleThumb($results);
-				Pages("Select ID from video", "browse.php");
+				Pages("Select ID from video", "/browse.php");
 		}  
 }
 ?>
