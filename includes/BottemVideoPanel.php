@@ -17,7 +17,7 @@
 			// we want to make sure that the correct count is returned  a 
 			$query = "select Numwatched from views where Video_ID =".GetVideoID($hash);
 			$rw =ex_query1RowAns($query);
-			if(empty($rw))
+			if(empty($rw[0]))
 			{
 				$q1 = "insert into views( Video_ID,Numwatched) values('$rw',0)";
 				ex_query($q1);

@@ -24,7 +24,10 @@ if (isset($_POST['Keywords'])) {
 				$checkQuery = "Select 1 from videocatinfo where hash ='{$_GET['id']}' and Category ='{$row[0]}'";
 
 				if (ex_query1RowAns($checkQuery) != 1) {
-					// inset the category into the Database
+					// insert the category into the Database
+					// select the number from the categories 
+					$row[0]=ex_query1RowAns("SELECT FROM  `categories` ");
+					// also ill have to create the 
 					$query = "Insert into videocatinfo(hash,Category) Values('" . $_GET['id'] . "','" . $row[0] . "')";
 					ex_query($query);
 				}
@@ -57,7 +60,8 @@ if (isset($_POST['Keywords'])) {
 		//redirect_to("view.php?videoID=" . $_GET['id']);
 		redirect_to("updatevid.php?fb=1&videoID=" . $_GET['id']);
 	}
-} elseif (isset($_GET['videoID'])) {
+} 
+elseif (isset($_GET['videoID'])) {
 	require_once ("includes/connection.php");
 	require_once ("includes/functions.php");
 	if (!check("video", "hash", $_GET['videoID']))//
@@ -88,6 +92,9 @@ if (isset($_POST['Keywords'])) {
 	<label> Catagories </label>
 	<br />
 	<?php
+	// has to be changed so that it returns a web of materials so that when somebody click on something they can click all that apply
+	// or auto click 
+	// first find out how the html would work. 
 	$results = ex_query("Select upper(Name) from categories order by ID");
 	while ($row = mysql_fetch_array($results)) {
 		echo("
