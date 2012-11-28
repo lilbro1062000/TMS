@@ -89,12 +89,17 @@ elseif (isset($_GET['videoID'])) {
 	<br />
 	<input type="text" value="<?php echo($_GET['videoID']); ?>" name="hash" disabled="true"/>
 	<br />
+	<h3>Select Categories</h3>
 	<label> Catagories </label>
+	<p class="ui-li-aside">
 	<br />
+	<fieldset data-role="controlgroup" data-type="horizontal">
 	<?php
 	// has to be changed so that it returns a web of materials so that when somebody click on something they can click all that apply
 	// or auto click 
 	// first find out how the html would work. 
+	// I would get all of them and output those's by a list of check marks in a horizontal fashion
+
 	$results = ex_query("Select upper(Name) from categories order by ID");
 	while ($row = mysql_fetch_array($results)) {
 		echo("
@@ -107,7 +112,8 @@ elseif (isset($_GET['videoID'])) {
 		echo("<br/>\n");
 	}
 	?>
-
+	</fieldset>
+ </p>
 	<label>Video Description</label>
 	<textarea form="UpdateVideoForm" cols="29" rows="4" name="Desc" placeholder="PLease Enter Information" required="true"><?php
 	$query = 'Select txtDesc from videodesc where VidID=' . GetVideoID($_GET['videoID']);
