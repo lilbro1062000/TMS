@@ -93,26 +93,40 @@ elseif (isset($_GET['videoID'])) {
 	<label> Catagories </label>
 	<p class="ui-li-aside">
 	<br />
-	<fieldset data-role="controlgroup" data-type="horizontal">
+	
 	<?php
 	// has to be changed so that it returns a web of materials so that when somebody click on something they can click all that apply
 	// or auto click 
 	// first find out how the html would work. 
 	// I would get all of them and output those's by a list of check marks in a horizontal fashion
+	// I want to make them Ordered by wether or not its nested 
+	
+	function getCategories($categoryID)
+	{
+		// first display category 
+		$query = "Select Name from categories where PrevName='$categoryID'";
+		$results =ex_query($query);
+		while ($myrow = mysql_fetch_array($results)) {
+				
+			echo "<input type=\"checkbox\" name=\"" . $myrow[0] . "\" /> \n";
+		}
+		
+		// Then 
+	} 
 
 	$results = ex_query("Select upper(Name) from categories order by ID");
 	while ($row = mysql_fetch_array($results)) {
 		echo("
-	<input type=\"checkbox\" name=\"" . $row[0] . "\"");
+	<div class=\"form\"> <input type=\"checkbox\" name=\"" . $row[0] . "\"");
 		if (ex_query1RowAns('Select 1 from videocatinfo where Category=\'' . $row[0] . '\' and Hash=\'' . $_GET['videoID'] . '\'') == 1) {
 			echo " checked=\"true\" ";
 		}
 		echo "/> \n";
 		echo("<label>" . $row[0] . "</label>\n");
-		echo("<br/>\n");
+		echo("<br/></div>\n");
 	}
 	?>
-	</fieldset>
+	
  </p>
 	<label>Video Description</label>
 	<textarea form="UpdateVideoForm" cols="29" rows="4" name="Desc" placeholder="PLease Enter Information" required="true"><?php

@@ -402,3 +402,7 @@ width: 900px;
 	font:"Courier New";
 	height:auto;
 }
+.form
+{
+	/*float: left;*/
+}
