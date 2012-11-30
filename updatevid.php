@@ -104,26 +104,45 @@ elseif (isset($_GET['videoID'])) {
 	function getCategories($categoryID)
 	{
 		// first display category 
-		$query = "Select Name from categories where PrevName='$categoryID'";
+		$query = "Select ID, Name from categories where PrevName='$categoryID'";
 		$results =ex_query($query);
+		$tog =0;
 		while ($myrow = mysql_fetch_array($results)) {
 				
-			echo "<input type=\"checkbox\" name=\"" . $myrow[0] . "\" /> \n";
+				if($tog==1)
+				{
+					echo "<ul>";
+					$tog =3;
+				}
+			echo "<li><input type=\"checkbox\" name=\"" . $myrow['Name'] . "\""; 
+			if (ex_query1RowAns('Select 1 from videocatinfo where Category=\'' . $myrow['ID'] . '\' and Hash=\'' . $_GET['videoID'] . '\'') == 1) {
+			echo " checked=\"true\" ";
 		}
-		
+		echo "/>".$myrow['Name']."</li>\n";
+			If(!empty(ex_query1Row("Select id from categories where PrevName='".$myrow['ID']."'")))
+			{
+				getCategories($myrow['ID']);
+			}
+			
+		}
+				if($tog==3)
+				{
+					echo "<\ul>";
+				}
 		// Then 
 	} 
 
-	$results = ex_query("Select upper(Name) from categories order by ID");
+	$results = ex_query("Select * from categories where PrevName = 'NULL' ");
 	while ($row = mysql_fetch_array($results)) {
 		echo("
 	<div class=\"form\"> <input type=\"checkbox\" name=\"" . $row[0] . "\"");
-		if (ex_query1RowAns('Select 1 from videocatinfo where Category=\'' . $row[0] . '\' and Hash=\'' . $_GET['videoID'] . '\'') == 1) {
+		if (ex_query1RowAns('Select 1 from videocatinfo where Category=\'' . $row['ID'] . '\' and Hash=\'' . $_GET['videoID'] . '\'') == 1) {
 			echo " checked=\"true\" ";
 		}
 		echo "/> \n";
 		echo("<label>" . $row[0] . "</label>\n");
 		echo("<br/></div>\n");
+		getCategories($row['ID']);
 	}
 	?>
 	
