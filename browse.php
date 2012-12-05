@@ -21,7 +21,8 @@ include_once ("includes/categories.php")
 		$count=0;
 		$some = $category;
 		while ($n!=="no") {
-		$n=ex_query1RowAns("Select PrevName from categories where Name='$some'");
+		$n=ex_query1RowAns("select Name FROM categories 
+WHERE ID=(Select PrevName from categories where Name='$some')");
 			$count++;
 			//$final = "<a href=\"browse.php?Category=$fname\" rel=\"$breakcrumb\">$fname</a>\n".$final;
 			
@@ -44,7 +45,8 @@ include_once ("includes/categories.php")
 			}
 			$count--;
 			$final = "<a href=\"/Category/$n\" rel=\"$breakcrumb\">$n</a> >\n".$final;
-			$n=ex_query1RowAns("Select PrevName from categories where Name='$n'");
+			$n=ex_query1RowAns("select Name FROM categories 
+WHERE ID=(Select PrevName from categories where Name='$n')");
 			//$final = "<a href=\"browse.php?Category=$fname\" rel=\"$breakcrumb\">$fname</a>\n".$final;
 			if($n=='NULL')
 			{
@@ -69,7 +71,12 @@ include_once ("includes/categories.php")
   	// than a box will appear with the information
   	if(isset($_GET['Category']))
 	{
-	$query = "Select Name from categories where Prevname ='".$_GET['Category']."'";	
+	$query = "Select Name 
+from categories 
+where Prevname= 
+(Select ID 
+from categories 
+where upper(Name) = upper('".$_GET['Category']."'))";	
 	}
 	else {
 		$query = "Select Name from categories where Prevname ='NULL'";
@@ -111,15 +118,18 @@ elseif(isset($_GET['Recent']))
 elseif (isset($_GET['Category']))
 {
 	$cat = $_GET['Category'];
+	$query ="select id from video where hash in ((Select hash from videocatinfo where Category=(select id 
+					FROM  categories 
+					where upper(Name)=upper('$cat'))))";
+					
 		if(isset($_GET['Page']) && $_GET['Page']>0 && isset($_GET['VidNum']))
 	{
-		$query ="select id from video where hash in ((Select hash from videocatinfo where LOWER(Category)=LOWER('".$cat."')))";
-		
+			
 		showPages($_GET['Page'], $_GET['VidNum'],$query);
 		Cat_Pages($query, "browse.php",$cat);
 	}
 	else{
-			$query ="select id from video where hash in ((Select hash from videocatinfo where LOWER(Category)=LOWER('".$cat."')))";
+			
 		
 			$results= ex_query($query);
 			GenMultipleThumb($results);

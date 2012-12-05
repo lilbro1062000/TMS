@@ -7,7 +7,7 @@ require_once ("FB.php");
 <?php
 //check video is working with ajax and updates in real time 
 //adding redirect to www.tmsomething.com
- /*if($_SERVER["SERVER_NAME"]!="www.tmsomething.com")
+ if($_SERVER["SERVER_NAME"]!="www.tmsomething.com")
  {
 	 header('Location: http://www.tmsomething.com');
 	 //echo $_SERVER["SERVER_NAME"];
@@ -47,14 +47,14 @@ if (!isSitelogin()) {
 	if (!isFBLoggedin() && isSitelogin()) {
 		 loggout();
 	}
-   */
+   
   
 //testing login
 
- if (!isSitelogin()) {
-
-login('704520593', 'Abdoulaye Camara');
-	  }
+ // if (!isSitelogin()) {
+// 
+// login('704520593', 'Abdoulaye Camara');
+	  // }
 ?>
 <!DOCTYPE HTML>
 <html lang="en" >
@@ -68,8 +68,8 @@ login('704520593', 'Abdoulaye Camara');
 		<link href="/stylesheets/960.css" rel="stylesheet" type="text/css" />
 		<link href="/stylesheets/Style.css" rel="stylesheet" type="text/css" />
 		<link href="/stylesheets/jquery-ui-1.8.23.custom.css" rel="stylesheet" type="text/css"/>
-		<link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet">
-<script src="http://vjs.zencdn.net/c/video.js"></script>
+		<link href="/stylesheets/video-js.css" rel="stylesheet">
+		<script src="/js/video.js"></script>
 		<script> 
 		"use strict";
 		</script>
@@ -92,10 +92,10 @@ login('704520593', 'Abdoulaye Camara');
 <body class="container_12">
 <div id="headmenu">
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+<script src="/js/jquery.min.js"></script>
 <script src="/js/jquery-ui-1.8.23.custom.min.js"></script>
-<script src="/javascripts/jquery.cookie.js"></script>
-<script src="http://cdn.jquerytools.org/1.2.7/all/jquery.tools.min.js"></script>
+<script src="/js/jquery.cookie.js"></script>
+<script src="/js/jquery.tools.min.js"></script>
  <script type="text/javascript">
 
 		var p = "http", d = "static";

@@ -59,3 +59,5 @@ November 14 2012
 Watching One Piece
 Making changes to project for new category catherrization 
 also to make some changes with the project itself   
+
+add a bread crumb for view.

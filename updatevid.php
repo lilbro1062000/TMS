@@ -113,7 +113,7 @@ if (isset($_POST['Keywords'])) {
 				 if (ex_query1RowAns('Select 1 from videocatinfo where upper(Category)=Upper(\'' . $myrow['ID'] . '\') and Upper(Hash=\'' . $_GET['videoID'] . '\')') == 1) {
 					 echo " checked=\"true\" ";
 				 }
-				 echo "/><label>" . $myrow['Name'] . "</label></li>\n";
+				 echo "/><label> " . $myrow['Name'] . "</label></li>\n";
 				 If (ex_query1Row("Select 1 from categories where PrevName='" . $myrow['ID'] . "'") ==1) {
 					 getCategories($myrow['ID']);
 				 }

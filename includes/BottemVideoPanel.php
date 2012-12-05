@@ -81,45 +81,15 @@
 					echo "</a> </li>\n";
 				}
 
-<<<<<<< HEAD
-<div id="BottemVideoPanel">
-	<ul>
-		<li id="viewcount">
-			View Count: <?php
-			// we want to make sure that the correct count is returned  a 
-			$query = "select Numwatched from views where Video_ID =".GetVideoID($hash);
-			$rw =ex_query1RowAns($query);
-			if(empty($rw[0]))
-			{
-				$q1 = "insert into views( Video_ID,Numwatched) values('$rw',0)";
-				ex_query($q1);
-				$rw =ex_query1RowAns($query);
-			}
-			echo $rw;
-			
-			 ?>
-		</li>
-		
-		<li id="Description">
-			<?php
-			$descrow = ex_query1RowAns("select txtDesc from videodesc where VidID=" . $row['ID']);
-			if(isset($descrow))
-			{
-			echo("\n <br /> <p> ".$descrow."\n <br /> </p> \n <br /> ");
-			}
-			else {
-				echo "No Description Added Yet";
-=======
->>>>>>> d3b8ccdec157cc835f0cb158c0e831d4b43a021a
 			}
 			?>
 
 			<li>
+				
 				<?php
-				echo "<iframe src=\"http://www.facebook.com/plugins/like.php?href={$_SERVER["HTTP_HOST"]}/view.php?videoID=$hash\"\n
-\n class=\"iframe\"
-></iframe>\n";
+				echo "<iframe src=\"http://www.facebook.com/plugins/like.php?href={$_SERVER["HTTP_HOST"]}/view.php?videoID=$hash\"\n class=\"iframe\"></iframe>\n";
 				?>
+				
 			</li>
 			<li>
 			<div class="g-plusone"></div>

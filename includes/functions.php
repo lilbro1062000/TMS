@@ -78,6 +78,7 @@ function Cat_Pages($query,$phpFile,$Category)
 				echo "<div class=\"grid_12\">\n";
 				for ($i=0; $i < $NumPages; $i++) 
 				{
+					$string="";
 					//create the links 
 					// I am changing it to one string and echo'ing the string 
 					// has the have the page for the limit  
@@ -210,6 +211,7 @@ function Pages_search($query,$phpFile,$search)
 				echo "<div class=\"grid_12\">\n";
 				for ($i=0; $i < $NumPages; $i++) 
 				{
+					$string="";
 					//create the links 
 					// has the have the page for the limit  
 					$VidsPerPage ="VidNum=".$divider;
@@ -237,11 +239,12 @@ function Pages($query,$phpFile)
 					$count++;				    
 			    }
 				// Show pages links
-			    $divider =17;
+			    $divider =16;
 			    $NumPages =ceil((count($arrayName)/$divider));
 				echo "<div class=\"grid_12\">\n";
 				for ($i=0; $i < $NumPages; $i++) 
 				{
+					$string="";
 					//create the links 
 					// has the have the page for the limit  
 					$VidsPerPage ="VidNum=".$divider;
@@ -293,20 +296,17 @@ function GEnerateImageThumb($vidID)
     $row = mysql_fetch_array($results);
 	if(!empty($row[0]))
 	{
-	echo("<div class=\"grid_3\" >\n");
-    echo("<div class=\"VideoThumb\" >\n");
+	
+    echo("<div class=\"VideoThumb grid_3\" >\n");
     echo("<a href=\"/view.php?videoID=".$row['Hash']."\">\n");
     echo("<h1>".substr($row['VideoName'], 0,12)."...</h1>\n");
 	echo("<br />\n");
-	 
-    
     echo("<img alt=\"".substr($row['VideoName'], 0,12)."\" src=\"".Image2Thumb($row['videoImage'])."\"/>\n"); 
     //echo("<img src=\"".Image2Thumb($row[4])."\" />");
     echo("<br />\n");
     $desc = ex_query1RowAns("Select txtdesc from videodesc where vidid =".$row['ID']);
     echo("<p>".substr($desc, 0,45)."...</p>\n");
     echo("</a>\n"); 
-	echo("</div>\n");
     echo("</div>\n");		
 
 	}    

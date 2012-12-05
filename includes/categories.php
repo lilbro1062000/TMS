@@ -1,4 +1,4 @@
-<script src="/javascripts/jquery.bxSlider.min.js" type="text/javascript"></script>
+<script src="/js/jquery.bxSlider.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 	$(document).ready(function() {

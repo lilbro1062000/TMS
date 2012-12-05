@@ -165,6 +165,7 @@ body {
 	border-color: gray;
 	height:250px;
 	background-color: transparent;
+	/*background-color: blue;*/
 	 /*width: 675px;*/
 }
 
@@ -288,6 +289,10 @@ color: #0d2474;
 text-decoration: none;
 text-align: center;
 } 
+#Navmenu li a:hover
+{
+background-color: orange;
+} 
 
 .NavMenu {
 	display: inline;
@@ -405,4 +410,10 @@ width: 900px;
 .form
 {
 	/*float: left;*/
+	display: block;
+}
+.form ul
+{
+	/*float: left;*/
+	display: block;
 }
