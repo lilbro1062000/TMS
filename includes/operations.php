@@ -101,8 +101,8 @@ require_once ('aws.php');
 	 echo "deleting from video\n";
 	 $query= "delete from video where Hash='{$hash}' and ID=".$videoID;
 	 ex_query($query);
-	 
-	 redirect_to("../profile.php");
+	 header('Location: '.$_SERVER["HTTP_HOST"]);
+	 ;
 }
 elseif (isset($_GET['changeEmail'])) {
 	
