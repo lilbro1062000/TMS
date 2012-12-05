@@ -25,9 +25,9 @@ if (isset($_POST['Keywords'])) {
 
 				if (ex_query1RowAns($checkQuery) != 1) {
 					// insert the category into the Database
-					// select the number from the categories 
-					$row[0]=ex_query1RowAns("SELECT FROM  `categories` ");
-					// also ill have to create the 
+					// select the number from the categories
+					$row[0] = ex_query1RowAns("SELECT FROM  `categories` ");
+					// also ill have to create the
 					$query = "Insert into videocatinfo(hash,Category) Values('" . $_GET['id'] . "','" . $row[0] . "')";
 					ex_query($query);
 				}
@@ -60,8 +60,7 @@ if (isset($_POST['Keywords'])) {
 		//redirect_to("view.php?videoID=" . $_GET['id']);
 		redirect_to("updatevid.php?fb=1&videoID=" . $_GET['id']);
 	}
-} 
-elseif (isset($_GET['videoID'])) {
+} elseif (isset($_GET['videoID'])) {
 	require_once ("includes/connection.php");
 	require_once ("includes/functions.php");
 	if (!check("video", "hash", $_GET['videoID']))//
@@ -91,62 +90,59 @@ elseif (isset($_GET['videoID'])) {
 	<br />
 	<h3>Select Categories</h3>
 	<label> Catagories </label>
-	<p class="ui-li-aside">
-	<br />
-	
-	<?php
-	// has to be changed so that it returns a web of materials so that when somebody click on something they can click all that apply
-	// or auto click 
-	// first find out how the html would work. 
-	// I would get all of them and output those's by a list of check marks in a horizontal fashion
-	// I want to make them Ordered by wether or not its nested 
-	
-	function getCategories($categoryID)
-	{
-		// first display category 
-		$query = "Select ID, Name from categories where PrevName='$categoryID'";
-		$results =ex_query($query);
-		$tog =0;
-		while ($myrow = mysql_fetch_array($results)) {
-				
-				if($tog==1)
-				{
-					echo "<ul>";
-					$tog =3;
-				}
-			echo "<li><input type=\"checkbox\" name=\"" . $myrow['Name'] . "\""; 
-			if (ex_query1RowAns('Select 1 from videocatinfo where Category=\'' . $myrow['ID'] . '\' and Hash=\'' . $_GET['videoID'] . '\'') == 1) {
-			echo " checked=\"true\" ";
-		}
-		echo "/>".$myrow['Name']."</li>\n";
-			If(!empty(ex_query1Row("Select id from categories where PrevName='".$myrow['ID']."'")))
-			{
-				getCategories($myrow['ID']);
-			}
-			
-		}
-				if($tog==3)
-				{
-					echo "<\ul>";
-				}
-		// Then 
-	} 
+		<?php
+		// has to be changed so that it returns a web of materials so that when somebody click on something they can click all that apply
+		// or auto click
+		// first find out how the html would work.
+		// I would get all of them and output those's by a list of check marks in a horizontal fashion
+		// I want to make them Ordered by wether or not its nested
 
-	$results = ex_query("Select * from categories where PrevName = 'NULL' ");
-	while ($row = mysql_fetch_array($results)) {
-		echo("
-	<div class=\"form\"> <input type=\"checkbox\" name=\"" . $row[0] . "\"");
-		if (ex_query1RowAns('Select 1 from videocatinfo where Category=\'' . $row['ID'] . '\' and Hash=\'' . $_GET['videoID'] . '\'') == 1) {
-			echo " checked=\"true\" ";
+
+		function getCategories($categoryID) {
+			// first display category
+			$query = "Select ID, Name from categories where PrevName='$categoryID'";
+			$results = ex_query($query);
+			$tog = 0;
+			 while ($myrow = mysql_fetch_array($results)) {
+					$tog = 1;
+				if ($tog == 1) {
+					echo "<ul>";
+					$tog = 3;
+				}
+				 echo "<li><input type=\"checkbox\" name=\"" . $myrow['Name'] . "\"";
+				 if (ex_query1RowAns('Select 1 from videocatinfo where upper(Category)=Upper(\'' . $myrow['ID'] . '\') and Upper(Hash=\'' . $_GET['videoID'] . '\')') == 1) {
+					 echo " checked=\"true\" ";
+				 }
+				 echo "/><label>" . $myrow['Name'] . "</label></li>\n";
+				 If (ex_query1Row("Select 1 from categories where PrevName='" . $myrow['ID'] . "'") ==1) {
+					 getCategories($myrow['ID']);
+				 }
+
+			 }
+			if ($tog == 3) {
+				echo "</ul>";
+			}
+			// Then
 		}
-		echo "/> \n";
-		echo("<label>" . $row[0] . "</label>\n");
-		echo("<br/></div>\n");
-		getCategories($row['ID']);
-	}
-	?>
+
+
+		$results = ex_query("Select * from categories where PrevName = 'NULL' ");
+		echo("<ul>");
+		while ($row = mysql_fetch_array($results)) {
+			echo("
+		<li>\n<div class=\"form\"> <input type=\"checkbox\" name=\"" . $row['Name'] . "\"");
+			if (ex_query1RowAns('Select 1 from videocatinfo where Category=\'' . $row['ID'] . '\' and Hash=\'' . $_GET['videoID'] . '\'') == 1) {
+				echo " checked=\"true\" ";
+			}
+			echo "/> \n";
+			echo("<label>" . $row['Name'] . "</label>\n");
+			echo("<br/>");
+			getCategories($row['ID']);
+			echo "</div>\n</li>\n";
+		}
+		echo("</ul>");
+		?>
 	
- </p>
 	<label>Video Description</label>
 	<textarea form="UpdateVideoForm" cols="29" rows="4" name="Desc" placeholder="PLease Enter Information" required="true"><?php
 	$query = 'Select txtDesc from videodesc where VidID=' . GetVideoID($_GET['videoID']);
@@ -154,7 +150,7 @@ elseif (isset($_GET['videoID'])) {
 	if (isset($tmpdesc)) {
 		echo $tmpdesc;
 	}
-?></textarea>
+?></textarea>	
 	<br />
 	<label>Keywords Comma seperated </label>
 	<input type="text" name="Keywords" placeholder="Enter Keywords" required="true"
@@ -173,52 +169,46 @@ elseif (isset($_GET['videoID'])) {
 	}
 	?>
 	/>
-<?php 
-if(isset($_GET['fb']))
-{
-	echo "\nVideo Updated!!<br />\n";
-	echo "<a href='view.php?videoID=".$_GET['videoID']."'>watch video</a> or ...\n";
-}
-else {
-	echo "<input type=\"submit\" name=\"submit\" value=\"Submit\" required=\"true\" />\n";
-}
-
-?>
-	
+	<?php
+	if (isset($_GET['fb'])) {
+		echo "\nVideo Updated!!<br />\n";
+		echo "<a href='view.php?videoID=" . $_GET['videoID'] . "'>watch video</a> or ...\n";
+	} else {
+		echo "<input type=\"submit\" name=\"submit\" value=\"Submit\" required=\"true\" />\n";
+	}
+	?>
 </form>
 <div class="grid_9">
-<?php 
-if(isset($_GET['fb']))
-{
-	echo ("<div id='fb-root'></div>\n
-    <script src='http://connect.facebook.net/en_US/all.js'></script>\n
-    <p><a href='' onclick='postToFeed(); return false;'>Post video to Feed</a><img src=\"/images/Facebook-32.png\"  width = 20 height = 20 alt=\"Logged in Via Facebook\" /> </p>\n
-    <p id='msg'></p>\n
-    <script> \n
-      FB.init({appId: ".FB_APP_ID.", status: true, cookie: true});\n
+	<?php
+	if (isset($_GET['fb'])) {
+		echo("<div id='fb-root'></div>\n
+<script src='http://connect.facebook.net/en_US/all.js'></script>\n
+<p><a href='' onclick='postToFeed(); return false;'>Post video to Feed</a><img src=\"/images/Facebook-32.png\"  width = 20 height = 20 alt=\"Logged in Via Facebook\" /> </p>\n
+<p id='msg'></p>\n
+<script> \n
+FB.init({appId: " . FB_APP_ID . ", status: true, cookie: true});\n
 \n
-      function postToFeed() {\n      
-        var obj = {\n
-          method: 'feed',\n
-          link: '".$_SERVER["HTTP_HOST"]."/view.php?videoID=" . $_GET['videoID'] ."',\n
-          picture: '".ex_query1RowAns("Select videoImage from video where Hash='".$_GET['videoID']."'")." ',\n
-          name: '".ex_query1RowAns("select videoName from video where hash =\"" . $_GET['videoID'] . "\"")."',\n
-          caption: 'Watch This Video',\n
-          description: '".ex_query1RowAns('Select txtDesc from videodesc where VidID=' . GetVideoID($_GET['videoID']))."'\n
-        };\n
+function postToFeed() {\n
+var obj = {\n
+method: 'feed',\n
+link: '" . $_SERVER["HTTP_HOST"] . "/view.php?videoID=" . $_GET['videoID'] . "',\n
+picture: '" . ex_query1RowAns("Select videoImage from video where Hash='" . $_GET['videoID'] . "'") . " ',\n
+name: '" . ex_query1RowAns("select videoName from video where hash =\"" . $_GET['videoID'] . "\"") . "',\n
+caption: 'Watch This Video',\n
+description: '" . ex_query1RowAns('Select txtDesc from videodesc where VidID=' . GetVideoID($_GET['videoID'])) . "'\n
+};\n
 \n
-        function callback(response) {\n
-          document.getElementById('msg').innerHTML = \" Video Posted\";\n
-        }\n
+function callback(response) {\n
+document.getElementById('msg').innerHTML = \" Video Posted\";\n
+}\n
 \n
-        FB.ui(obj, callback);\n
-      }\n
-    \n
-    </script>\n");
-	
-}
-?>
+FB.ui(obj, callback);\n
+}\n
+\n
+</script>\n");
 
+	}
+	?>
 </div>
 <?php
 include_once ("includes/foot.php");
