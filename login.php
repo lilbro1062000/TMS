@@ -37,7 +37,7 @@ require_once ("includes/FB.php");
   }
 
 ?>
- <div id="fb-root"></div>
+
       <script>
         window.fbAsyncInit = function() {
           FB.init({
@@ -74,7 +74,7 @@ FB.Event.subscribe('auth.logout', function(response) {
 	<table>
 		<tr>
 			<?php
-			echo("<p>");
+			
 					?>
 			<br />
 		<br />
@@ -82,7 +82,7 @@ FB.Event.subscribe('auth.logout', function(response) {
 		<?php
 			if (isset($message)) {echo($message);
 			}
-			echo("</p>");
+			
 			?>
 			<!-- <td>Username:</td> -->
 			<td>
