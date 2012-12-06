@@ -270,7 +270,7 @@ $(\"#dialog-confirm\").hide();
 			echo $_SERVER["HTTP_HOST"];
 			echo "/includes/verify.php?requestpay=";
 			echo urlencode($amount);
-			echo "&";
+			echo "&amp;";
 			echo "ID=".$_SESSION[SESSIONUSERID];
 			echo "\"><\/iframe>');";
 			

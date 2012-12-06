@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /includes/
+Sitemap: http://www.tmsomething.com/sitemap.xml

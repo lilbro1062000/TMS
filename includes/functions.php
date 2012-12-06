@@ -86,7 +86,7 @@ function Cat_Pages($query,$phpFile,$Category)
 					$string .="<a href=\"";
 					$string .=$phpFile."?";
 					$string .= "Category=".$Category;
-					$string .='&Page=';
+					$string .='&amp;Page=';
 					$string .= ($i+1);
 					$string .=("&".$VidsPerPage."\">");
 					$string .= ($i+1 ."</a>\n");
@@ -219,8 +219,8 @@ function Pages_search($query,$phpFile,$search)
 					$string .= ($phpFile."?");
 					$string .=('Page=');
 					$string .= ($i+1);
-					$string .= "&Search=".$search;
-					$string .=("&".$VidsPerPage."\">");
+					$string .= "&amp;Search=".$search;
+					$string .=("&amp;".$VidsPerPage."\">");
 					$string .= ($i+1 ."</a>\n");
 					
 					echo ($string);
@@ -234,7 +234,7 @@ function numPages($Page,$VidNum,$query)
 			   	$results= ex_query($query);
 			    while($row = mysql_fetch_array($results))
 			    {
-				    //var_dump($row);
+				    //var_dump($row); 
 					$arrayName[$count] = $row[0];	
 					$count++;				    
 			    }
@@ -275,7 +275,7 @@ function numPages($Page,$VidNum,$query)
 					echo ($string);
 				}
 				if ($limit==$TLimit) {
-					echo "<a href=\"\">......</a> ";
+					echo "<a href=\"$phpFile?Page=".floor($NumPages/2)."\">....</a> ";
 					for ($i=0; $i < $limit; $i++) 
 					{
 						$string="";
@@ -327,7 +327,7 @@ else {
 						$string .= ($phpFile."?");
 						$string .=('Page=');
 						$string .= ($i+1)+($NumPages -$TLimit);
-						$string .=("&".$VidsPerPage."\">");
+						$string .=("&amp".$VidsPerPage."\">");
 						$string .= ($i+1)+($NumPages -$TLimit)."</a>\n";						
 						echo ($string);
 					}
@@ -369,12 +369,12 @@ function Pages($query,$phpFile)
 					$string .= ($phpFile."?");
 					$string .=('Page=');
 					$string .= ($i+1);
-					$string .=("&".$VidsPerPage."\">");
+					$string .=("&amp;".$VidsPerPage."\">");
 					$string .= ($i+1 ."</a>\n");
 					echo ($string);
 				}
 				if ($limit==$TLimit) {
-					echo "<a href=\"\">......</a> ";
+					echo "<a href=\"$phpFile?Page=".floor($NumPages/2) ."\">....</a> ";
 					for ($i=0; $i < $limit; $i++) 
 					{
 						$string="";
@@ -385,7 +385,7 @@ function Pages($query,$phpFile)
 						$string .= ($phpFile."?");
 						$string .=('Page=');
 						$string .= ($i+1)+($NumPages -$TLimit);
-						$string .=("&".$VidsPerPage."\">");
+						$string .=("&amp;".$VidsPerPage."\">");
 						$string .= ($i+1)+($NumPages -$TLimit)."</a>\n";						
 						echo ($string);
 					}

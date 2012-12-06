@@ -74,7 +74,7 @@ if(isset($_GET['Page']) && $_GET['Page']>0 && isset($_GET['VidNum']))
 			$count =GenMultipleThumb($results);
 			Pages_search($query, "search.php",$_GET['Search']);	
 			
-			if($count ==1)
+			if($count ==0)
 			{
 			    echo "<strong class=\"grid_9\">No videos found with Keyword $checked</strong>\n";
 				
