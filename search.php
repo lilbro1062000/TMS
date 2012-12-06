@@ -76,7 +76,7 @@ if(isset($_GET['Page']) && $_GET['Page']>0 && isset($_GET['VidNum']))
 			
 			if($count ==0)
 			{
-			    echo "<strong class=\"grid_9\">No videos found with Keyword $checked</strong>\n";
+			    echo "<strong class=\"grid_9\">No videos found with Keyword ".$_GET['Search']."</strong>\n";
 				
 			}
 	}

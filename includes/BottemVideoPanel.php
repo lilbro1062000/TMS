@@ -141,5 +141,5 @@
 		}(document, 'script', 'facebook-jssdk')); 
 </script>
 <div id="CommentArea">
-	<div class="fb-comments grid_12" data-href="<?php echo $_SERVER["HTTP_HOST"] . "/view.php?videoID=$hash"; ?>" data-num-posts="5" data-width="470" data-colorscheme="light"></div>
+	<div class="fb-comments grid_11" data-href="<?php echo $_SERVER["HTTP_HOST"] . "/view.php?videoID=$hash"; ?>" data-num-posts="5" data-width="470" data-colorscheme="light"></div>
 </div>

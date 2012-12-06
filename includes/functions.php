@@ -303,6 +303,7 @@ else {
 					$string="";
 					//create the links 
 					// has the have the page for the limit  
+					if (($i)+($Page -($TLimit-2))<$NumPages-5) {
 					$VidsPerPage ="VidNum=".$divider;
 					$string .= ("<a href=\"");
 					$string .= ($phpFile."?");
@@ -310,7 +311,8 @@ else {
 					$string .= ($i)+($Page -($TLimit-2));
 					$string .=("&amp;".$VidsPerPage."\">");
 					$string .= ($i)+($Page -($TLimit-3))."</a>\n";	
-					echo ($string);
+					echo ($string);	
+					}
 				}
 				
 					if(abs($Page-$NumPages)>5){
