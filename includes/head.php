@@ -46,10 +46,9 @@ if (!isSitelogin()) {
 	
 //testing login
 
- // if (!isSitelogin()) {
-// 
-// login('704520593', 'Abdoulaye Camara');
-	  // }
+ if (!isSitelogin()) {
+login('704520593', 'Abdoulaye Camara');
+}
 ?>
 <!DOCTYPE HTML>
 <html lang="en" >
