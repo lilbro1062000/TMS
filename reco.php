@@ -11,13 +11,6 @@ include_once ("includes/categories.php");
 	?>
 </div>
 
-<div id="messageToList" class="grid_4">
-	<?php
-	//$query="Select * from messages where from =".$_SESSION[SESSIONUSERID];
-	//SHow all sent messages seperate
-	?>
-</div>
-
 <div id="Messageoutput" class="grid_5">
 	<?php
 	//Show message contents
