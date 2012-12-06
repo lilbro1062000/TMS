@@ -49,6 +49,7 @@ if ($row['site']=='Youtube') {
 echo("<h2> ".$row['VideoName']."</h2> \n");
 $str =str_replace('&','&amp;',$row['mp4Path']);
 $str=str_replace('frameborder="0" allowfullscreen','',$str);
+$str=str_replace('<frame width=','<frame id="youtubeEmbed" width=',$str);
 echo $str;
 
 }
@@ -70,9 +71,8 @@ google_ad_height = 60;
 //first detect IOS
 IS_IPAD = navigator.userAgent.match(/iPad/i) != null;
 IS_IPHONE = (navigator.userAgent.match(/iPhone/i) != null) || (navigator.userAgent.match(/iPod/i) != null);
-if (IS_IPAD) {
-  IS_IPHONE = false;
-  document.getElementById('calendar').src = document.getElementById('calendar').src.replace("\v\\","\\embed\\") ;
+if (IS_IPAD || IS_IPHONE) {
+  document.getElementById('youtubeEmbed').src = document.getElementById('youtubeEmbed').src.replace("\v\\","\\embed\\") ;
 } 
 //  So i am trying to us ajax with this assocronus thing to talk with server
 // I will also try and save the ip address  <?php

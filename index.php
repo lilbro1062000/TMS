@@ -60,14 +60,20 @@ if ($row['site']=='Youtube') {
 echo("<h2> ".$row['VideoName']."</h2> \n");
 $str =str_replace('&','&amp;',$row['mp4Path']);
 $str=str_replace('frameborder="0" allowfullscreen','',$str);
+$str=str_replace('<frame width=','<frame id="youtubeEmbed" width=',$str);
 echo $str;
 }
 
 ?>
 <!-- </div> -->
 <script>
-//  So i am trying to us ajax with this assocronus thing to talk with server
-// I will also try and save the ip address  
+
+IS_IPAD = navigator.userAgent.match(/iPad/i) != null;
+IS_IPHONE = (navigator.userAgent.match(/iPhone/i) != null) || (navigator.userAgent.match(/iPod/i) != null);
+if (IS_IPAD) {
+  IS_IPHONE = false;
+  document.getElementById('youtubeEmbed').src = document.getElementById('youtubeEmbed').src.replace("\v\\","\\embed\\") ;
+} 
 <?php
 // this is for the video update for YOUTUBE videos 
 // for now if they stay on this page for more than 6 seconds it should count as a view 
