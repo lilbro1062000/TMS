@@ -8,9 +8,9 @@ include_once ("includes/categories.php")
 <?php
 
 if(isset($_GET['Page']) && $_GET['Page']>0 && isset($_GET['VidNum']))
-	{
+	{ 
 		if(isset($_GET['Search']))
-		{
+		{ 
 			$query ="Select Distinct ID from 
 		(Select ID from video
 		 left join keywords on video.ID = keywords.VideoID

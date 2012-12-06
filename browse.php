@@ -6,8 +6,8 @@ include_once ("includes/categories.php")
 <div class="grid_12">
 	<nav>
  <p>
-  <a href="/" rel="index up">Main</a> >
-  <a href="/browse.php" rel="up up">Browse</a> >
+  <a href="/" >Main</a> >
+  <a href="/browse.php" >Browse</a> >
   	<?php
   	// This is for bread Crumb
   	// For each Category start with the last and go backwards
@@ -39,12 +39,12 @@ WHERE ID=(Select PrevName from categories where Name='$some')");
 		
 		$n=$category;
 		while ($n!="no") {
-			$breakcrumb = "up up";
+			$breakcrumb = "up%20up";
 			for ($i=0; $i < $count; $i++) { 
-				$breakcrumb =$breakcrumb ." up";
+				$breakcrumb =$breakcrumb ."%20up";
 			}
 			$count--;
-			$final = "<a href=\"/Category/$n\" rel=\"$breakcrumb\">$n</a> >\n".$final;
+			$final = "<a href=\"/Category/$n\">$n</a> >\n".$final;
 			$n=ex_query1RowAns("select Name FROM categories 
 WHERE ID=(Select PrevName from categories where Name='$n')");
 			//$final = "<a href=\"browse.php?Category=$fname\" rel=\"$breakcrumb\">$fname</a>\n".$final;
@@ -88,8 +88,9 @@ where upper(Name) = upper('".$_GET['Category']."'))";
 	while ($row = mysql_fetch_array($result)) {
 		
 		echo "\n<li><a href=\"/Category/$row[0]\">$row[0]</a></li>\n";
-	}echo "</ul>";
-  	 echo "</nav>";
+	}
+	echo "</ul>";
+  	echo "</nav>";
   		?>
   </div>
 <?php
@@ -150,7 +151,7 @@ else
 	if(isset($_GET['Page']) && $_GET['Page']>0 && isset($_GET['VidNum']))
 	{
 		showPages($_GET['Page'], $_GET['VidNum'],"select id from video ");
-		Pages("select ID from video", "/browse.php");	
+		numPages($_GET['Page'], $_GET['VidNum'],"select id from video ");	
 	}
 	else {
 			   	$results= ex_query("Select ID from video;");

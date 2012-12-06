@@ -5,15 +5,11 @@ require_once ("FB.php");
 ?>
 
 <?php
-//check video is working with ajax and updates in real time 
-//adding redirect to www.tmsomething.com
+
  if($_SERVER["SERVER_NAME"]!="www.tmsomething.com")
  {
-	 header('Location: http://www.tmsomething.com');
-	 //echo $_SERVER["SERVER_NAME"];
+	 //header('Location: http://www.tmsomething.com');
 
-//ok well now i will try a timed redirect 
-//first 
 echo "<html><head>
 <script type=\"text/JavaScript\">
 
@@ -47,14 +43,13 @@ if (!isSitelogin()) {
 	if (!isFBLoggedin() && isSitelogin()) {
 		 loggout();
 	}
-   
-  
+	
 //testing login
 
  // if (!isSitelogin()) {
 // 
 // login('704520593', 'Abdoulaye Camara');
-	  // }
+	  // }
 ?>
 <!DOCTYPE HTML>
 <html lang="en" >
@@ -150,7 +145,7 @@ ref.parentNode.insertBefore(js, ref);
 }(document));
 		</script>
 <!--End Facebook Stuff-->
-<a href="/index.php" > <img src="/images/website_Layout.png"  title="Teach ME Something" class="grid_3"/> </a>
+<a href="/index.php" > <img src="/images/website_Layout.png"  title="Teach ME Something" alt="Teach Me Something" class="grid_3"/> </a>
 <form class="grid_6" action="search.php" method="get" enctype="multipart/form-data">
 	<input type="text" placeholder="Cool" class="grid_4" name="Search"/>
 	<input type="submit" value="Search" class="grid_1" />

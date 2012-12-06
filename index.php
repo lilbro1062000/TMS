@@ -58,8 +58,9 @@ echo("<br />\n");
 if ($row['site']=='Youtube') {
 	echo("<div class=\"grid_12\"  id=\"VideoContainer\">\n");
 echo("<h2> ".$row['VideoName']."</h2> \n");
-echo $row['mp4Path'];
-
+$str =str_replace('&','&amp;',$row['mp4Path']);
+$str=str_replace('frameborder="0" allowfullscreen','',$str);
+echo $str;
 }
 
 ?>

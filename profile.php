@@ -131,12 +131,8 @@ if(isset($_POST['ChangeEmail']))
 			// well every email must be verified 
 			?>
 			<p>
-				<input name="ChangeEmail" type="email"  id="ChangeEmail" required="true" placeholder="<?php
-			
-			echo $email;
-			?>" />
+				<input name="ChangeEmail" type="email"  id="ChangeEmail" required="required" placeholder="<?php	echo $email;?>" />
 			<button type="submit" > Change Email</button>
-			
 			</p>
 		</form>
 	</div>

@@ -19,7 +19,7 @@
 				<?php
 				$query = "select UserName from users where ID =(select UserID from video where Hash='$hash')";
 				$username = ex_query1RowAns($query);
-				echo "<a href='/user/$username'>$username</a>";
+				echo "<a href=\"/user/".urlencode($username)."\" >$username</a>";
 				?>
 			</li>
 			<?php
@@ -29,15 +29,15 @@
 
 				if (!Favorited($_SESSION['User_ID'], $hash)) {
 					//Show favorite button
-					echo("includes/operations.php?fav=1&videoID=");
+					echo("includes/operations.php?fav=1&amp;videoID=");
 					echo($_GET['videoID']);
-					echo("\" />");
+					echo("\" >");
 					echo('Favorite');
 				} else {
 					//show unfavorite button
-					echo("includes/operations.php?fav=0&videoID=");
+					echo("includes/operations.php?fav=0&amp;videoID=");
 					echo($_GET['videoID']);
-					echo("\" />");
+					echo("\" >");
 					echo('UnFavorite');
 				}
 				echo "</a> </li> \n";
@@ -46,7 +46,7 @@
 					//Show liked button
 					echo "<li id=\"Like\">";
 					echo "<a href=\"";
-					echo("includes/operations.php?liked=1&videoID=");
+					echo("includes/operations.php?liked=1&amp;videoID=");
 					echo($_GET['videoID']);
 					echo("\" >");
 					echo('Like');
@@ -55,7 +55,7 @@
 					//show unlike button
 					echo "<li id=\"unLike\">";
 					echo "<a href=\"";
-					echo("includes/operations.php?liked=0&videoID=");
+					echo("includes/operations.php?liked=0&amp;videoID=");
 					echo($_GET['videoID']);
 					echo("\" >");
 					echo('Unlike');
@@ -65,7 +65,7 @@
 					//Show report button
 					echo "<li id=\"report\">";
 					echo "<a href=\"";
-					echo("includes/operations.php?reported=1&videoID=");
+					echo("includes/operations.php?reported=1&amp;videoID=");
 					echo($_GET['videoID']);
 					echo("\" >");
 					echo('report');
@@ -74,7 +74,7 @@
 					//show unreport button
 					echo "<li id=\"unreport\">";
 					echo "<a href=\"";
-					echo("includes/operations.php?reported=0&videoID=");
+					echo("includes/operations.php?reported=0&amp;videoID=");
 					echo($_GET['videoID']);
 					echo("\" >");
 					echo('unreport');
@@ -128,7 +128,6 @@
 	</div>
 
 </div>
-<div id="fb-root"></div>
 <!-- <div id="fb-root"></div> -->
 <script>
 	( function(d, s, id) {

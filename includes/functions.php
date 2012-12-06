@@ -96,7 +96,7 @@ function Cat_Pages($query,$phpFile,$Category)
 }
 function GenMultipleThumb($results)
 {
-	$count=1;	
+	$count=0;	
 	//echo"<div id=\"mainPage\" class=\"grid_3\"  >";
 	   while($row = mysql_fetch_array($results))
 			    {
@@ -227,6 +227,114 @@ function Pages_search($query,$phpFile,$search)
 				}
 				echo "</div>\n";
 }
+function numPages($Page,$VidNum,$query)
+{
+	$arrayName = array();
+			  	$count =0;
+			   	$results= ex_query($query);
+			    while($row = mysql_fetch_array($results))
+			    {
+				    //var_dump($row);
+					$arrayName[$count] = $row[0];	
+					$count++;				    
+			    }
+				// Show pages links
+			    $divider =16;
+			    $NumPages =ceil((count($arrayName)/$divider));
+				// limit of 5 
+				$TLimit =5;
+				if ($NumPages >$TLimit) {
+					$limit =$TLimit;	
+				}
+				else {
+					$limit =$NumPages;
+				}
+								
+	if($Page<($TLimit))
+	{
+					 
+				echo "<div class=\"grid_12\">\n";
+				for ($i=0; $i < $limit; $i++) 
+				{
+					$string="";
+					//create the links 
+					// has the have the page for the limit  
+					$VidsPerPage ="VidNum=".$divider;
+					$string .= ("<a href=\"");
+					$string .= ($phpFile."?");
+					$string .=('Page=');
+					$string .= ($i+1);
+					$string .=("&amp;".$VidsPerPage."\">");
+					if(($i+1)==$Page)
+					{
+					$string .= "<strong>".$Page . "</strong>" ."</a>\n";						
+					}
+					else {
+					$string .= $i+1 ."</a>\n";	
+					}
+					echo ($string);
+				}
+				if ($limit==$TLimit) {
+					echo "<a href=\"\">......</a> ";
+					for ($i=0; $i < $limit; $i++) 
+					{
+						$string="";
+						//create the links 
+						// has the have the page for the limit  
+						$VidsPerPage ="VidNum=".$divider;
+						$string .= ("<a href=\"");
+						$string .= ($phpFile."?");
+						$string .=('Page=');
+						$string .= ($i+1)+($NumPages -7);
+						$string .=("&amp;".$VidsPerPage."\">");
+						$string .= ($i+1)+($NumPages -7)."</a>\n";						
+						echo ($string);
+					}
+				}
+				
+				
+				echo "</div>\n";
+				}
+else {
+				echo "<div class=\"grid_12\">\n";
+				echo "<a href=\"$phpFile?Page=1&amp;VidNum=$divider\">..</a> ";
+					for ($i=0; $i < $limit; $i++) 
+				{
+					$string="";
+					//create the links 
+					// has the have the page for the limit  
+					$VidsPerPage ="VidNum=".$divider;
+					$string .= ("<a href=\"");
+					$string .= ($phpFile."?");
+					$string .=('Page=');
+					$string .= ($i)+($Page -($TLimit-2));
+					$string .=("&amp;".$VidsPerPage."\">");
+					$string .= ($i)+($Page -($TLimit-3))."</a>\n";	
+					echo ($string);
+				}
+				
+					if(abs($Page-$NumPages)>5){
+					echo "<a href=\"$phpFile?Page=".floor($Page+ ($NumPages -$Page)/2) ."&amp;VidNum=$divider\">..</a>  ";
+					}
+					
+					for ($i=0; $i < $limit; $i++) 
+					{
+						$string="";
+						//create the links 
+						// has the have the page for the limit  
+						$VidsPerPage ="VidNum=".$divider;
+						$string .= ("<a href=\"");
+						$string .= ($phpFile."?");
+						$string .=('Page=');
+						$string .= ($i+1)+($NumPages -$TLimit);
+						$string .=("&".$VidsPerPage."\">");
+						$string .= ($i+1)+($NumPages -$TLimit)."</a>\n";						
+						echo ($string);
+					}
+				
+				echo "</div>\n";
+}
+}
 function Pages($query,$phpFile)
 {
 				$arrayName = array();
@@ -241,8 +349,17 @@ function Pages($query,$phpFile)
 				// Show pages links
 			    $divider =16;
 			    $NumPages =ceil((count($arrayName)/$divider));
+				// limit of 5 
+				$TLimit =5;
+				if ($NumPages >$TLimit) {
+					$limit =$TLimit;	
+				}
+				else {
+					$limit =$NumPages;
+				}
+				
 				echo "<div class=\"grid_12\">\n";
-				for ($i=0; $i < $NumPages; $i++) 
+				for ($i=0; $i < $limit; $i++) 
 				{
 					$string="";
 					//create the links 
@@ -254,11 +371,27 @@ function Pages($query,$phpFile)
 					$string .= ($i+1);
 					$string .=("&".$VidsPerPage."\">");
 					$string .= ($i+1 ."</a>\n");
-					
 					echo ($string);
-					
-					
 				}
+				if ($limit==$TLimit) {
+					echo "<a href=\"\">......</a> ";
+					for ($i=0; $i < $limit; $i++) 
+					{
+						$string="";
+						//create the links 
+						// has the have the page for the limit  
+						$VidsPerPage ="VidNum=".$divider;
+						$string .= ("<a href=\"");
+						$string .= ($phpFile."?");
+						$string .=('Page=');
+						$string .= ($i+1)+($NumPages -$TLimit);
+						$string .=("&".$VidsPerPage."\">");
+						$string .= ($i+1)+($NumPages -$TLimit)."</a>\n";						
+						echo ($string);
+					}
+				}
+				
+				
 				echo "</div>\n";
 }
 function GetDescofUser($userid)
@@ -297,15 +430,15 @@ function GEnerateImageThumb($vidID)
 	if(!empty($row[0]))
 	{
 	
-    echo("<div class=\"VideoThumb grid_3\" >\n");
+    echo('<div class="VideoThumb grid_3" >');
     echo("<a href=\"/view.php?videoID=".$row['Hash']."\">\n");
     echo("<h1>".substr($row['VideoName'], 0,12)."...</h1>\n");
 	echo("<br />\n");
-    echo("<img alt=\"".substr($row['VideoName'], 0,12)."\" src=\"".Image2Thumb($row['videoImage'])."\"/>\n"); 
+    echo("<img alt=\"".substr($row['VideoName'], 0,12)."\" src=\"".Image2Thumb($row['videoImage'])."\" />\n"); 
     //echo("<img src=\"".Image2Thumb($row[4])."\" />");
     echo("<br />\n");
     $desc = ex_query1RowAns("Select txtdesc from videodesc where vidid =".$row['ID']);
-    echo("<p>".substr($desc, 0,45)."...</p>\n");
+    echo("<p>".substr(strip_tags($desc), 0,45)."...</p>\n");
     echo("</a>\n"); 
     echo("</div>\n");		
 
@@ -323,7 +456,7 @@ function GEnerateImageThumbHeader($vidID)
     echo("<div class=\"grid_2 VideoThumbHeader\"> \n");
     echo("<a href=\"/view.php?videoID=".$row['Hash']."\">\n");
     echo("<p>".substr($row['VideoName'], 0,12)."..</p>\n");
-    echo("<img title=\"".$row['VideoName']."\"  src=\"".Image2Thumb($row['videoImage'])."\"/>\n"); 
+    echo("<img alt=\"".$row['VideoName']."\" title=\"".$row['VideoName']."\"  src=\"".Image2Thumb($row['videoImage'])."\"/>\n"); 
     //echo("<img src=\"".Image2Thumb($row[4])."\" />");
     $desc = ex_query1RowAns("Select txtdesc from videodesc where vidid =".$row['ID']);
     // echo("<p>".substr($desc, 0,10)."...</p>\n");

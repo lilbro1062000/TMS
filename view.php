@@ -47,7 +47,9 @@ echo("<br />\n");
 if ($row['site']=='Youtube') {
 	echo("<div class=\"grid_12\"  id=\"VideoContainer\">\n");
 echo("<h2> ".$row['VideoName']."</h2> \n");
-echo $row['mp4Path'];
+$str =str_replace('&','&amp;',$row['mp4Path']);
+$str=str_replace('frameborder="0" allowfullscreen','',$str);
+echo $str;
 
 }
 
@@ -61,12 +63,20 @@ google_ad_width = 468;
 google_ad_height = 60;
 //-->
 </script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+<script type="text/javascript" `src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </script>
 <script>
+//This is for IOS products 
+//first detect IOS
+IS_IPAD = navigator.userAgent.match(/iPad/i) != null;
+IS_IPHONE = (navigator.userAgent.match(/iPhone/i) != null) || (navigator.userAgent.match(/iPod/i) != null);
+if (IS_IPAD) {
+  IS_IPHONE = false;
+  document.getElementById('calendar').src = document.getElementById('calendar').src.replace("\v\\","\\embed\\") ;
+} 
 //  So i am trying to us ajax with this assocronus thing to talk with server
 // I will also try and save the ip address  <?php
+
 // this is for the video update for YOUTUBE videos 
 // for now if they stay on this page for more than 6 seconds it should count as a view 
 if ($row['site']=='local') {
@@ -83,6 +93,7 @@ if ($row['site']=='local') {
 	var myvar = setInterval(function() {
 			AddRequest();
 	}, 9000);	
+	
 	
 });";
 }
