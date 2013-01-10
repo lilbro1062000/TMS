@@ -48,7 +48,7 @@ $First_Name = $row['First_Name'];
 $Lastname =$row['Last_Name'];
 $email=$row['Email'];
 ?>
-<form id="updateUserInfo" method="POST" action="update_info.php">
+<form id="updateUserInfo" method="POST" action="/update_info.php">
 <table>
     <tr><?php if(isset($message)){echo $message;}?>
         <td>First Name</td>

@@ -77,7 +77,7 @@ if (isset($_POST['Keywords'])) {
 	exit ;
 }
 ?>
-<form class="grid_9" id="UpdateVideoForm" action="updatevid.php?id=<?php echo $_GET['videoID']; ?>" method="post">
+<form class="grid_9" id="UpdateVideoForm" action="/updatevid.php?id=<?php echo $_GET['videoID']; ?>" method="post">
 	<label>Video Name:</label>
 	<input type="text" name="VideoName" required="true" value="<?php
 	$row = ex_query1Row("select videoName from video where hash =\"" . $_GET['videoID'] . "\"");

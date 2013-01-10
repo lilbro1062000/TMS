@@ -425,277 +425,321 @@ function removeFromFavorites($User_ID,$VideoID)
     ex_query($query);
 	echo "$query";
 }
-function GEnerateImageThumb($vidID)
+function haschild()
 {
-    $results=ex_query("Select * from video where id ='".$vidID."'");
-    $row = mysql_fetch_array($results);
+	
+}
+function GenerateCategoryList($resultsOfVideoIDs)
+{
+	// this will generate a link list of all the categories like amazon
+	// so i said that i should get the list of
+	// go from result  go upwards 
+	// what about results that are more than one ?
+	
+	// string 
+	$listofresultID ="";
+	while($row =mysql_fetch_array($resultsOfVideoIDs))
+	{
+	//$query = "select Distinct ID, Name from categories where PrevName =".$row[0];
+	$listofresultID .=$row['ID'];	
+	//
+	}
+	// now i have a list of them 
+	
+	$query = "Select ID,Name from categories where PrevName = 'NULL'";
+	// selects all the categories to check if they are in the set 
+	// ...... Hold that thought.
+	$results = ex_query($query);
+	while($row =mysql_fetch_array($results))
+	{
+		// now i have every category 
+		// now i drill down to the smallest
+		$query = "Select ID,Name from categories where PrevName='".$row['ID']."'";
+		
+		// if this has a child then 
+		// keep going 
+	}
+	
+	
+	?>
+	<div>
+		<ul>
+		<li>
+			
+		</li>
+		</ul>
+	</div>
+<?php
+	}
+	function GEnerateImageThumb($vidID)
+	{
+	$results=ex_query("Select * from video where id ='".$vidID."'");
+	$row = mysql_fetch_array($results);
 	if(!empty($row[0]))
 	{
-	
-    echo('<div class="VideoThumb grid_3" >');
-    echo("<a href=\"/view.php?videoID=".$row['Hash']."\">\n");
-    echo("<h1>".substr($row['VideoName'], 0,12)."...</h1>\n");
+	echo('<div class="VideoThumb grid_3" >');
+	echo("<a href=\"/view.php?videoID=".$row['Hash']."\">\n");
+	echo("<h1>".substr($row['VideoName'], 0,12)."...</h1>\n");
 	echo("<br />\n");
-    echo("<img alt=\"".substr($row['VideoName'], 0,12)."\" src=\"".Image2Thumb($row['videoImage'])."\" />\n"); 
-    //echo("<img src=\"".Image2Thumb($row[4])."\" />");
-    echo("<br />\n");
-    $desc = ex_query1RowAns("Select txtdesc from videodesc where vidid =".$row['ID']);
-    echo("<p>".substr(strip_tags($desc), 0,45)."...</p>\n");
-    echo("</a>\n"); 
-    echo("</div>\n");		
-
-	}    
-	else {
-		// echo "not in Video Library";
+	echo("<img alt=\"".substr($row['VideoName'], 0,12)."\" src=\"".Image2Thumb($row['videoImage'])."\" />\n");
+	//echo("<img src=\"".Image2Thumb($row[4])."\" />");
+	echo("<br />\n");
+	$desc = ex_query1RowAns("Select txtdesc from videodesc where vidid =".$row['ID']);
+	echo("<p>".substr(strip_tags($desc), 0,45)."...</p>\n");
+	echo("</a>\n");
+	echo("</div>\n");
 	}
-}
-function GEnerateImageThumbHeader($vidID)
-{
-    $results=ex_query("Select * from video where id ='".$vidID."'");
-    $row = mysql_fetch_array($results);
+	else {
+	// echo "not in Video Library";
+	}
+	}
+	function GEnerateImageThumbHeader($vidID)
+	{
+	$results=ex_query("Select * from video where id ='".$vidID."'");
+	$row = mysql_fetch_array($results);
 	if(!empty($row[0]))
 	{
-    echo("<div class=\"grid_2 VideoThumbHeader\"> \n");
-    echo("<a href=\"/view.php?videoID=".$row['Hash']."\">\n");
-    echo("<p>".substr($row['VideoName'], 0,12)."..</p>\n");
-    echo("<img alt=\"".$row['VideoName']."\" title=\"".$row['VideoName']."\"  src=\"".Image2Thumb($row['videoImage'])."\"/>\n"); 
-    //echo("<img src=\"".Image2Thumb($row[4])."\" />");
-    $desc = ex_query1RowAns("Select txtdesc from videodesc where vidid =".$row['ID']);
-    // echo("<p>".substr($desc, 0,10)."...</p>\n");
-    echo("</a>\n"); 
-    echo("</div>\n");		
+	echo("<div class=\"grid_2 VideoThumbHeader\"> \n");
+	echo("<a href=\"/view.php?videoID=".$row['Hash']."\">\n");
+	echo("<p>".substr($row['VideoName'], 0,12)."..</p>\n");
+	echo("<img alt=\"".$row['VideoName']."\" title=\"".$row['VideoName']."\"  src=\"".Image2Thumb($row['videoImage'])."\"/>\n");
+	//echo("<img src=\"".Image2Thumb($row[4])."\" />");
+	$desc = ex_query1RowAns("Select txtdesc from videodesc where vidid =".$row['ID']);
+	// echo("<p>".substr($desc, 0,10)."...</p>\n");
+	echo("</a>\n");
+	echo("</div>\n");
 
-	}    
-	else {
-		// echo "not in Video Library";
-	
 	}
-}
-function redirect_to($location =NULL)
-{
-    if($location!=NULL)
-    {
-         header("location:{$location}");
-    }
-    else{
-     header("location: index.php");   
-    }
-     
-}
-function generateImage($filepath,$thumbnailPath)
-{
+	else {
+	// echo "not in Video Library";
+
+	}
+	}
+	function redirect_to($location =NULL)
+	{
+	if($location!=NULL)
+	{
+	header("location:{$location}");
+	}
+	else{
+	header("location: index.php");
+	}
+
+	}
+	function generateImage($filepath,$thumbnailPath)
+	{
 	$ffmpeg="ffmpeg";
 	$command =$ffmpeg." -i ".$filepath." -vcodec mjpeg -vframes 10 -an ".$thumbnailPath;
-exec($command);
-}
-function NumberofComments($userid)
-{
+	exec($command);
+	}
+	function NumberofComments($userid)
+	{
 	return ex_query1RowAns("Select count(*) from comments where userid='{$userid}'");
-}
-function Image2Thumb($filename)
-{
-   return "/includes/image.php?fname=".urlencode($filename);
-}
-function check_input($fname)
-{
-    
-    if(get_magic_quotes_gpc())
-    {
-        $fname = stripcslashes($fname);
-    }
-    if(is_numeric($fname))
-    {
-        $fname = "'".mysql_real_escape_string($fname)."'";
-    }
-    return $fname;
-}
-function ex_query($query)
-{
-    $results = mysql_query($query);
-    if (!$results)
-    {
-        die($query."<br/>Database has failed :" . mysql_error());
-    }
-    return $results;
-}
-function ex_query1Row($query)
-{
-    
-    $results = mysql_query($query);
-    if (!$results)
-    {
-        die($query."<br/>Database has failed :" . mysql_error());
-    }
-    $row = mysql_fetch_array($results);
-    return $row;
-}
-function ex_query1RowAns($query)
-{
-    
-    $results = mysql_query($query);
-    if (!$results)
-    {
-        die($query."<br/>Database has failed :" . mysql_error());
-    }
-    $row = mysql_fetch_array($results);
-    return $row[0];
-}
-function generateHash()
-{
-    $arhash = str_split("ABCDEFGHIKJLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz");
-    shuffle($arhash);
-    $arhash = array_slice($arhash, 0, rand(6, 15));
-    $hash = implode("", $arhash);
-    return $hash;
-}
-function genFBState()
-{
+	}
+	function Image2Thumb($filename)
+	{
+	return "/includes/image.php?fname=".urlencode($filename);
+	}
+	function check_input($fname)
+	{
+
+	if(get_magic_quotes_gpc())
+	{
+	$fname = stripcslashes($fname);
+	}
+	if(is_numeric($fname))
+	{
+	$fname = "'".mysql_real_escape_string($fname)."'";
+	}
+	return $fname;
+	}
+	function ex_query($query)
+	{
+	$results = mysql_query($query);
+	if (!$results)
+	{
+	die($query."<br/>Database has failed :" . mysql_error());
+	}
+	return $results;
+	}
+	function ex_query1Row($query)
+	{
+
+	$results = mysql_query($query);
+	if (!$results)
+	{
+	die($query."<br/>Database has failed :" . mysql_error());
+	}
+	$row = mysql_fetch_array($results);
+	return $row;
+	}
+	function ex_query1RowAns($query)
+	{
+
+	$results = mysql_query($query);
+	if (!$results)
+	{
+	die($query."<br/>Database has failed :" . mysql_error());
+	}
+	$row = mysql_fetch_array($results);
+	return $row[0];
+	}
+	function generateHash()
+	{
 	$arhash = str_split("ABCDEFGHIKJLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz");
-    shuffle($arhash);
-    $arhash = array_slice($arhash, 0, rand(10, 25));
-    $hash = implode("", $arhash);
-    return $hash;
-}
-function genUhash()
-{
-    $hash="";
-    $toggle="run";
-    while($toggle == "run")
-    {
-        $hash = bol();
-        if ($hash != "false")
-        {
-            $toggle = "false";
-        }
-     }
-     
-     return $hash;
-}
-function bol()
-{
-    $genhash = generateHash();  
-    if (check("video","Hash","".$genhash.""))
-    {
-        return $genhash;    
-    }
-    else{
-        return "false";
-        }
-}
-function check($table,$col,$colVaue)
-{
-    $fname = "SELECT 1 FROM ".$table." where ".$col." = \"" . $colVaue."\""; 
-    $results = ex_query($fname);
-    $row = mysql_fetch_array($results);
-    if ($row[0] == "1")
-    {
-        return false;
-    } else
-    {
-        return true;
-    }
-    
-}
-Function Favorited($userid,$videoID)
-{
+	shuffle($arhash);
+	$arhash = array_slice($arhash, 0, rand(6, 15));
+	$hash = implode("", $arhash);
+	return $hash;
+	}
+	function genFBState()
+	{
+	$arhash = str_split("ABCDEFGHIKJLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz");
+	shuffle($arhash);
+	$arhash = array_slice($arhash, 0, rand(10, 25));
+	$hash = implode("", $arhash);
+	return $hash;
+	}
+	function genUhash()
+	{
+	$hash="";
+	$toggle="run";
+	while($toggle == "run")
+	{
+	$hash = bol();
+	if ($hash != "false")
+	{
+	$toggle = "false";
+	}
+	}
+
+	return $hash;
+	}
+	function bol()
+	{
+	$genhash = generateHash();
+	if (check("video","Hash","".$genhash.""))
+	{
+	return $genhash;
+	}
+	else{
+	return "false";
+	}
+	}
+	function check($table,$col,$colVaue)
+	{
+	$fname = "SELECT 1 FROM ".$table." where ".$col." = \"" . $colVaue."\"";
+	$results = ex_query($fname);
+	$row = mysql_fetch_array($results);
+	if ($row[0] == "1")
+	{
+	return false;
+	} else
+	{
+	return true;
+	}
+
+	}
+	Function Favorited($userid,$videoID)
+	{
 	$query = "select 1 from favorites where userid={$userid} and VideoID='{$videoID}'";
 	$fav = ex_query1RowAns($query);
 	if($fav==1)
 	{
-		return true;
+	return true;
 	}
 	else{return false;}
-}
+	}
 
-function GetVideoID($hash)
-{
+	function GetVideoID($hash)
+	{
 	$q="Select ID from video where Hash='{$hash}'";
 	return ex_query1RowAns($q);
-}
+	}
 
-function getnumVideosUploaded($userID)
-{
-	  return ex_query1RowAns("Select count(*) from video where userid=".check_input($userID));
-}
-function getnumVideosWatched($userID)
-{
-	  return ex_query1RowAns("Select count(*) from history where userid=".check_input($userID));
-}
-function getUploadSize($userid)
-{
+	function getnumVideosUploaded($userID)
+	{
+	return ex_query1RowAns("Select count(*) from video where userid=".check_input($userID));
+	}
+	function getnumVideosWatched($userID)
+	{
+	return ex_query1RowAns("Select count(*) from history where userid=".check_input($userID));
+	}
+	function getUploadSize($userid)
+	{
 	$query ="Select UploadLimit from usersinfo where id ={$userid}";
 	return ex_query1RowAns($query);
-}
+	}
 
-/**
-Validate an email address.
-Provide email address (raw input)
-Returns true if the email address has the email 
-address format and the domain exists.
-*/
-function validEmail($email)
-{
-   $isValid = true;
-   $atIndex = strrpos($email, "@");
-   if (is_bool($atIndex) && !$atIndex)
-   {
-      $isValid = false;
-   }
-   else
-   {
-      $domain = substr($email, $atIndex+1);
-      $local = substr($email, 0, $atIndex);
-      $localLen = strlen($local);
-      $domainLen = strlen($domain);
-      if ($localLen < 1 || $localLen > 64)
-      {
-         // local part length exceeded
-         $isValid = false;
-      }
-      else if ($domainLen < 1 || $domainLen > 255)
-      {
-         // domain part length exceeded
-         $isValid = false;
-      }
-      else if ($local[0] == '.' || $local[$localLen-1] == '.')
-      {
-         // local part starts or ends with '.'
-         $isValid = false;
-      }
-      else if (preg_match('/\\.\\./', $local))
-      {
-         // local part has two consecutive dots
-         $isValid = false;
-      }
-      else if (!preg_match('/^[A-Za-z0-9\\-\\.]+$/', $domain))
-      {
-         // character not valid in domain part
-         $isValid = false;
-      }
-      else if (preg_match('/\\.\\./', $domain))
-      {
-         // domain part has two consecutive dots
-         $isValid = false;
-      }
-      else if
-(!preg_match('/^(\\\\.|[A-Za-z0-9!#%&`_=\\/$\'*+?^{}|~.-])+$/',
-                 str_replace("\\\\","",$local)))
-      {
-         // character not valid in local part unless 
-         // local part is quoted
-         if (!preg_match('/^"(\\\\"|[^"])+"$/',
-             str_replace("\\\\","",$local)))
-         {
-            $isValid = false;
-         }
-      }
-      if ($isValid && !(checkdnsrr($domain,"MX") || 
- ↪checkdnsrr($domain,"A")))
-      {
-         // domain not found in DNS
-         $isValid = false;
-      }
-   }
-   return $isValid;
-}
+	/**
+	Validate an email address.
+	Provide email address (raw input)
+	Returns true if the email address has the email
+	address format and the domain exists.
+	*/
+	function validEmail($email)
+	{
+	$isValid = true;
+	$atIndex = strrpos($email, "@");
+	if (is_bool($atIndex) && !$atIndex)
+	{
+	$isValid = false;
+	}
+	else
+	{
+	$domain = substr($email, $atIndex+1);
+	$local = substr($email, 0, $atIndex);
+	$localLen = strlen($local);
+	$domainLen = strlen($domain);
+	if ($localLen < 1 || $localLen > 64)
+	{
+	// local part length exceeded
+	$isValid = false;
+	}
+	else if ($domainLen < 1 || $domainLen > 255)
+	{
+	// domain part length exceeded
+	$isValid = false;
+	}
+	else if ($local[0] == '.' || $local[$localLen-1] == '.')
+	{
+	// local part starts or ends with '.'
+	$isValid = false;
+	}
+	else if (preg_match('/\\.\\./', $local))
+	{
+	// local part has two consecutive dots
+	$isValid = false;
+	}
+	else if (!preg_match('/^[A-Za-z0-9\\-\\.]+$/', $domain))
+	{
+	// character not valid in domain part
+	$isValid = false;
+	}
+	else if (preg_match('/\\.\\./', $domain))
+	{
+	// domain part has two consecutive dots
+	$isValid = false;
+	}
+	else if
+	(!preg_match('/^(\\\\.|[A-Za-z0-9!#%&`_=\\/$\'*+?^{}|~.-])+$/',
+	str_replace("\\\\","",$local)))
+	{
+	// character not valid in local part unless
+	// local part is quoted
+	if (!preg_match('/^"(\\\\"|[^"])+"$/',
+	str_replace("\\\\","",$local)))
+	{
+	$isValid = false;
+	}
+	}
+	if ($isValid && !(checkdnsrr($domain,"MX") ||
+	↪checkdnsrr($domain,"A")))
+	{
+	// domain not found in DNS
+	$isValid = false;
+	}
+	}
+	return $isValid;
+	}
 ?>

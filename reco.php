@@ -40,7 +40,7 @@ include_once ("includes/categories.php");
 
 <div class="grid_12" id="recom" style="height: 400px">
 
-	<form method="post" action="reco.php">
+	<form method="post" action="/reco.php">
 		<strong class="grid_12"> Recommendations for site </Strong>
 		<?
 			if (isset($msg)) {echo $msg . "\n";

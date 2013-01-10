@@ -56,74 +56,72 @@ echo $str;
 
 ?>
 
-<script type="text/javascript"><!--
-google_ad_client = "ca-pub-4475426569219871";
-/* Video Ads */
-google_ad_slot = "4140414938";
-google_ad_width = 468;
-google_ad_height = 60;
-//-->
+<script type="text/javascript">
+	<!--
+	google_ad_client ="ca-pub-4475426569219871";
+	/* Video Ads */
+	google_ad_slot = "4140414938";
+	google_ad_width = 468;
+	google_ad_height = 60;
+	//-->
 </script>
-<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
 <script>
-//This is for IOS products 
-//first detect IOS
-IS_IPAD = navigator.userAgent.match(/iPad/i) != null;
-IS_IPHONE = (navigator.userAgent.match(/iPhone/i) != null) || (navigator.userAgent.match(/iPod/i) != null);
-if (IS_IPAD || IS_IPHONE) {
-  document.getElementById('youtubeEmbed').src = document.getElementById('youtubeEmbed').src.replace("\v\\","\\embed\\") ;
-} 
-//  So i am trying to us ajax with this assocronus thing to talk with server
-// I will also try and save the ip address  <?php
+	//This is for IOS products
+	//first detect IOS
+	IS_IPAD = navigator.userAgent.match(/iPad/i) != null;
+	IS_IPHONE = (navigator.userAgent.match(/iPhone/i) != null) || (navigator.userAgent.match(/iPod/i) != null);
+	if (IS_IPAD || IS_IPHONE) {
+		document.getElementById('youtubeEmbed').src = document.getElementById('youtubeEmbed').src.replace("\v\\", "\\embed\\");
+	}
+	//  So i am trying to us ajax with this assocronus thing to talk with server
+	// I will also try and save the ip address
+<?php
 
-// this is for the video update for YOUTUBE videos 
-// for now if they stay on this page for more than 6 seconds it should count as a view 
-if ($row['site']=='local') {
+// this is for the video update for YOUTUBE videos
+// for now if they stay on this page for more than 6 seconds it should count as a view
+if ($row['site'] == 'local') {
 	echo "var myvid = document.getElementById('Video');
-	var myvar = setInterval(function() {		
-		if (myvid.currentTime > 5) {
-			//checkCookie();
-			AddRequest();
-		}
-	}, 1000);";
-} elseif ($row['site']=='Youtube') {
+var myvar = setInterval(function() {
+if (myvid.currentTime > 5) {
+//checkCookie();
+AddRequest();
+}
+}, 1000);";
+} elseif ($row['site'] == 'Youtube') {
 	echo "$(document).ready(function(){
-	var myvid = document.getElementById('Video');
-	var myvar = setInterval(function() {
-			AddRequest();
-	}, 9000);	
-	
-	
+var myvid = document.getElementById('Video');
+var myvar = setInterval(function() {
+AddRequest();
+}, 9000);
+
 });";
 }
-
 ?>
 	function AddRequest()
+{
+xmlhttp=new XMLHttpRequest();
+xmlhttp.open("GET","/includes/viewcount.php?videoID=<?php echo $hash; ?>
+	",true);
+	xmlhttp.send();
+
+	xmlhttp.onreadystatechange=function()
 	{
-		xmlhttp=new XMLHttpRequest();
-		xmlhttp.open("GET","/includes/viewcount.php?videoID=<?php echo $hash; ?>",true);
-		xmlhttp.send();
-		
-		xmlhttp.onreadystatechange=function()
-  			{
-  				if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    				{
-    					document.getElementById("viewcount").innerHTML=xmlhttp.responseText;
-    					clearInterval(myvar);
- 				  }
-  }
+	if (xmlhttp.readyState==4 && xmlhttp.status==200)
+	{
+	document.getElementById("viewcount").innerHTML=xmlhttp.responseText;
+	clearInterval(myvar);
+	}
+	}
 
 	}
 </script>
 <!-- Place this tag where you want the +1 button to render. -->
 
 <?php
-if(ex_query1RowAns("select 1 from video where Hash='".$_GET['videoID']."'")=="1")
-{
+if (ex_query1RowAns("select 1 from video where Hash='" . $_GET['videoID'] . "'") == "1") {
 	include_once ("includes/BottemVideoPanel.php");
 }
-
 ?>
 <?php
 
@@ -136,7 +134,7 @@ if (checklogin()) {
 	//ex_query($query);
 	$vidID = GetVideoID($hash);
 	UpdateHistory($_SESSION[SESSIONUSERID], $hash, to_mysqlDate(time()));
-	
+
 }
 }
 else{

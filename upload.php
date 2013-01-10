@@ -67,7 +67,7 @@ $(function() {
 
 
 
-<form id="Upload_Box" class="grid_12" action="includes/upload_file.php" method="post"
+<form id="Upload_Box" class="grid_12" action="/includes/upload_file.php" method="post"
 enctype="multipart/form-data">
     <input type="hidden"  name="MAX_FILE_SIZE" value="<?php  
      echo getUploadSize($_SESSION[SESSIONUSERID]);

@@ -91,7 +91,7 @@ redirect_to("login.php?msg=3");
 ?>
 
 
-<form id="Login" method="post" class="grid_4" action="signup.php">
+<form id="Login" method="post" class="grid_4" action="/signup.php">
 	<?php
 	if(isset($message))
 	{

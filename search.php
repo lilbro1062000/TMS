@@ -72,7 +72,7 @@ if(isset($_GET['Page']) && $_GET['Page']>0 && isset($_GET['VidNum']))
 			$results = ex_query($query);
 			
 			$count =GenMultipleThumb($results);
-			Pages_search($query, "search.php",$_GET['Search']);	
+			Pages_search($query, "search.php",mysql_real_escape_string($_GET['Search']));	
 			
 			if($count ==0)
 			{

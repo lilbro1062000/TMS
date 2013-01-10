@@ -70,8 +70,7 @@ echo $str;
 
 IS_IPAD = navigator.userAgent.match(/iPad/i) != null;
 IS_IPHONE = (navigator.userAgent.match(/iPhone/i) != null) || (navigator.userAgent.match(/iPod/i) != null);
-if (IS_IPAD) {
-  IS_IPHONE = false;
+if (IS_IPAD || IS_IPHONE) {
   document.getElementById('youtubeEmbed').src = document.getElementById('youtubeEmbed').src.replace("\v\\","\\embed\\") ;
 } 
 <?php

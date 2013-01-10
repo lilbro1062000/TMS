@@ -8,7 +8,7 @@
 				$rw = ex_query1RowAns($query);
 
 				if ($rw == NULL) {
-					$q1 = "insert into views( Video_ID,Numwatched) values('".GetVideoID($hash)."',0)";
+					$q1 = "insert into views( Video_ID,Numwatched) values('" . GetVideoID($hash) . "',0)";
 					ex_query($q1);
 					$rw = ex_query1RowAns($query);
 				}
@@ -19,7 +19,7 @@
 				<?php
 				$query = "select UserName from users where ID =(select UserID from video where Hash='$hash')";
 				$username = ex_query1RowAns($query);
-				echo "<a href=\"/user/".urlencode($username)."\" >$username</a>";
+				echo "<a href=\"/user/" . urlencode($username) . "\" >$username</a>";
 				?>
 			</li>
 			<?php
@@ -85,11 +85,10 @@
 			?>
 
 			<li>
-				
+
 				<?php
 				echo "<iframe src=\"http://www.facebook.com/plugins/like.php?href={$_SERVER["HTTP_HOST"]}/view.php?videoID=$hash\"\n class=\"iframe\"></iframe>\n";
 				?>
-				
 			</li>
 			<li>
 			<div class="g-plusone"></div>
