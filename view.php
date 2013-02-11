@@ -49,7 +49,7 @@ if ($row['site']=='Youtube') {
 echo("<h2> ".$row['VideoName']."</h2> \n");
 $str =str_replace('&','&amp;',$row['mp4Path']);
 $str=str_replace('frameborder="0" allowfullscreen','',$str);
-$str=str_replace('<frame width=','<frame id="youtubeEmbed" width=',$str);
+$str=str_replace('<iframe width=','<iframe id="youtubeEmbed" width=',$str);
 echo $str;
 
 }

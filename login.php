@@ -29,7 +29,7 @@ if(isset($_POST['submit']))
 	require_once "includes/openid/Auth/OpenID/Consumer.php";
   	require_once "includes/openid/Auth/OpenID/FileStore.php";	
 }
-include_once ("includes/head.php");
+include_once ("includes/head.php"); 
 include_once ("includes/categories.php");
 require_once ("includes/FB.php");
 ?>
