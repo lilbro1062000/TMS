@@ -456,8 +456,8 @@ function GenerateCategoryList($resultsOfVideoIDs)
 		// now i drill down to the smallest
 		$query = "Select ID,Name from categories where PrevName='".$row['ID']."'";
 		
-		// if this has a child then 
-		// keep going 
+		// this is to get the categories of the set 
+		// And provide a link that they can click 
 	}
 	
 	

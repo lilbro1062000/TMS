@@ -19,6 +19,16 @@ if (isset($_GET['msg'])) {
 	}
 
 }
+
+if(isset($_POST['submit']))
+{
+	if (trim($_POST['id'] == '')) {
+    die("ERROR: Please enter a valid OpenID.");    
+  }
+	
+	require_once "includes/openid/Auth/OpenID/Consumer.php";
+  	require_once "includes/openid/Auth/OpenID/FileStore.php";	
+}
 include_once ("includes/head.php");
 include_once ("includes/categories.php");
 require_once ("includes/FB.php");
@@ -100,8 +110,34 @@ appId      : '<?php echo FB_APP_ID; ?>
 		echo "Yes i am sure i want to <a href=" . GetFBlogoutURL() . "> logout </a>";
 
 	} else {
+		?>
+		<table>
+			<tr>
+				<td >
+					<form method="post" action="#">
+      Sign in with your OpenID: <br/>
+      <input type="text" name="id" size="30" />
+      <br />
+      <input type="submit" name="submit" value="Log In" /> 
+</form>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					OR
+				</td>
+			</tr>
+			<tr>
+				<td>
+		<?php
 		echo "<div id=\"fbloginbox\" class=\"fb-login-button\"  scope=\"email,user_checkins\" data-redirect-uri=\"index.php\">Login with Facebook</div>\n <br/>";
 		echo "Click <a href=\"index.php\"> Here</a> after login if you are not automatically logged in.";
+		?>			
+				</td>
+			</tr>
+		</table>
+		<?php
+
 	}
 	?>
 </form>

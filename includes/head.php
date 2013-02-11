@@ -5,7 +5,10 @@ require_once ("FB.php");
 ?>
 
 <?php
-
+  
+ 
+ 
+/*
  if($_SERVER["SERVER_NAME"]!="www.tmsomething.com")
  {
 	 //header('Location: http://www.tmsomething.com');
@@ -21,6 +24,7 @@ Redirecting you to wwww.tmsomething.com ......
 </body></html>";
  exit;	
  }
+ * */
 //if logged in via Session  Then don't check the Is FB logged in
 if (!isSitelogin()) {
 	
@@ -45,11 +49,12 @@ if (!isSitelogin()) {
 	}
 	
 //testing login
-
- // if (!isSitelogin()) {
-// 
-// login('704520593', 'Abdoulaye Camara');
-	  // }
+ 
+/*
+  if (!isSitelogin()) {
+ 
+ login('704520593', 'Abdoulaye Camara');
+	   }*/
 ?>
 <!DOCTYPE HTML>
 <html lang="en" >
