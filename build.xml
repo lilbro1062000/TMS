@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<project name="TeachMeSomething" default="dist">
+<property name="Build_dir" value="./../build/" />
+    <!-- ============================================  -->
+    <!-- Target: prepare                               -->
+    <!-- ============================================  -->
+    <target name="prepare">
+        <echo msg="Making directory ./build" />
+        <mkdir dir="${Build_dir}" />
+    </target>
+
+    <!-- ============================================  -->
+    <!-- Target: build                                 -->
+    <!-- ============================================  -->
+    <target name="build" depends="prepare">
+        <echo msg="Copying files to build directory..." />
+
+        <echo msg="Cloning Repository" />
+        <gitclone
+        	repository="https://github.com/lilbro1062000/TMS.git"
+        	targetPath="${Build_dir}" 
+        	/>
+        	
+        
+    </target>
+
+    <!-- ============================================  -->
+    <!-- (DEFAULT)  Target: dist                       --> 
+    <!-- ============================================  -->
+    <target name="Deploy" depends="build">
+    	<echo msg="Deploying Build" />
+    	<ftpdeploy 
+			  host="ftp.tmsomething.com" 
+			  username="phingDeploy" 
+			  password="z:H;+L714PrW1'ZWTTng"
+			  clearfirst="true"
+			  level="debug"
+			  depends="true">
+			  <fileset dir="${Build_dir}">
+			    <include name="**"/>
+			    <exclude name="phing"/>
+			    <exclude name="build.xml"/>
+			  </fileset>
+			</ftpdeploy>
+        <echo msg="Deleting Build folder" />
+
+        <delete dir="${Build_dir}"  includeemptydirs="true" verbose="true" failonerror="true"/>
+        <echo msg="Files copied and Deployed to www.Tmsomething.com!" />
+    </target>
+</project>
