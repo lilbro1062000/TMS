@@ -1,11 +1,11 @@
 <?php
 
 
-// PROD DB stuff
-define("DB_SERVER", "lilbro1062000.domaincommysql.com");
-define("DB_USER", "tmsprdusr_1");
-define("DB_PASS", "Y!8#;428M4fPjpNVV)B&za");
-define("DB_Name", "tmsprddb_1");
+//Dev database constants to edit.
+define("DB_SERVER", "127.0.0.1");
+define("DB_USER", "root");
+define("DB_PASS", "password");
+define("DB_Name", "tms_Dev");
 
 //Upload COnstants
 define("IMAGE_PATH", "/images\\");

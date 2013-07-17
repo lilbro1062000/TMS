@@ -1,11 +1,14 @@
 <?php
+// config 
+ $debug=1; // this means i can debug  
+            // anything else means Prod
+ 
 require_once ("connection.php");
 require_once ("functions.php");
 require_once ("FB.php");
 ?>
 
 <?php
-  
  
  
 /*
@@ -48,14 +51,10 @@ if (!isSitelogin()) {
 		 loggout();
 	}
 	
-//testing login
-
- 
-/*
-  if (!isSitelogin()) {
- 
+//Dev testing login
+  if ($debug=1) {
  login('704520593', 'Abdoulaye Camara');
-	   }*/?>
+	   }?>
 <!DOCTYPE HTML>
 <html lang="en" >
 	<head>
