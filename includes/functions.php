@@ -742,4 +742,17 @@ function GenerateCategoryList($resultsOfVideoIDs)
 	}
 	return $isValid;
 	}
+    function remoteFilesize ($URL){
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $URL);
+    curl_setopt($ch, CURLOPT_HEADER, true);
+    curl_setopt($ch, CURLOPT_NOBODY, true);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $info = curl_exec($ch);
+    curl_close($ch);
+    $info = explode(‘Content-Length’, $info);
+    $info = explode(“Connection”,$info[1]);
+    return $info[0];
+    }
+
 ?>

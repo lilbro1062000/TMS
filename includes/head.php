@@ -1,6 +1,6 @@
 <?php
 // config 
- $debug=1; // this means i can debug  
+ $debug=0; // this means i can debug  
             // anything else means Prod
  
 require_once ("connection.php");

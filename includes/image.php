@@ -1,4 +1,17 @@
 <?php
+function remoteFilesize ($URL){
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $URL);
+    curl_setopt($ch, CURLOPT_HEADER, true);
+    curl_setopt($ch, CURLOPT_NOBODY, true);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $info = curl_exec($ch);
+    curl_close($ch);
+    $info = explode(‘Content-Length’, $info);
+    $info = explode(“Connection”,$info[1]);
+    return $info[0];
+    }
+
 $filename =urldecode($_GET['fname']);
 
 if(isset($_GET['vid']))
@@ -12,7 +25,9 @@ else {
 	$toHeight=160;
 }
 
- list($width, $height) = getimagesize($filename);
+ // list($width, $height) = getimagesize($filename);
+    list($width, $height) = remoteFilesize($filename);
+ 
     $xscale=$width/$toWidth;
     $yscale=$height/$toHeight;
 
