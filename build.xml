@@ -45,6 +45,8 @@
 		 <property name="ftp.username" value="phingDeploy"/>
 		 <property name="ftp.password" value="z:H;+L714PrW1'ZWTTng"/>
 		 <property name="ftp.dir" value="/"/>
+		 <property name="ftp.github" value="z:H;+L714PrW1'ZWTTng"/>
+		 <property name="ftp.user" value="/"/>
 		 
 		   <copy todir="${Deploy_dir}" includeemptydirs="true">
 		   	<fileset dir="${Build_dir}" id="srcfiles">
