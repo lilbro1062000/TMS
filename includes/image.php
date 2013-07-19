@@ -44,8 +44,8 @@ $height = imagesy($image);
    
    header("Content-type: image/jpeg");
     $imageResized = imagecreatetruecolor($new_width, $new_height);
-    $imageTmp     = imagecreatefromjpeg ($filename);
-    imagecopyresampled($imageResized, $imageTmp, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
+    
+    imagecopyresampled($imageResized, $image, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
 
      imagejpeg($imageResized,null,100);
    

@@ -1,6 +1,6 @@
 <?php
 date_default_timezone_set('America/New_York');
-require_once 'constants.php';
+require_once 'connection.php';
 function GetuserIDfromEmail($email)
 {
 	$query =" Select ID from usersinfo where Email=\"".$email."\"";

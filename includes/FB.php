@@ -1,6 +1,6 @@
 <?php
 require_once ('FB/facebook.php');
-require_once ('constants.php');
+require_once ('connection.php');
 require_once ('functions.php');
 $facebook = new Facebook( array('appId' => FB_APP_ID, 'secret' => FB_APP_SECRETE_KET, 'cookie' => true, ));
 $user = $facebook -> getUser();

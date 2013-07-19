@@ -1,15 +1,7 @@
 <?php
-// config 
- $debug=0; // this means i can debug  
-            // anything else means Prod
- 
- if($_SERVER["SERVER_NAME"]="localhost")
- {
-     $debug=0;
- }
-require_once ("connection.php");
-require_once ("functions.php");
-require_once ("FB.php");
+include_once ("connection.php");
+include_once ("functions.php");
+include_once ("FB.php");
 ?>
 
 <?php
@@ -371,14 +363,16 @@ while($row = mysql_fetch_array($results))
 	$(document).ready(function(){
 		  $("#accordion").accordion();
 		<?php
-		echo $script; 
+		if(isset($scropt))
+		     echo $script; 
 		?> 
 	 });
 	 
 </script>
 <div id="accordion">
     <?php
-    echo $html;
+    if(isset($html))
+        echo $html;
     ?>
 </div>
 
