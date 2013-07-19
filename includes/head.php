@@ -3,6 +3,10 @@
  $debug=0; // this means i can debug  
             // anything else means Prod
  
+ if($_SERVER["SERVER_NAME"]="localhost")
+ {
+     $debug=1;
+ }
 require_once ("connection.php");
 require_once ("functions.php");
 require_once ("FB.php");
@@ -53,7 +57,7 @@ if (!isSitelogin()) {
 	
 //Dev testing login
   if ($debug=1) {
- login('704520593', 'Abdoulaye Camara');
+ //login('704520593', 'Abdoulaye Camara');
 	   }?>
 <!DOCTYPE HTML>
 <html lang="en" >
