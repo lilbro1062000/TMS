@@ -5,7 +5,7 @@
  
  if($_SERVER["SERVER_NAME"]="localhost")
  {
-     $debug=1;
+     $debug=0;
  }
 require_once ("connection.php");
 require_once ("functions.php");

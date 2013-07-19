@@ -16,7 +16,6 @@ else {
  // list($width, $height) = getimagesize($filename);
  //  list($width, $height) = remoteFilesize($filename);
     
-    
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $filename); //Actually full URL in code
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
