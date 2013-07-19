@@ -7,10 +7,6 @@ if($_SERVER["SERVER_NAME"]=="www.tmsomething-dev.com")
       
      $debug=1;
  }
-else{
-    var_dump($_SERVER["SERVER_NAME"]);
-    unset($debug);
-}
     
  
 if (isset($debug)) {
