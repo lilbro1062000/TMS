@@ -32,6 +32,11 @@ function doIncludes() {
      * Require the PAPE extension module.
      */
     require_once "Auth/OpenID/PAPE.php";
+    
+    /**
+     * For AX servers google.
+     */
+     require_once "Auth/OpenID/AX.php";
 }
 
 doIncludes();

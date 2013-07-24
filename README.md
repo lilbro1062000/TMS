@@ -57,7 +57,38 @@ alright then i guess we should get to work
 November 14 2012
 
 Watching One Piece
-Making changes to project for new category catherrization 
+Making changes to project for new category catherrization for each video 
+ 
 also to make some changes with the project itself   
 
 add a bread crumb for view.
+
+
+july 20 2013
+
+what can users do. 
+
+users  
+	   name 
+	   email
+	   
+	   Session stuff  
+
+users can view videos and preform a like or a rating system 
+
+THey can see what they liked and what they have watched in the past.
+
+they can see what they flagged as either:: Misslabled 
+										:: innapropriate
+										::
+										
+						Rating system 
+						
+						rate videos from 1 - 5 
+						
+flow from for login and registration 
+info needed 
+
+name 
+email 
+ID ( identity URL)						

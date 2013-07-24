@@ -1,7 +1,10 @@
 <?php
 require_once('functions.php');
-require 'FB.php';
-
+// require 'FB.php';
+/**
+ * This page facilitaes the logon of the user
+ * the user only has a user name and email address 
+ */
 function Logged_in()
 {
     if(!checklogin())

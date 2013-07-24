@@ -1,7 +1,6 @@
 <?php
 
 require_once "common.php";
-session_start();
 
 function getOpenIDURL() {
     // Render a default page if we got a submission without an openid
@@ -36,7 +35,25 @@ function run() {
     if ($sreg_request) {
         $auth_request->addExtension($sreg_request);
     }
-
+    
+    // Create attribute request object
+    // See http://code.google.com/apis/accounts/docs/OpenID.html#Parameters for parameters
+    // Usage: make($type_uri, $count=1, $required=false, $alias=null)
+    $attribute[] = Auth_OpenID_AX_AttrInfo::make('http://axschema.org/contact/email',2,1, 'email');
+    $attribute[] = Auth_OpenID_AX_AttrInfo::make('http://axschema.org/namePerson/first',1,1, 'firstname');
+    $attribute[] = Auth_OpenID_AX_AttrInfo::make('http://axschema.org/namePerson/last',1,1, 'lastname');
+    
+    // Create AX fetch request
+    $ax = new Auth_OpenID_AX_FetchRequest;
+    
+    // Add attributes to AX fetch request
+    foreach($attribute as $attr){
+        $ax->add($attr);
+    }
+    
+    // Add AX fetch request to authentication request
+    $auth_request->addExtension($ax);
+    
 	$policy_uris = null;
 	if (isset($_GET['policies'])) {
     	$policy_uris = $_GET['policies'];
