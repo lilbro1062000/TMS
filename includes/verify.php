@@ -1,7 +1,6 @@
 <?php
 // if the person isn't verified then verify them
 // check the indicator
-include 'session.php';
 
 include_once 'connection.php';
 require_once 'functions.php';

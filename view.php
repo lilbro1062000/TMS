@@ -1,7 +1,5 @@
 <?php
 include_once("includes/session.php");
-include_once("includes/head.php");
-include_once ("includes/categories.php")
 ?>
 
 <div id="azk43115"></div>
@@ -128,7 +126,7 @@ if (ex_query1RowAns("select 1 from video where Hash='" . $_GET['videoID'] . "'")
 //add favorites function already exists maybe a button or link That runs without reloading the page.
 echo("</div>");
 
-if (checklogin()) {
+if (isSitelogin()) {
 	// i have to add a check to see if this has been seen if so then it should just edit the date
 	//$query ="Insert into History(USERID,VideoID,Date) Values('{$_SESSION[SESSIONUSERID]}','".$hash."','".to_mysqlDate(time())."')";
 	//ex_query($query);
@@ -142,5 +140,5 @@ echo("<p class=\"grid_6\">Sorry this video doesnt exist</p>\n");
 }
 ?>
 <?php
-include_once ("includes/foot.php");
+include ("includes/foot.php");
 ?>

@@ -2,10 +2,7 @@
 
 //i need to add notification check for change email 
 //check log in
-include_once ("includes/session.php");
- Logged_in();
-include_once ("includes/head.php");
-include_once ("includes/categories.php");
+include_once ("includes/session.php"); // this page is only for people that are logged in 
 //Option to edit profile
 
 //
@@ -21,7 +18,7 @@ if(isset($_POST['ChangeEmail']))
 	//and update verified information
 	$email =$_POST['ChangeEmail']; 
 	
-	$query = "Update usersinfo set Email=\"$email\",VerifiedEmail =  '0' where ID={$_SESSION[SESSIONUSERID]} ";
+	$query = "Update usersinfo set Email=\"$email\",VerifiedEmail =  '0' where id ='".$_SESSION[SESSIONUSERID]."'";
 	ex_query($query);
 	$query = "Insert into notifications(dtmessage,type,userid,msg,visible) Value(";
 	$query .="'".to_mysqlDate(time())."'";
@@ -66,7 +63,7 @@ if(isset($_POST['ChangeEmail']))
 		   $_SESSION[SESSIONUSERID]
 		 );
 		 echo "<br/>";
-		 $email = ex_query1RowAns("Select Email from usersinfo where id ={$_SESSION[SESSIONUSERID]}");
+		 $email = ex_query1RowAns("Select Email from usersinfo where id ='".$_SESSION[SESSIONUSERID]."'");
 		?>
 	</div>
 	<script>
@@ -112,7 +109,7 @@ if(isset($_POST['ChangeEmail']))
 			?>
 			<p>
 				<?php
-				$verified = ex_query1RowAns("select VerifiedEmail from usersinfo where id ={$_SESSION[SESSIONUSERID]}");
+				$verified = ex_query1RowAns("select VerifiedEmail from usersinfo where id ='".$_SESSION[SESSIONUSERID]."'");
 				if($verified==1)
 				{
 					echo "<a href=\"#\" id=\"Verified\"> Verified </a>";
@@ -144,18 +141,17 @@ if(isset($_POST['ChangeEmail']))
 		 );
 		?>
 	</div>
-	<div class="grid_9">
+	<div class="alert">
 		PLease note it may take up to 24 hours for your Video to be uploaded. IF it take longer please Email us At Admin@tmsomething.com
-		
 	</div>
 </div>
 
 
 <script>
 	$(document).ready(function() {
-		$("#RefreshPage").load("/includes/videoloadcontent.php");
+		$("#RefreshPage").load("/includes/videoloadcontent.php?ID=<?PHP echo urlencode($_SESSION[SESSIONUSERID]); ?>";
 		var refreshid = setInterval(function() {
-			$("#RefreshPage").load("/includes/videoloadcontent.php");
+			$("#RefreshPage").load("/includes/videoloadcontent.php?ID=<?PHP echo urlencode($_SESSION[SESSIONUSERID]); ?>";
 		}, 1000);
 	})
 </script>

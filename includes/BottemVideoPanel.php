@@ -27,7 +27,7 @@
 				echo "<li id=\"FavoriteLink\">";
 				echo "<a href=\"";
 
-				if (!Favorited($_SESSION['User_ID'], $hash)) {
+				if (!Favorited($_SESSION[SESSIONUSERID], $hash)) {
 					//Show favorite button
 					echo("includes/operations.php?fav=1&amp;videoID=");
 					echo($_GET['videoID']);
@@ -42,7 +42,7 @@
 				}
 				echo "</a> </li> \n";
 
-				if (!liked($_SESSION['User_ID'], GetVideoID($hash))) {
+				if (!liked($_SESSION[SESSIONUSERID], GetVideoID($hash))) {
 					//Show liked button
 					echo "<li id=\"Like\">";
 					echo "<a href=\"";
@@ -61,7 +61,7 @@
 					echo('Unlike');
 					echo "</a> </li>\n";
 				}
-				if (!reported($_SESSION['User_ID'], GetVideoID($hash))) {
+				if (!reported($_SESSION[SESSIONUSERID], GetVideoID($hash))) {
 					//Show report button
 					echo "<li id=\"report\">";
 					echo "<a href=\"";
@@ -127,18 +127,9 @@
 	</div>
 
 </div>
-<!-- <div id="fb-root"></div> -->
-<script>
-	( function(d, s, id) {
-			var js, fjs = d.getElementsByTagName(s)[0];
-			if (d.getElementById(id))
-				return;
-			js = d.createElement(s);
-			js.id = id;
-			js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-			fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk')); 
-</script>
+<?php 
+
+?>
 <div id="CommentArea">
-	<div class="fb-comments grid_11" data-href="<?php echo $_SERVER["HTTP_HOST"] . "/view.php?videoID=$hash"; ?>" data-num-posts="5" data-width="470" data-colorscheme="light"></div>
+
 </div>

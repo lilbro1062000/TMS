@@ -1,6 +1,5 @@
 <?php
 include_once("includes/session.php");
-Logged_in();
 ?>
 <?php
 if(isset($_POST['fname']))

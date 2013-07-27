@@ -1,12 +1,9 @@
 <?php
-include_once ("includes/session.php");
-Logged_in();
+    require_once ("includes/connection.php");
+    require_once ("includes/functions.php");
 
 if (isset($_POST['Keywords'])) {
-	include_once ("includes/session.php");
-	Logged_in();
-	require_once ("includes/connection.php");
-	require_once ("includes/functions.php");
+
 	$vidID = GetVideoID($_GET['id']);
 	//delete all the categories
 	$query = "delete from videocatinfo where hash ='{$_GET['id']}'";

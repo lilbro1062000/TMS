@@ -91,4 +91,14 @@ info needed
 
 name 
 email 
-ID ( identity URL)						
+ID ( identity URL)		
+
+cool 
+what is logged in ?
+				
+a video quality rating system
+an audio quality rating system 
+
+content Helpful system
+
+helpfull 1-10  

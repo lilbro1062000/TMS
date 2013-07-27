@@ -11,6 +11,7 @@ define("DB_Name", "tms_Dev");
 
 //Upload COnstants
 define("IMAGE_PATH", "/images\\");
+
 define("SESSIONUSERID", "User_ID");
 define("SESSIONUSERNAME", "User_name");
 

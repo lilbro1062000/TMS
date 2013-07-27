@@ -1,6 +1,4 @@
 <?php
-require_once("session.php");
-Logged_in();
 require_once ("connection.php");
 require_once ("functions.php");
 

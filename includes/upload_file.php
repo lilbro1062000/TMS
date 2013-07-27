@@ -1,6 +1,4 @@
 <?php
-include_once ("session.php");
-Logged_in();
     require_once ("connection.php");
     require_once ("functions.php");
 	require_once("aws.php");

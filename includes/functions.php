@@ -19,7 +19,7 @@ function videoExists($vidHash)
 }
 function belongs_to_person($userID,$videoID)
 {
-	$query ="Select 1 from video where hash='{$videoID}' and UserID=".$userID;
+	$query ="Select 1 from video where hash='{$videoID}' and UserID='$userID'";
 	if(ex_query1RowAns($query)==1)
 	{
 		return true;
@@ -78,7 +78,7 @@ function GenMultipleThumb($results)
 }
 function LikeVideo($UserID, $videoID)
 {
-	$query = "insert into liked(videoID,UserID,Liked) values( '{$videoID}', '{$UserID}', 1)";
+	$query = "insert into liked(videoID,UserID,Liked) values( '{$videoID}', '$UserID', 1)";
 	ex_query($query);
 	echo "$query";
 }
@@ -123,20 +123,19 @@ function reported($UserID , $Videoid)
 	}
 }
 
-
 function UpdateHistory($UserID,$hash,$DateString)
 {
 	//check to see if exists if it does then upodate the date otherwise insert
 	// i have to add a check to see if this has been seen if so then it should just edit the date 
-	$query ="Select 1 from history where USERID=".$UserID." and VideoID='".$hash."'";
+	$query ="Select 1 from history where USERID='".$UserID."' and VideoID='".$hash."'";
 	if(ex_query1RowAns($query)==1)
 	{
 		//Then Update the date 
-		$query ="Update history set Date ='{$DateString}' where USERID=".$UserID." and VideoID='".$hash."'";
+		$query ="Update history set Date ='{$DateString}' where USERID='{$UserID}'and VideoID='$hash'";
 		ex_query($query);
 	}
 	else {
-	$query ="Insert into history(USERID,VideoID,Date) Values('{$UserID}','".$hash."','".to_mysqlDate(time())."')";
+	$query ="Insert into history(USERID,VideoID,Date) Values('{$UserID}','$hash','".to_mysqlDate(time())."')";
     ex_query($query);	
 	}
     
@@ -365,7 +364,7 @@ function Pages($query,$phpFile)
 }
 function GetDescofUser($userid)
 {
-	return ex_query1RowAns("Select info from usersinfo where ID=".$userid);
+	return ex_query1RowAns("Select info from usersinfo where ID='$userid'");
 }
 function to_mysqlDate($time)
 {
@@ -381,9 +380,19 @@ function addToFavorites($User_ID,$VideoID)
     $query ="Insert into favorites(USERID,VideoID) Values('{$User_ID}','{$VideoID}')";
     ex_query($query);
 }
+
+/**
+ * undocumented function
+ *
+ * @return user name First Name and last name mixture
+ * @author  
+ */
 function getUsername($user_ID)
 {
-    return ex_query1RowAns("Select UserName from users where id=".check_input($user_ID));
+    $value= ex_query1Row("Select * from usersinfo where ID='".$user_ID."'");
+    
+    $uNam = $value['First_Name']." ".$value['Last_Name'];
+    return $uNam;
     
 }
 function removeFromFavorites($User_ID,$VideoID)
@@ -598,7 +607,7 @@ return true;
 }
 Function Favorited($userid,$videoID)
 {
-$query = "select 1 from favorites where userid={$userid} and VideoID='{$videoID}'";
+$query = "select 1 from favorites where userid='$userid' and VideoID='{$videoID}'";
 $fav = ex_query1RowAns($query);
 if($fav==1)
 {
@@ -615,15 +624,15 @@ return ex_query1RowAns($q);
 
 function getnumVideosUploaded($userID)
 {
-return ex_query1RowAns("Select count(*) from video where userid=".check_input($userID));
+return ex_query1RowAns("Select count(*) from video where userid='".check_input($userID)."'");
 }
 function getnumVideosWatched($userID)
 {
-return ex_query1RowAns("Select count(*) from history where userid=".check_input($userID));
+return ex_query1RowAns("Select count(*) from history where userid='".check_input($userID)."'");
 }
 function getUploadSize($userid)
 {
-$query ="Select UploadLimit from usersinfo where id ={$userid}";
+$query ="Select UploadLimit from usersinfo where id ='{$userid}'";
 return ex_query1RowAns($query);
 }
 
@@ -697,6 +706,30 @@ $isValid = false;
 }
 }
 return $isValid;
+}
+
+/**
+ * does a javascript redirect with no a wait 
+ *  todo: wait currently not working
+ * @return void
+ * @author  
+ */
+function javascriptRedirect($location) {
+     $html ="<script type=\"text/javascript\">
+  window.onload = function () {
+        var form = document.getElementById(\"redirectform\");
+        form.submit();
+    };
+
+</script>
+
+<form id=\"redirectform\" action=\"$location\" method=\"GET\" \">
+    <!--Any input tags go in here-->
+</form>
+";
+
+
+echo $html;
 }
 
 require_once('login_code.php');

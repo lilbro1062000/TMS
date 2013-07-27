@@ -1,13 +1,11 @@
 <?php
 //to echo all jobs that need to be done for that
 //Session 
-include 'session.php';
-Logged_in();
 include_once 'connection.php';
 require_once 'functions.php';
 
 $query  ="Select Progress, VideoName, Percentage from jobs where Userid='";
-$query.= $_SESSION[SESSIONUSERID];
+$query.= $_GET['ID'];
 //$query.= '704520593';
 $query.= "' order by ID desc";
 $result =ex_query($query);

@@ -11,7 +11,7 @@ body {
 	font-size: 12pt;
 	text-align: center;
 	position: relative;
-	top: 40px;
+	top: 20px;
 }
 .elasticMenuOptions {
 	background: rgb(2,89,73);
@@ -416,4 +416,19 @@ width: 900px;
 {
 	/*float: left;*/
 	display: block;
+}
+.alert {
+    border: 1px solid #e7dc2b;
+    background: #fff888;
+    padding: .5em;
+}
+.success {
+    border: 1px solid #669966;
+    background: #88ff88;
+    padding: .5em;
+}
+.error {
+    border: 1px solid #ff0000;
+    background: #ffaaaa;
+    padding: .5em;
 }
