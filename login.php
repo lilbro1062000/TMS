@@ -28,6 +28,8 @@ if (isset($_GET['msg'])) {
     }
     if ($_GET['msg'] == 2) {
         $message = "You Must be logged In";
+        $msg="You Must be logged In ";
+            
     }
     if ($_GET['msg'] == 3) {
         $message = "Sign Up through One of these Providers";

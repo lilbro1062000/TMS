@@ -1,7 +1,79 @@
 <?php
-include_once("includes/session.php");
+// 
+//  view.php
+//  TMS
+//  
+//  Created by root on 2013-07-27.
+//  Copyright 2013 root. All rights reserved.
+// 
+include_once("includes/head.php");
+include_once("includes/categories.php");
 ?>
+<?php ?>
+<div id="rating">
+    <?php if (isSitelogin()): ?>
+    <div id="video_quality">
+        <select>
+            <option value="Vote"> vote</option>
+            <option value="1"> 1-awful</option>
+            <option value="2"> 2</option>
+            <option value="3"> 3</option>
+            <option value="4"> 4</option>
+            <option value="5"> 5</option>
+            <option value="6"> 6</option>
+            <option value="7"> 7</option>
+            <option value="8"> 8</option>
+            <option value="9"> 9</option>
+            <option value="10"> 10 Amazing</option>
+        </select>
+    </div>
+    <div id="audio_quality">
+        <select>
+        <option value="Vote"> vote</option>
+        <option value="1"> 1-awful</option>
+        <option value="2"> 2</option>
+        <option value="3"> 3</option>
+        <option value="4"> 4</option>
+        <option value="5"> 5</option>
+        <option value="6"> 6</option>
+        <option value="7"> 7</option>
+        <option value="8"> 8</option>
+        <option value="9"> 9</option>
+        <option value="10"> 10 Amazing</option>
+        </select>
+    </div>
+    <div id="Helpful">
+        <select>
+        <option value="Vote"> vote</option>
+        <option value="1"> 1-not at all </option>
+        <option value="2"> 2</option>
+        <option value="3"> 3</option>
+        <option value="4"> 4</option>
+        <option value="5"> 5</option>
+        <option value="6"> 6</option>
+        <option value="7"> 7</option>
+        <option value="8"> 8</option>
+        <option value="9"> 9</option>
+        <option value="10"> 10 Absolute need to KNOW</option>
+        </select>
+    </div>
 
+<div id="CommentArea">
+
+    <form id="submit_comment"   >
+        <textarea id="usercomment">
+            
+        </textarea>
+        <input type="button" name="submit" />
+    </form>
+
+</div>
+
+<?php else: ?>
+<label id="msg"> You need to be logged in to Comment</label>
+<a href="login_code.php"> please log in</a>
+<?php endif ?>
+</div>
 <div id="azk43115"></div>
 <?php
 	if(isset($_POST['VideoID']))

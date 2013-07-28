@@ -192,6 +192,7 @@
 				<div id="Categories_info">
 					
 					<?php
+					
 					$results = ex_query("Select upper(name) from categories where PrevName ='NULL' order by ID");
 echo "\n<table>\n";
 $count =0;

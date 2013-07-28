@@ -55,7 +55,7 @@ if (isset($_POST['Keywords'])) {
 
 		}
 		//redirect_to("view.php?videoID=" . $_GET['id']);
-		redirect_to("updatevid.php?fb=1&videoID=" . $_GET['id']);
+		javascriptRedirect("updatevid.php?fb=1&videoID=" . $_GET['id']);
 	}
 } elseif (isset($_GET['videoID'])) {
 	require_once ("includes/connection.php");

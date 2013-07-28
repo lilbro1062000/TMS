@@ -54,6 +54,7 @@ function login($var) {
     
     $_SESSION[SESSIONUSERID] = $var;
     $_SESSION[SESSIONUSERNAME] = getUsername($var);
+    
 }
 
 /**
@@ -129,6 +130,7 @@ function isSitelogin() {
 
 function redirect_to($location = NULL) {
     if ($location != NULL) {
+        var_dump($location);
         header("location:{$location}");
     } else {
         header("location: index.php");
